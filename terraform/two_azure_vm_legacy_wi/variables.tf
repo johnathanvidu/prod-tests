@@ -1,17 +1,17 @@
 variable "vm1_name" {
   type = string
-  default = "vidovm1"
+  default = "shiravm1"
   description = "vm Name"
 }
 
 variable "vm2_name" {
   type = string
-  default = "vidovm2"
+  default = "shiravm2"
   description = "vm Name"
 }
 
 variable "resource_group" {
   type = string
-  default = "vido_rg5"
+  default = "shira_rg"
   description = "resource group name"
 }
