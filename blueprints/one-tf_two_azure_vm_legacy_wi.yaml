@@ -6,21 +6,21 @@ inputs:
     type: execution-host
   vm_name:
     type: string
-    default: "vidovm"
+    default: "shiravm"
   resource_group:
     type: string
-    default: "vido_rg5"
+    default: "shira_rg"
 
 outputs:
   vm1_name:
     value: '{{.grains.vm1.outputs.vm_id}}'
 
 grains:
-  vm1:
+  vms:
     kind: terraform
     spec:
       source:
-        store: bps
+        store: prod-tests-shira
         path: terraform/two_azure_vm_legacy_wi
       host:
         name: '{{ .inputs.agent }}'
