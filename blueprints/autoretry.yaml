@@ -16,3 +16,16 @@ grains:
         name: '{{ .inputs.agent }}'
       tf-version: 1.3.6
     tf-version: 1.3.6
+
+  vm2:
+    kind: terraform
+    depends-on: vm1
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world
+      agent:
+        name: '{{ .inputs.agent }}'
+      tf-version: 1.3.6
+    tf-version: 1.3.6
+    
