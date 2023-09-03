@@ -32,10 +32,10 @@ grains:
     kind: terraform
     spec:
       source:
-        store: assets
+        store: bps
         path: assets/terraform/s3-webapp
       agent:
-        name: '{{ .inputs.host }}'
+        name: '{{ .inputs.agent }}'
       env-vars: 
       - AWS_ACCESS_KEY: '{{ .inputs.AWS_ACCESS_KEY }}'
       - AWS_SECRET_KEY: '{{ .inputs.AWS_SECRET_KEY }}'
