@@ -32,7 +32,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: bps
+        store: assets
         path: assets/terraform/s3-webapp
       agent:
         name: '{{ .inputs.agent }}'
