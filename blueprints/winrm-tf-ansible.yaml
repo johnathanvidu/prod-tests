@@ -6,7 +6,7 @@ inputs:
     type: agent
   vm_name:
     type: string
-    default: "vidovm_win"
+    default: "vidovmwin"
   resource_group:
     type: string
     default: "vido_rg"
