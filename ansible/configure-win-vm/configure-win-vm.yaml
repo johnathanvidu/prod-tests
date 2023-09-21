@@ -1,0 +1,19 @@
+---
+- name: Install Chocolatey on Windows VM
+  hosts: vm
+  gather_facts: no
+  tasks:
+    - name: Wait for WinRM to become available
+      wait_for_connection:
+        timeout: 600
+
+    - name: Install Chocolatey
+      win_shell: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+      args:
+        executable: powershell.exe
+      become: yes
+
+    - name: Verify Chocolatey installation
+      win_shell: choco --version
+      become: yes
