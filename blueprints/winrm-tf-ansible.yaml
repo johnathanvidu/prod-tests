@@ -1,0 +1,54 @@
+spec_version: 2
+description: deploy azure vm
+
+inputs:
+  agent:
+    type: agent
+  vm_name:
+    type: string
+    default: "vidovm_win"
+  resource_group:
+    type: string
+    default: "vido_rg"
+
+outputs:
+  vm1_name:
+    value: '{{.grains.vm1.outputs.vm_id}}'
+
+grains:
+  vm:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/azure_win_vm_wi
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - vm_name: '{{.inputs.vm_name}}'
+        - resource_group: '{{.inputs.resource_group}}'
+      outputs:
+        - vm_id
+        - public_ip
+        - password
+
+  configure:
+    kind: ansible
+    depends-on: vm
+    spec:
+      source: bps
+      path: ansible/configure-win-vm/configure-win-vm.yaml
+    agent:
+      name: '{{ .inputs.agent }}'
+    inventory-file:
+      all:
+        hosts:
+          vm:
+            ansible_host: '{{ .grains.vm.outputs.public_ip }}'
+            ansible_user: 'adminuser'
+            ansible_password: '{{ .grains.vm.outputs.password }}'
+            ansible_become: yes
+            ansible_become_method: sudo
+            ansible_become_pass: '{{ .grains.vm.outputs.password }}' 
+          localhost:
+            ansible_connection: local
