@@ -4,4 +4,5 @@ output "public_ip" {
 
 output "password" {
   value = azurerm_windows_virtual_machine.example.admin_password
+  sensitive = true
 }
