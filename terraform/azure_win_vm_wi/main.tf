@@ -40,7 +40,16 @@ resource "azurerm_network_interface" "example" {
     name                          = "example-nic-cfg"
     subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id           = azurerm_public_ip.example.id
   }
+}
+
+resource "azurerm_public_ip" "example" {
+  name                = "example-pip"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
