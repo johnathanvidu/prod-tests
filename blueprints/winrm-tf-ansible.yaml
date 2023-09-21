@@ -12,8 +12,10 @@ inputs:
     default: "vido_rg_win"
 
 outputs:
-  vm1_name:
+  vm_name:
     value: '{{.grains.vm.outputs.vm_id}}'
+  public_ip:
+    value: '{{.grains.vm.outputs.public_ip}}'
 
 grains:
   vm:
