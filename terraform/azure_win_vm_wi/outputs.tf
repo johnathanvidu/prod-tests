@@ -1,5 +1,5 @@
 output "public_ip" {
-  value = azurerm_windows_virtual_machine.example.network_interface_ids[0]
+  value = azurerm_public_ip.example.ip_address
 }
 
 output "password" {
