@@ -9,7 +9,7 @@ inputs:
     default: "vidovmwin"
   resource_group:
     type: string
-    default: "vido_rg"
+    default: "vido_rg_win"
 
 outputs:
   vm1_name:
