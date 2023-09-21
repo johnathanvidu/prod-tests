@@ -86,6 +86,11 @@ resource "azurerm_network_security_rule" "allow_winrm" {
   network_security_group_name = azurerm_network_security_group.example.name
 }
 
+resource "azurerm_network_interface_security_group_association" "example" {
+  network_interface_id      = azurerm_network_interface.example.id
+  network_security_group_id = azurerm_network_security_group.example.id
+}
+
 resource "azurerm_windows_virtual_machine" "example" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.example.name
@@ -96,8 +101,6 @@ resource "azurerm_windows_virtual_machine" "example" {
   network_interface_ids = [
     azurerm_network_interface.example.id,
   ]
-  # Associate the NSG with the VM's network interface
-  network_security_group_ids = [azurerm_network_security_group.example.id]
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
