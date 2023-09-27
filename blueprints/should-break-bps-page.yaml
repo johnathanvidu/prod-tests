@@ -1,0 +1,19 @@
+spec_version: 2
+description: Blueprint for nginx helm chart 
+
+inputs:
+  host_name:
+    type: agent
+
+grains:
+  shouldbreak:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        store: bps
+        path: helm/nginx
+      agent:
+        name: '{{ .inputs.host_name }}'
+      commands:
+        - dep up bitnami/nginx
