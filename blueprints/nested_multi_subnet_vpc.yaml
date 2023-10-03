@@ -1,0 +1,41 @@
+spec_version: 2
+description:  nested
+
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  agent:
+    type: agent
+
+  aws_region:
+    type: string
+    default: il-central-1
+    allowed-values: ["il-central-1", "eu-west-1"]
+
+
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs:
+  subnet_a_id:
+    value: '{{ .grains.["Multi Subnet VPC"].outputs.app_subnet_a_id }}'
+    quick: false
+  subnet_b_id:
+    value: '{{ .grains.["Multi Subnet VPC"].outputs.app_subnet_b_id }}'
+    quick: true
+  def_sec_grp_id:
+    value: '{{ .grains.["Multi Subnet VPC"].outputs.default_security_group_id }}'
+    quick: false
+
+grains:
+  Multi Subnet VPC:
+    kind: blueprint
+    spec:
+      source: 
+        store: bps
+        path: blueprints
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - aws_region: '{{ .inputs.aws_region }}'
+      outputs:
+        - app_subnet_a_id
+        - app_subnet_b_id
+        - default_security_group_id
