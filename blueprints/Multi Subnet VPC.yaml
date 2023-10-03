@@ -24,7 +24,7 @@ grains:
     spec:
       source:
         store: bps
-        path: cloudformation/MultiSubnetVPC.yaml
+        path: cloudformation/multi_vpc/MultiSubnetVPC.yaml
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
