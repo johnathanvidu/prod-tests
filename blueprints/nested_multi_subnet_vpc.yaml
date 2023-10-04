@@ -31,9 +31,8 @@ grains:
       source: 
         store: bps
         path: blueprints
-      agent:
-        name: '{{ .inputs.agent }}'
       inputs:
+        - agent: '{{ .inputs.agent}}'
         - aws_region: '{{ .inputs.aws_region }}'
       outputs:
         - app_subnet_a_id
