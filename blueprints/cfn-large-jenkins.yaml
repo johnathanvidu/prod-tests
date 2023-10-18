@@ -5,6 +5,9 @@ inputs:
     type: agent
   credentials:
     type: credentials
+  storage_bucket_name:
+    type: string
+    default: vido-cfn
     
 grains:
   ec2:
@@ -20,6 +23,6 @@ grains:
       authentication:
       - '{{ .inputs.credentials }}'
       template-storage:
-        bucket-name: vido-cfn
+        bucket-name: '{{ .inputs.storage_bucket_name }}'
         region: eu-west-1
       
