@@ -3,7 +3,7 @@
 		"accesscontrol": {
 			"Type": "String",
 			"Default": "Private",
-			"Description": "Access Control value" #vido
+			"Description": "Access Control value"
 		}
 	},
 	"Outputs": {
@@ -37,6 +37,10 @@
 				"Tags": [
 					{
 						"Key": "TestName",
+						"Value": "My Bucket"
+					},
+					{
+						"Key": "vido",
 						"Value": "My Bucket"
 					}
 				]
