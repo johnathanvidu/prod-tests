@@ -38,7 +38,11 @@
 					{
 						"Key": "TestName",
 						"Value": "My Bucket"
-					}
+					},
+					{
+						"Key": "vido",
+						"Value": "My Bucket"
+					}					
 				]
 			}
 		}
