@@ -3,7 +3,7 @@
 		"accesscontrol": {
 			"Type": "String",
 			"Default": "Private",
-			"Description": "Access Control value"
+			"Description": "Access Control value" #vido
 		}
 	},
 	"Outputs": {
@@ -44,5 +44,3 @@
 		}
 	}
 }
-
-#vido
