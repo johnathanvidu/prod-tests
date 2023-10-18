@@ -1,0 +1,25 @@
+spec_version: 2
+description: large cfn - jenkins2 ha agents
+inputs:
+  agent:
+    type: agent
+  credentials:
+    type: credentials
+    
+grains:
+  ec2:
+    kind: cloudformation
+    spec:
+      source:
+        store: bps
+        path: cloudformation/large-cfn/jenkins2-ha-agents.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars: []
+      region: eu-west-1
+      authentication:
+      - '{{ .inputs.credentials }}'
+      template-storage:
+        bucket-name: vido-cfn
+        region: eu-west-1
+      
