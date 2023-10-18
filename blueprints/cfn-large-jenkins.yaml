@@ -25,7 +25,7 @@ grains:
       region: eu-west-1
       inputs:
       - ParentVPCStack: parent
-      - MasterAdminPassword: 12345
+      - MasterAdminPassword: 12345678
       authentication:
       - '{{ .inputs.credentials }}'
       template-storage:
