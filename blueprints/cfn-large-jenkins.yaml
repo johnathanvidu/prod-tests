@@ -23,6 +23,9 @@ grains:
         name: '{{ .inputs.agent }}'
       env-vars: []
       region: eu-west-1
+      inputs:
+      - ParentVPCStack: parent
+      - MasterAdminPassword: 12345
       authentication:
       - '{{ .inputs.credentials }}'
       template-storage:
