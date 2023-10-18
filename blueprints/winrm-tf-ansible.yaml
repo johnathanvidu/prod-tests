@@ -54,6 +54,6 @@ grains:
               ansible_become_method: sudo
               ansible_become_pass: '{{ .grains.vm.outputs.password }}' 
               ansible_connection: winrm
-              ansible_winrm_transport: basic
+              ansible_winrm_transport: ntlm
             localhost:
               ansible_connection: local
