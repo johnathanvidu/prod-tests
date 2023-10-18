@@ -8,6 +8,9 @@ inputs:
   storage_bucket_name:
     type: string
     default: vido-cfn
+  storage_region:
+    type: string
+    default: eu-west-1
     
 grains:
   ec2:
@@ -24,5 +27,5 @@ grains:
       - '{{ .inputs.credentials }}'
       template-storage:
         bucket-name: '{{ .inputs.storage_bucket_name }}'
-        region: eu-west-1
+        region: '{{ .inputs.storage_region }}'
       
