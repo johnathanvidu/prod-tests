@@ -1,0 +1,15 @@
+spec_version: 2
+description: broken nested bp due to missing agent in the inputs section
+inputs:
+  agent:
+    type: agent
+
+grains:
+  hello-pre-scripts:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints
+      agent:
+        name: '{{ .inputs.agent }}'
