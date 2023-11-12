@@ -1,0 +1,23 @@
+spec_version: 2
+description: checking the new introspection tf module
+
+inputs:
+  agent:
+    type: agent
+outputs: {}
+
+grains:
+  provider-install-verification:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/provider-install-verification
+      agent:
+      # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+      inputs: []
+      env-vars: []
+      outputs: []
+    # The terraform version that will be used to deploy the module
+    tf-version: 1.5.5
