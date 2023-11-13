@@ -13,3 +13,9 @@ resource "torque_introspection_resource" "example" {
     image = "https://cdn-icons-png.flaticon.com/512/882/882730.png"
     introspection_data = {size = "xtra large", mode = "party"}
 }
+
+resource "torque_introspection_resource" "example2" {
+    display_name = "Vido Resource"
+    image = "https://www.svgrepo.com/show/533037/balloon.svg"
+    introspection_data = {size = "xtra large", mode = "party"}
+}
