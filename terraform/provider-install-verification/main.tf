@@ -15,7 +15,7 @@ resource "torque_introspection_resource" "example" {
 }
 
 resource "torque_introspection_resource" "example2" {
-    display_name = "Vido Resource"
+    display_name = "no image icon provided"
     # image = "https://www.svgrepo.com/show/533037/balloon.svg"
 
     introspection_data = {size = "xlarge", mode = "party"}
