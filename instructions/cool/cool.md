@@ -29,3 +29,5 @@ right after that do the following (order doesn't matter)
 - goto line 3
 
 test
+
+![](bibi.png)
