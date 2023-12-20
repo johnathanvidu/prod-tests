@@ -1,0 +1,19 @@
+spec_version: 2
+description: hello world that tests that terraforms source property works
+inputs:
+  agent:
+    type: agent
+grains:
+  helloworld:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: assets/terraform/hello-world-source
+      agent:
+        name: '{{ .inputs.agent }}'
+      scripts: 
+        post-tf-plan:
+          source:
+            store: bps
+            path : scripts/echo-json-plan.sh   
