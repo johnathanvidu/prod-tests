@@ -14,4 +14,4 @@ grains:
       activities:
         deploy:
           commands:
-            - "echo vido {{ .param.great-value }}"
+            - "echo vido {{ .params.great-value }}"
