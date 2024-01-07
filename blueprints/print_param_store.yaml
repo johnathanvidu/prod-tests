@@ -15,3 +15,6 @@ grains:
         deploy:
           commands:
             - "echo vido {{ .params.great-value }}"
+        destroy:
+          commands:
+            - "echo vido {{ .params.great-value }}"
