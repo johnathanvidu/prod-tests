@@ -1,0 +1,17 @@
+spec: 2
+description: checking printing param store value at deploy, change the param and see the value at destory
+
+inputs:
+  agent:
+    type: agent
+    
+grains:
+  print-param:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - "echo vido {{ .param.great-value }}"
