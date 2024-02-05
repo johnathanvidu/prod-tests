@@ -14,4 +14,4 @@ grains:
       agent:
         name: '{{ .inputs.host_name }}'
       commands:
-        - dep up bitnami/nginx
+        - dep up helm/nginx
