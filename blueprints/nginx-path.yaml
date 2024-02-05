@@ -1,0 +1,17 @@
+spec_version: 2
+description: Blueprint for nginx helm chart 
+
+inputs:
+  host_name:
+    type: agent
+
+grains:
+  nginx:
+    kind: helm
+    spec:
+      source:
+        path: https://github.com/johnathanvidu/prod-tests.git//helm/nginx
+      agent:
+        name: '{{ .inputs.host_name }}'
+      commands:
+        - dep up bitnami/nginx
