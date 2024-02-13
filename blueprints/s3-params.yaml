@@ -5,9 +5,8 @@ inputs:
   content:
     type: string
     default: this is a default content
-  compute_service_name:
-    type: string
-    default: "eks"
+  agent:
+    type: agent
 
 grains:
   s3-write:
