@@ -32,3 +32,6 @@
       torque.collections.export_torque_outputs:
         outputs: 
           nginx_service_result: '{{ hostvars["ec2_instance"]["nginx_service_result"]["status"] }}'
+
+
+# vido was here
