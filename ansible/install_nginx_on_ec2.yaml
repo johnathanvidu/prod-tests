@@ -1,6 +1,6 @@
 ---
 - name: Installed Nginx on EC2 Instance
-  hosts: ec2_instance
+  hosts: all
   gather_facts: no
   connection: ssh
   tasks:
