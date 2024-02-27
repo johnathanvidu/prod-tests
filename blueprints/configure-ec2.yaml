@@ -18,7 +18,7 @@ grains:
     kind: terraform
     spec:
       source:
-        path: terraform/create-ec2-instance
+        path: terraform/create-ec2-instance-http
         store: bps
       agent:
         name: '{{.inputs.agent}}'
