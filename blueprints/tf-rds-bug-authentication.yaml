@@ -53,6 +53,8 @@ grains:
         store: bps
       authentication:
         - "aws"
+      tags:
+        auto-tag: false
       agent:
         name: '{{ .inputs.compute-service }}'
       inputs:
