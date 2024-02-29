@@ -1,0 +1,67 @@
+spec_version: 2-preview
+description: Creates AWS RDS database
+
+inputs:
+  compute-service:
+    type: agent  
+  db_name: 
+    type: string
+    default: somedb
+  db_engine:
+    type: string
+    default: mysql  
+  res_identifier:
+    type: string
+    default: tf-rds-123
+  db-secret:
+    type: string
+  security-group:
+    type: string
+    default: sg-0575622a6a628422d
+  subnet_1: 
+    type: string
+    default: subnet-0969156fe72c830d1
+  subnet_2: 
+    type: string
+    default: subnet-01b970081945d7e5c
+  instance_class:
+    type: string
+    default: db.t2.small
+  admin_username:
+    type: string
+  admin_password:
+    type: string
+  region:
+    type: string
+    default: eu-west-1
+
+outputs:
+  host: 
+    value: '{{ .grains.tf-aws-rds.outputs.rds_hostname }}'
+  post: 
+    value: '{{ .grains.tf-aws-rds.outputs.rds_port }}'
+
+grains:
+  tf-aws-rds:
+    kind: terraform
+    spec:
+      source:        
+        path: terraform/bug-rds
+        store: bps
+      agent:
+        name: '{{ .inputs.compute-service }}'
+      inputs:
+        - engine: '{{ .inputs.db_engine }}'
+        - db_name: '{{ .inputs.db_name }}'
+        - identifier: '{{ .inputs.res_identifier }}'
+        - db-secret: '{{ .inputs.db-secret }}'
+        - dac_db_sg_id: '{{ .inputs.security-group }}'
+        - dac_db_subnet_1_id: '{{ .inputs.subnet_1 }}'
+        - dac_db_subnet_2_id: '{{ .inputs.subnet_2 }}'
+        - instance_class: '{{ .inputs.instance_class }}'
+        - admin_username: '{{ .inputs.admin_username }}'
+        - admin_password: '{{ .inputs.admin_password }}'
+        - aws_region: '{{ .inputs.region }}'
+      outputs:
+        - rds_hostname
+        - rds_port
