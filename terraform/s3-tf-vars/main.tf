@@ -11,6 +11,13 @@ provider "aws" {
   region = var.region
 }
 
+resource "null_resource" "task_long" {
+  provisioner "local-exec" {
+    interpreter = ["bash", "-c"]
+    command = "counter=1; while (( counter != 12 )); do echo sleeping; sleep 5; counter=$((counter+1)); done"
+  }
+}
+
 data "aws_iam_user" "input_user" {
   count = "${var.user == "none" ? 0 : 1}"
   user_name = var.user
