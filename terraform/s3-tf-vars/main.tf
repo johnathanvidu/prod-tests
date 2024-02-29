@@ -19,17 +19,12 @@ data "aws_iam_user" "input_user" {
 resource "aws_s3_bucket" "bucket" {
   bucket = var.name
   force_destroy = true
+  acl = private
 
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
   }
-}
-
-resource "aws_s3_bucket_acl" "acl" {
-  bucket = aws_s3_bucket.bucket.id
-  acl    = var.acl
-  # dbs was here
 }
 
 # CREATE USER and POLICY
