@@ -21,7 +21,7 @@ locals {
 ## DB Subent Group
 
 resource "aws_db_subnet_group" "dac_db_subnet_group" {
-  name       = "vido_db_subnet_group"
+  name       = var.db_subnet_group
   subnet_ids = [var.dac_db_subnet_1_id, var.dac_db_subnet_2_id]
 
   tags = {

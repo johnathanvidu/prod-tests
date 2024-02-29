@@ -57,3 +57,8 @@ variable "identifier" {
   type = string
   default = "dacdb"
 }
+
+variable "db_subnet_group" {
+  type = string
+  default = "vido_db_subnet_group"
+}
