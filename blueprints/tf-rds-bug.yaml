@@ -34,6 +34,9 @@ inputs:
   region:
     type: string
     default: eu-west-1
+  db_subnet_group:
+    type: string
+    default: "vido_db_subnet_group"
 
 outputs:
   host: 
@@ -48,6 +51,8 @@ grains:
       source:        
         path: terraform/bug-rds
         store: bps
+      tags:
+        auto-tag: false
       agent:
         name: '{{ .inputs.compute-service }}'
       inputs:
@@ -62,6 +67,7 @@ grains:
         - admin_username: '{{ .inputs.admin_username }}'
         - admin_password: '{{ .inputs.admin_password }}'
         - aws_region: '{{ .inputs.region }}'
+        - db_subnet_group: '{{ .inputs.db_subnet_group }}'
       outputs:
         - rds_hostname
         - rds_port
