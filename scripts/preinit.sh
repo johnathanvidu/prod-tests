@@ -1,1 +1,1 @@
-echo "vido pre tf init"
+echo "vido pre tf init from branch"
