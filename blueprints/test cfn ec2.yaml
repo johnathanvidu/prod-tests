@@ -1,0 +1,19 @@
+spec_version: 2
+description: A VPC with multiple subnets with an internet gateway (standardized environment for other Blueprints)
+inputs:
+  agent:
+    type: agent
+    
+grains:
+  ec2:
+    kind: cloudformation
+    spec:
+      source:
+        store: bps
+        path: cloudformation/ec2/ec2.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars: []
+      region: eu-west-1
+      authentication:
+      - vido-aws
