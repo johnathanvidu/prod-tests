@@ -4,3 +4,9 @@
   - name: print debug message
     debug: 
       msg: "This debug message is from an input: {{ dbg_msg }}"
+      
+  - name: Create new domain in a new forest on the target host and reboot
+    microsoft.ad.domain:
+      dns_domain_name: ansible.vagrant
+      safe_mode_password: password123!
+      reboot: true
