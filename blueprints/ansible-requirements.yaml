@@ -1,0 +1,16 @@
+spec_version: 2
+description: test if pointing to an ansible folder works or not 
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  debug:
+    kind: ansible
+    spec: 
+      source:
+        store: bps
+        path: ansible/debug_msg.yaml
+      agent:
+        name: {{.inputs.agent}}
