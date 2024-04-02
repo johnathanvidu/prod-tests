@@ -13,4 +13,4 @@ grains:
         store: bps
         path: ansible/debug_msg.yaml
       agent:
-        name: {{.inputs.agent}}
+        name: '{{.inputs.agent}}'
