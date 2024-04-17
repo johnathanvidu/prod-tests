@@ -9,7 +9,7 @@ grains:
     spec:
       source:
         store: bps
-        path: assets/terraform/modules
+        path: terraform/modules
       agent:
         name: '{{ .inputs.agent }}'
       outputs:
