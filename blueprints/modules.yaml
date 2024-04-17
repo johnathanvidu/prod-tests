@@ -1,0 +1,18 @@
+spec_version: 2
+description: modules feature of terraform, should reproduce a bug with introspection not showing
+inputs:
+  agent:
+    type: agent
+grains:
+  helloworld:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: assets/terraform/modules
+      agent:
+        name: '{{ .inputs.agent }}'
+      outputs:
+        - current_time
+        - module1_time
+        - module2_time
