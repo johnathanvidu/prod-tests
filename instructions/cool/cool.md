@@ -28,7 +28,6 @@ right after that do the following (order doesn't matter)
 - goto line 1 again
 - goto line 3
 
-test
 
 bibi
 ![](bibi.png)
