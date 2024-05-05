@@ -1,0 +1,58 @@
+spec_version: 2
+description: |
+  Gracefully powers off all running virtual machines. 
+  It checks user permissions, enumerates running VMs, sends shutdown signals, and forces power-off if needed. 
+  Upon completion, it summarizes the power-off operation, including successful VMs and errors encountered.
+
+workflow: true
+workflow-metadata:  
+  scope: env
+  
+inputs:
+  input1:
+    type: string
+    default: 'yaml-default1'
+  input2:
+    type: string
+  agent:
+    type: agent
+    display-style: normal
+    description: "agent name." 
+
+outputs:
+  power-off-vms-output:
+    value: '{{ .grains.power-off-vms.activities.deploy.commands.print.output }}'
+  notify-it-channel-output: 
+    value: '{{ .grains.notify-it-channel.activities.deploy.commands.print.output }}'
+  input1:
+    value: '{{ .inputs.input1 }}'
+  input2:
+    value: '{{ .inputs.input2 }}'
+  
+grains:
+  power-off-vms:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/print-resource.sh
+      activities:
+        deploy:
+          commands:
+            - name: print                    
+              command:  'echo -n power-off-vms'                    
+
+  notify-it-channel:
+    kind: shell
+    depends-on: power-off-vms
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - command: 'echo sending notification on the IT channels' 
+            - name: print                  
+              command:  'echo {{.grains.power-off-vms.activities.deploy.commands.print.output}}'
