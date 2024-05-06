@@ -1,0 +1,55 @@
+spec_version: 2
+workflow: true
+description: workflow demo
+
+workflow-metadata:
+  scope: env_resource
+  label-selector: vm
+  
+inputs:
+  input1:
+    type: string
+    default: 'yaml-default1'
+  input2:
+    type: string
+  agent:
+    type: agent
+    display-style: normal
+    description: "agent name." 
+
+outputs:
+  resource_state:
+    value: '{{ .grains.job1.activities.deploy.commands.print.outputs.state_tr }}'  
+  input1:
+    value: '{{ .inputs.input1 }}'  
+  
+grains:
+    job1:
+        kind: shell
+        spec:
+            agent:
+                name: '{{ .inputs.agent }}'
+            files:
+                - source: bps
+                  path: scripts/print-resource-2.sh
+            activities:
+              deploy:
+                commands:
+                  - name: print
+                    # command:  './print-resource.sh azurerm_virtual_machine.example vm1 {{ .params.token }}'
+                    command:  'source print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'
+                    outputs:
+                      - state_tr
+
+    job2:
+        kind: shell
+        depends-on: job1
+        spec:
+            agent:
+                name: '{{ .inputs.agent }}'
+            activities:
+              deploy:
+                commands:
+                  - command: 'echo hello from job2' 
+                  - name: print                  
+                    command:  'echo "{{ .grains.job1.activities.deploy.commands.print.outputs.state_tr }}"'
