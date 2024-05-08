@@ -1,8 +1,5 @@
 spec_version: 2
 description: hello world that tests that terraforms source property works
-inputs:
-  agent:
-    type: agent
 grains:
   helloworld:
     kind: terraform
@@ -11,4 +8,4 @@ grains:
         store: bps
         path: terraform/hello-world-source
       agent:
-        name: '{{ .inputs.agent }}'
+        name: vido-vido-prod
