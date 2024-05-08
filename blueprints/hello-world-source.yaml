@@ -8,4 +8,4 @@ grains:
         store: bps
         path: terraform/hello-world-source
       agent:
-        name: vido-vido-prod
+        name: vido-vido-prod2
