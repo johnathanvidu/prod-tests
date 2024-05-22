@@ -7,6 +7,10 @@ description: |
 workflow: true
 workflow-metadata:  
   scope: env
+  triggers:
+    - type: cron
+      cron: '0 22 * * *'
+      overridable: true
   
 inputs:
   input1:
