@@ -9,7 +9,7 @@ workflow-metadata:
   scope: env
   triggers:
     - type: cron
-      cron: '0 22 * * *'
+      cron: '42 11 * * *'
       overridable: true
   
 inputs:
