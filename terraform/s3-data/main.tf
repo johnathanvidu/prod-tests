@@ -3,5 +3,5 @@ data "aws_s3_bucket" "bucket" {
 }
 
 output "vido" {
-  value = data.aws_s3_bucket.bucket.tags["activity"]
+  value = data.aws_s3_bucket.bucket.arn
 }
