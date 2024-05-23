@@ -1,6 +1,6 @@
 kind: environment
 environment_name: vido-test
-state: active
+state: inactive
 owner_email: johnathan.vidu@quali.com
 blueprint:
   name: hello-pre-scripts
