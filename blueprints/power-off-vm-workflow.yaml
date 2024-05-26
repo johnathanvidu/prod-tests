@@ -18,6 +18,7 @@ inputs:
     default: 'yaml-default1'
   input2:
     type: string
+    default: vido
   agent:
     type: agent
     display-style: normal
