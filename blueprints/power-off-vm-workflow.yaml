@@ -9,7 +9,7 @@ workflow-metadata:
   scope: env
   triggers:
     - type: cron
-      cron: '08 12 * * *'
+      cron: '30 12 * * *'
       overridable: true
   
 inputs:
@@ -18,7 +18,6 @@ inputs:
     default: 'yaml-default1'
   input2:
     type: string
-    default: vido
   agent:
     type: agent
     display-style: normal
