@@ -1,0 +1,16 @@
+kind: environment
+environment_name: hello-tf-scripts
+state: active
+spaces: []
+owner_email: johnathan.v@quali.com
+blueprint:
+  name: hello-pre-scripts
+  repository_name: bps
+  commit: 83bb330e6b0f072f595db95fd9b76682ee5b7d32
+inputs:
+  agent: vido-prod
+tags: {}
+grains:
+  helloTF:
+    source:
+      commit: 351290e2567247ee6b5ae3553c4b79c1dfe52f49
