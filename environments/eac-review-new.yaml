@@ -1,0 +1,34 @@
+pec_version: 2
+
+
+environment:
+  environment_name: vido-test-new
+  description: eac env for testing  1
+  owner_email: johnathan.v@quali.com
+  state: active 
+    
+inputs:
+  agent:
+    type: agent
+    default: vido-review3
+
+grains:
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/hello-world
+        store: bps
+      agent:
+        name: '{{.inputs.agent}}'
+      scripts: 
+        pre-tf-init:
+          source:
+            store: bps
+            path : scripts/preinit.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: bps
+            path : scripts/predestroy.sh
+          arguments: "value"  
