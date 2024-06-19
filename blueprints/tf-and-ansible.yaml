@@ -28,7 +28,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-        dbg_msg: '{{ .grains.tf-curl.outputs.result }}'
+        - dbg_msg: '{{ .grains.tf-curl.outputs.result }}'
       # inventory-file:
       #   all:  
       #     vars:
