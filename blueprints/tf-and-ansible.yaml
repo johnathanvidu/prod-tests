@@ -27,7 +27,9 @@ grains:
         path: ansible/dbg_msg.yaml
       agent:
         name: '{{ .inputs.agent }}'
-      inventory-file:
-        all:  
-          vars:
-            dbg_msg: {{ .grains.tf-curl.outputs.result }}
+      inputs:
+        dbg_msg: '{{ .grains.tf-curl.outputs.result }}'
+      # inventory-file:
+      #   all:  
+      #     vars:
+      #       dbg_msg: {{ .grains.tf-curl.outputs.result }}
