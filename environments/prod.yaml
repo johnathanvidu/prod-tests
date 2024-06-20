@@ -37,13 +37,13 @@ grains:
       source:
         store: bps
         path: terraform/s3
-      provider-overrides:
-        - name: aws
-          source: hashicorp/aws
-          version: ~>5.0.0 # Optional 
-          attributes:
-            alias: ue2
-            region: us-east-2
+      # provider-overrides:
+      #   - name: aws
+      #     source: hashicorp/aws
+      #     version: ~>5.0.0 # Optional 
+      #     attributes:
+      #       alias: ue2
+      #       region: us-east-2
       agent:
       # The Torque agent that will be used to provision the environment.
         name: '{{ .inputs.agent }}'
