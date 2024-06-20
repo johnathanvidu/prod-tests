@@ -1,0 +1,66 @@
+spec_version: 2
+description: Torque auto generated blueprint
+environment:
+  environment_name: s3_2-eac
+  state: active
+  owner_email: johnathan.v@quali.com
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  acl:
+    type: string
+    default: private
+    description: Canned ACL to apply to the bucket. Default is private.
+  name:
+    type: string
+    description: Name of S3 bucket
+  region:
+    type: string
+    default: eu-west-1
+    description: Region where to create resources
+  user:
+    type: string
+    default: none
+    description: Username to assign permissions for S3 bucket to. If left blank, will not create permissions.
+  agent:
+    type: agent
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs:
+  s3_s3_bucket_arn:
+    value: '{{ .grains.s3.outputs.s3_bucket_arn }}'
+    quick: true
+grains:
+  s3:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/s3
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0.0 # Optional 
+          attributes:
+            alias: ue2
+            region: us-east-2
+      agent:
+      # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+        # A service account annotated with a role ARN with permissions to run the asset
+        # service-account: <service-account-name>
+        # Will override the default value for Runners isolation
+        # isolated: <boolean>
+      inputs:
+      - acl: '{{ .inputs.acl }}'
+      - name: '{{ .inputs.name }}'
+      - region: '{{ .inputs.region }}'
+      - user: '{{ .inputs.user }}'
+      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
+      # env-vars:
+      # - VAR_NAME: var value
+      env-vars: []
+      outputs:
+      - s3_bucket_arn
+      # Helm commands to run before installing the chart
+      commands: []
+    # The terraform version that will be used to deploy the module
+    tf-version: 1.5.5
