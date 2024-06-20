@@ -12,7 +12,7 @@ inputs:
     description: Canned ACL to apply to the bucket. Default is private.
   name:
     type: string
-    default: cvkdsnggvb
+    default: cvkdsnggvbb
     description: Name of S3 bucket
   region:
     type: string
