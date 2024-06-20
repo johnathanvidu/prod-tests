@@ -21,8 +21,6 @@ inputs:
     type: string
     default: none
     description: Username to assign permissions for S3 bucket to. If left blank, will not create permissions.
-  agent:
-    type: agent
 # blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs:
   s3_s3_bucket_arn:
@@ -44,7 +42,7 @@ grains:
             region: us-east-2
       agent:
       # The Torque agent that will be used to provision the environment.
-        name: '{{ .inputs.agent }}'
+        name: 'vido-vido-prod'
         # A service account annotated with a role ARN with permissions to run the asset
         # service-account: <service-account-name>
         # Will override the default value for Runners isolation
