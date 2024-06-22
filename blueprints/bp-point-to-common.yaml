@@ -1,0 +1,15 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+    
+grains:
+  common:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/common/common-bp.yaml
+      inputs:
+      - agent: '{{ .inputs.agent }}'
