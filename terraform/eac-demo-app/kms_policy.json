@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "Describe the policy statement",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::046086677675:root"
+        },
+        "Action": "kms:*",
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": {
+            "kms:KeySpec": "SYMMETRIC_DEFAULT"
+          }
+        }
+      }
+    ]
+  }
