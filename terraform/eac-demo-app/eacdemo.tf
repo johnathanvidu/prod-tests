@@ -21,6 +21,16 @@ module "eac-demo-s3-bucket" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "example" {
+  # bucket = module.eac-demo-s3-bucket.s3_bucket_id
+  bucket = "eac-demo-app"
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
 resource "aws_instance" "eac-demo-app-vm" {
   ami           = "ami-01e93c66feed74d08"
   instance_type = "t2.micro"
