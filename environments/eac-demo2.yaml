@@ -48,7 +48,7 @@ grains:
         # Will override the default value for Runners isolation
         # isolated: <boolean>
       inputs: 
-        - name: eac-demo-content
+        - name: 'eac-demo-content'
       # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
       # env-vars:
       # - VAR_NAME: var value
