@@ -33,3 +33,27 @@ grains:
       # Helm commands to run before installing the chart
       commands: []
       version: 1.5.5
+
+  content-bucket:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/simple-s3
+      agent:
+      # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+        # A service account annotated with a role ARN with permissions to run the asset
+        # service-account: <service-account-name>
+        # Will override the default value for Runners isolation
+        # isolated: <boolean>
+      inputs: 
+        - name: eac-demo-content
+      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
+      # env-vars:
+      # - VAR_NAME: var value
+      env-vars: []
+      outputs: []
+      # Helm commands to run before installing the chart
+      commands: []
+      version: 1.5.5
