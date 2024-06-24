@@ -7,7 +7,7 @@ environment:
 # blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
 inputs:
   agent:
-    default: vido-prod
+    default: vido-vido-prod
 # blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs: {}
 grains:
