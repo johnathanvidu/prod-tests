@@ -2,7 +2,7 @@ spec_version: 2
 description: Torque auto generated blueprint
 environment:
   environment_name: imported-eac
-  state: inactive
+  state: active
   owner_email: johnathan.v@quali.com
 # blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
 inputs:
