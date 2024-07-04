@@ -1,0 +1,18 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+outputs: {}
+
+grains:
+  vido:
+    kind: argocd
+    spec:
+      deployment-engine: argo
+      agent:
+        name: '{{ .inputs.agent }}'
+      mode: data
+      application: nginx-app
+      application-namespace: argocd
