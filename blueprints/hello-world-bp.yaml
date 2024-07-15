@@ -1,0 +1,24 @@
+spec_version: 2
+description: hello world
+inputs:
+  agent:
+    type: agent
+
+outputs:
+  hello-world:
+    value: '{{ .grains.hello-world.outputs.hello_world }}'
+  
+grains:
+  hello-world:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs: []
+      env-vars: []
+      outputs:
+      - hello_world
+    tf-version: 1.5.5
