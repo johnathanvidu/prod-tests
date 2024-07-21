@@ -19,7 +19,7 @@ grains:
         - store: assets
           path: k8s/crossplane/rds.yaml
       agent:
-        name: '{{ .inputs.host }}' 
+        name: '{{ .inputs.agent }}' 
       scripts:
         post-kubernetes-install:
           source:
