@@ -1,0 +1,115 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  helloTF:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/hello-world
+        store: bps
+      agent:
+        name: '{{.inputs.agent}}'
+      scripts: 
+        pre-tf-init:
+          source:
+            store: bps
+            path : scripts/preinit.sh
+          arguments: "value"
+        pre-tf-destroy:
+          source:
+            store: bps
+            path : scripts/predestroy.sh
+          arguments: "value"  
+
+
+  hello-world:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/hello-world-source.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+  hello-world-bp:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/hello-world-bp.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+  cross:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/cross.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+
+  exit-code:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/exit-code.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+  shell-grain:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/shell-grain.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+  shell-grain-file:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/shell-grain-file.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+  
+  azure-vm:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprint/azure_vm_legacy_wi.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+        - vm_name: dskgndkgld
+        - resource_group: dsgkmvccxcxz
+
+  hello-pre-scripts:
+    kind: blueprint
+    depends-on: azure-vm
+    spec:
+      source:
+        path: blueprint/hello-pre-scripts.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+
+  azure-vm2:
+    kind: blueprint
+    depends-on: hello-pre-scripts
+    spec:
+      source:
+        path: blueprint/hello-pre-scripts.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
+        - vm_name: dskgndkccgld
+        - resource_group: dsgkbnmmvccxcxz
