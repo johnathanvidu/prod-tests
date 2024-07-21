@@ -1,0 +1,10 @@
+spec_version: 2
+
+
+grains:
+  blueprint-grain:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/bp-bug8-not-exist.yaml
+        store: bps
