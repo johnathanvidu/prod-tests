@@ -1,0 +1,15 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  blueprint-grain:
+    kind: blueprint
+    spec:
+      source:
+        path: blueprints/bp-bug10.yaml
+        store: bps
+      inputs:
+        - agent: '{{.inputs.agent}}'
