@@ -11,9 +11,9 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       files:
-        - source: deploy
+        - source: bps
           path: erez/deploy.sh
-        - source: destroy
+        - source: bps
           path: erez/destroy.sh
       activities:
         deploy:
