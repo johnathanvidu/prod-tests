@@ -1,0 +1,26 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+    
+grains:
+  setup:
+    kind: shell
+    spec: 
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: deploy
+          path: erez/deploy.sh
+        - source: destroy
+          path: erez/destroy.sh
+      activities:
+        deploy:
+          commands:
+            - name: deploy
+              command: 'source deploy.sh'
+        destroy:
+          commands:
+            - name: destroy
+              command: 'source destroy.sh'
