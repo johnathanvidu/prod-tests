@@ -13,7 +13,7 @@ grains:
     kind: terraform
     spec:
       provider-overrides:
-        - name: aws
+        - name: aws3
           source: hashicorp/aws
           version: ~>5.30.0
           attributes:
@@ -21,9 +21,9 @@ grains:
             region: us-east-1
             assume_role:
               role_arn: arn:aws:iam::046086677675:role/some-role
-        - name: aws
+        - name: aws2
           source: hashicorp/aws
-          version: ~>5.30.0
+          version: ~>5.20.0
           attributes:
             alias: uw2          
             region: us-west-2
