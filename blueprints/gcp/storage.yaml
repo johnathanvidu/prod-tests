@@ -1,0 +1,30 @@
+spec_version: 2
+description: deploys new gcp bucket
+
+inputs:
+  agent:
+    type: agent
+  bucket_name:
+    type: string
+    default: "vidolele-bucket"
+  region:
+    type: string
+    default: "EUROPE-WEST1"
+  project:
+    type: string
+    default: "upbeat-splicer-431020-u5"
+
+grains:
+  vm1:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/gcp/storage
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - bucket_name: '{{.inputs.bucket_name}}'
+        - region: '{{.inputs.region}}'
+      env-vars:
+        - GOOGLE_PROJECT: '{{.inputs.project}}'
