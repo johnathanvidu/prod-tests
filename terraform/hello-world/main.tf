@@ -14,4 +14,6 @@ output "hello_world" {
   value = "Hello, World!"
 }
 
-# vido was here
+variable "vido" {
+  type = string
+}
