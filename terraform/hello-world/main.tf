@@ -13,7 +13,3 @@ terraform {
 output "hello_world" {
   value = "Hello, World!"
 }
-
-variable "vido" {
-  type = string
-}
