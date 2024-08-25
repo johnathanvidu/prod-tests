@@ -81,8 +81,8 @@ resource "azurerm_virtual_machine" "example" {
 
   storage_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "19.04"
+    offer     = "ubuntu-24_04-lts"
+    sku       = "server"
     version   = "latest"
   }
   storage_os_disk {
