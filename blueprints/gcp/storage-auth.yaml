@@ -12,7 +12,7 @@ inputs:
     default: "EUROPE-WEST1"
   project:
     type: string
-    default: "upbeat-splicer-431020-u5"
+    default: "quali-playground"
 
 grains:
   vm1:
