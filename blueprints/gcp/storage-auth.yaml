@@ -28,4 +28,4 @@ grains:
         - region: '{{.inputs.region}}'
       env-vars:
         - GOOGLE_PROJECT: '{{.inputs.project}}'
-        - GOOGLE_CREDENTIALS: '/tmp/quali-playground-85b37d72ac17.json'
+        - GOOGLE_CREDENTIALS: '/etc/tls-certs/quali-playground-85b37d72ac17.json'
