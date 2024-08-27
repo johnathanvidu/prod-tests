@@ -21,12 +21,6 @@ grains:
       source:
         store: bps
         path: terraform/gcp/storage
-      scripts: 
-        pre-tf-init:
-          source:
-            store: bps
-            path : scripts/gcp_authenticate.sh
-          arguments: '{{.params.gcp_sa_json}}'
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
@@ -34,4 +28,4 @@ grains:
         - region: '{{.inputs.region}}'
       env-vars:
         - GOOGLE_PROJECT: '{{.inputs.project}}'
-        - GOOGLE_CREDENTIALS: '/tmp/creds.json'
+        - GOOGLE_CREDENTIALS: '/tmp/quali-playground-85b37d72ac17.json'
