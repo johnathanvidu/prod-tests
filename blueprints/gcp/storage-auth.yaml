@@ -26,6 +26,7 @@ grains:
           source:
             store: bps
             path : scripts/gcp_authenticate.sh
+          arguments: '{{.params.gcp_sa_json}}'
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
