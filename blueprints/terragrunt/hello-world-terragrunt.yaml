@@ -1,0 +1,19 @@
+spec_version: 2
+description: curl result as input to ansible playbook
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  hello-world:
+    kind: terragrunt
+    spec:
+      source:
+        store: bps
+        path: terragrunt/hello-world-remote
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars: []
+      outputs:
+      - hello
