@@ -3,5 +3,5 @@ include "root" {
 }
 
 terraform {
-  source = "../../modules/hello-world-remote"
+  source = "git::https://github.com/johnathanvidu/prod-tests.git//terragrunt/modules/hello-world-remote"
 }
