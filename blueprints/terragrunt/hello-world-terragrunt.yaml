@@ -11,7 +11,7 @@ grains:
     spec:
       source:
         store: bps
-        path: terragrunt/hello-world-remote
+        path: terragrunt/staging/hello-world-remote
       agent:
         name: '{{ .inputs.agent }}'
       env-vars: []
