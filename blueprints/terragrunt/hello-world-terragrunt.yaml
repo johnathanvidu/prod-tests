@@ -14,6 +14,7 @@ grains:
         path: terragrunt/live/env
       agent:
         name: '{{ .inputs.agent }}'
-      env-vars: []
+      env-vars: 
+      - GIT_SSH_COMMAND: 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       outputs:
       - hello
