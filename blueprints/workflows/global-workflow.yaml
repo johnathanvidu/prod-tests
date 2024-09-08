@@ -9,19 +9,19 @@ inputs:
     type: agent
 
 grains:
-    job1:
-      kind: shell
-        spec:
-          agent:
-            name: '{{ .inputs.agent }}'
-          files:
-            - source: test-spec2-public
-              path: scripts/print-resource-2.sh
-          activities:
-            deploy:
-              commands:
-                - name: print
-                  # command:  './print-resource.sh azurerm_virtual_machine.example vm1 {{ .params.token }}'
-                  command:  'source print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'
-                  outputs:
-                    - state_tr
+  job1:
+    kind: shell
+      spec:
+        agent:
+          name: '{{ .inputs.agent }}'
+        files:
+          - source: test-spec2-public
+            path: scripts/print-resource-2.sh
+        activities:
+          deploy:
+            commands:
+              - name: print
+                # command:  './print-resource.sh azurerm_virtual_machine.example vm1 {{ .params.token }}'
+                command:  'source print-resource-2.sh {{ .bindings.resource_id }} {{ .bindings.grain_path }} {{ .params.token }}'
+                outputs:
+                  - state_tr
