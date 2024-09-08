@@ -18,7 +18,7 @@ grains:
         pre-tf-init:
           source:
             store: bps
-            path : scripts/shell-grain-script.sh
+            path : scripts/preinit.sh
           arguments: "first second third"
       # env-vars: 
       # - GIT_SSH_COMMAND: 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
