@@ -1,0 +1,27 @@
+spec_version: 2
+description: This workflow pauses an EKS cluster on-demand
+
+workflow:
+  scope: env_resource
+  labels-selector: power-off, ec2
+  resource-types: aws_instance
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '*/15 * * * *'
+      overridable: true
+
+inputs:
+  agent:
+    type: agent
+    default: vido-vido-prod
+
+grains:
+  pause_eks:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
