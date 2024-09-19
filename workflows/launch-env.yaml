@@ -74,7 +74,7 @@ grains:
         deploy:
           commands:
             - name: my_script
-              command:  source <(python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ .inputs.3rd-region }} {{ .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }})
+              command:  source <(python3 -m pip install requests -qqq && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ .inputs.3rd-region }} {{ .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }})
               outputs:
                 - 'eu-west-1'
                 - 'eu-west-2'
