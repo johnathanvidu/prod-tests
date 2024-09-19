@@ -34,7 +34,7 @@ def main():
 
     payload = {
         "environment_name": f"processing cluster {str(uuid.uuid4())}",
-        # "blueprint_name": blueprint_name,
+        "blueprint_name": blueprint_name,
         "owner_email": "david.b@quali.com",
         "source": {
             "blueprint_name": blueprint_name,
