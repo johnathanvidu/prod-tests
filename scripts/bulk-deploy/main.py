@@ -37,7 +37,7 @@ def launch_env(token, space, blueprint_name, region, duration):
     return make_post_request(url, payload, headers)
 
 def main():
-    if len(sys.argv) != 7:
+    if len(sys.argv) != 8:
         print("Usage: python3 main.py <token> <region1> <region2> <region3> <region4> <space> <duration>")
         print("Example: python3 main.py 2 ML dev")
         sys.exit(1)
