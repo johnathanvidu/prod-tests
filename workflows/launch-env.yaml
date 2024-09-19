@@ -1,0 +1,72 @@
+spec_version: 2
+
+workflow:
+  scope: space
+
+inputs:
+  agent: 
+    type: agent
+  1st-region:
+    default: 'eu-west-1'
+    allowed-values:
+      - 'eu-west-1'
+      - 'eu-west-2'
+      - 'us-east-1'
+      - 'us-east-2'
+  2nd-region:
+    default: 'pass'
+    allowed-values:
+      - 'pass'
+      - 'eu-west-1'
+      - 'eu-west-2'
+      - 'us-east-1'
+      - 'us-east-2'
+  3rd-region:
+    default: 'pass'
+    allowed-values:
+      - 'pass'
+      - 'eu-west-1'
+      - 'eu-west-2'
+      - 'us-east-1'
+      - 'us-east-2'
+  4th-region:
+    default: 'pass'
+    allowed-values:
+      - 'pass'
+      - 'eu-west-1'
+      - 'eu-west-2'
+      - 'us-east-1'
+      - 'us-east-2'
+  duration-hours:
+    default: '2'
+    allowed-values:
+      - '2'
+      - '4'
+      - '8'
+      - '16'
+      - '32'
+      - '64'
+ 
+outputs:
+  region-1:
+    quick: true
+    value: '{{.inputs.1st-region}}'
+  region-2:
+    quick: true
+    value: '{{.inputs.2nd-region}}'
+ 
+grains:
+  deploy_env:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/bulk-deploy/main.py
+      activities:
+        deploy:
+          commands:
+            - name: my_script
+              command:  'python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} { .inputs.3rd-region }} { .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }}'
+ 
