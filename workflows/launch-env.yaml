@@ -68,5 +68,5 @@ grains:
         deploy:
           commands:
             - name: my_script
-              command:  'python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} { .inputs.3rd-region }} { .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }}'
+              command:  'python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ .inputs.3rd-region }} {{ .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }}'
  
