@@ -50,16 +50,16 @@ inputs:
 outputs:
   eu-west-1:
     quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu-west-1}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu_west_1}}'
   eu-west-2:
     quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu-west-2}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu_west_2}}'
   us-east-1:
     quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us-east-1}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us_east_1}}'
   us-east-2:
     quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us-east-2}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us_east_2}}'
  
 grains:
   deploy_env:
@@ -76,8 +76,8 @@ grains:
             - name: my_script
               command:  source <(python3 -m pip install requests -qqq && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ .inputs.3rd-region }} {{ .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }})
               outputs:
-                - eu-west-1
-                - eu-west-2
-                - us-east-1
-                - us-east-2
+                - eu_west_1
+                - eu_west_2
+                - us_east_1
+                - us_east_2
  
