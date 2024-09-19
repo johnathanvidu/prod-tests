@@ -58,16 +58,16 @@ def main():
     }
 
     blueprints = []
-    blueprints.append(region_to_bp[region1])
+    blueprints.append(region1, (region_to_bp[region1]))
     if region2 != 'pass':
-        blueprints.append(region_to_bp[region2])
+        blueprints.append(region2, (region_to_bp[region2]))
     if region3 != 'pass':
-        blueprints.append(region_to_bp[region3])
+        blueprints.append(region3, (region_to_bp[region3]))
     if region4 != 'pass':
-        blueprints.append(region_to_bp[region4])
+        blueprints.append((region4, region_to_bp[region4]))
 
-    for blueprint_name in blueprints:
-        status_code, response_data = launch_env(token, space, blueprint_name, duration)
+    for region, blueprint_name in blueprints:
+        status_code, response_data = launch_env(token, space, blueprint_name, region, duration)
 
 
     # number_of_requests = 1 if region2 == "pass" else 2
