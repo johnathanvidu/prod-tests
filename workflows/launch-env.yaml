@@ -50,16 +50,16 @@ inputs:
 outputs:
   eu-west-1:
     quick: true
-    value: '{{.grains.deploy_env.outputs.eu-west-1}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.outputs.eu-west-1}}'
   eu-west-2:
     quick: true
-    value: '{{.grains.deploy_env.outputs.eu-west-2}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.outputs.eu-west-2}}'
   us-east-1:
     quick: true
-    value: '{{.grains.deploy_env.outputs.us-east-1}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.outputs.us-east-1}}'
   us-east-2:
     quick: true
-    value: '{{.grains.deploy_env.outputs.us-east-2}}'
+    value: '{{.grains.deploy_env.activities.deploy.commands.outputs.us-east-2}}'
  
 grains:
   deploy_env:
