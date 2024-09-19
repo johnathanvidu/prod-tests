@@ -71,7 +71,7 @@ def main():
         if status_code != 202:
             exit(1)
         env_id = response_data.get('id')
-        print(f'export eu-west-1=vido')
+        print(f'export eu_west_1=vido')
         # print(f'export {region}=https://preview.qualilabs.net/{space}/environments/{env_id}')
 
 
