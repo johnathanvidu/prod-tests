@@ -14,7 +14,8 @@ def main():
         print("Example: python3 main.py 2 ML dev")
         sys.exit(1)
 
-    token = sys.argv[2]
+    token = sys.argv[1]
+    region1 = sys.argv[2]
     region2 = sys.argv[3]
     space = sys.argv[4]
     application = sys.argv[5]
