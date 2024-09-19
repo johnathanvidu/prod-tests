@@ -41,6 +41,7 @@ def main():
             "repository_name": "bps",
         },
         "inputs": {
+            "agent": "demo-prod",
             "1st-region": "us-east-1",
             "2nd-region": "us-east-1"
         },
