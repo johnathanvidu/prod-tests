@@ -68,6 +68,9 @@ def main():
 
     for region, blueprint_name in blueprints:
         status_code, response_data = launch_env(token, space, blueprint_name, region, duration)
+        if status_code != 201:
+            exit(1)
+        print(f'env id: {response_data.get('id')}')
 
 
     # number_of_requests = 1 if region2 == "pass" else 2
