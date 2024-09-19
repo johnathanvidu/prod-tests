@@ -60,9 +60,9 @@ def main():
     blueprints = []
     blueprints.append((region1, region_to_bp[region1]))
     if region2 != 'pass':
-        blueprints.append(region2, (region_to_bp[region2]))
+        blueprints.append((region2, region_to_bp[region2]))
     if region3 != 'pass':
-        blueprints.append(region3, (region_to_bp[region3]))
+        blueprints.append((region3, region_to_bp[region3]))
     if region4 != 'pass':
         blueprints.append((region4, region_to_bp[region4]))
 
