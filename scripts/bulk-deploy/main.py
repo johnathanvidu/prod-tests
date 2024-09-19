@@ -30,7 +30,7 @@ def main():
         print("Unknown application type. Please use 'prod', 'qa', or 'dev'.")
         sys.exit(1)
 
-    url = f"https://portal.qtorque.io/api/spaces/{space}/environments"
+    url = f"https://preview.qualilabs.net/api/spaces/{space}/environments"
 
     payload = {
         "environment_name": f"processing cluster {str(uuid.uuid4())}",
