@@ -63,11 +63,15 @@ def main():
         "Authorization": f"Bearer {token}"
     }
 
-    number_of_requests = 1 if region2 == "pass" else 2
-    for _ in range(number_of_requests):
-        # status_code, response_data = make_post_request(url, payload, headers)
-        print(
-            f"Status Code: {status_code}, Response: {response_data}, Headers: {headers}")
+    status_code, response_data = make_post_request(url, payload, headers)
+    print(
+        f"Status Code: {status_code}, Response: {response_data}, Headers: {headers}")
+
+    # number_of_requests = 1 if region2 == "pass" else 2
+    # for _ in range(number_of_requests):
+    #     status_code, response_data = make_post_request(url, payload, headers)
+    #     print(
+    #         f"Status Code: {status_code}, Response: {response_data}, Headers: {headers}")
 
 
 if __name__ == "__main__":

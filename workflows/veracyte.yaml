@@ -44,7 +44,7 @@ outputs:
     value: '{{.inputs.2nd-region}}'
  
 grains:
-  validate:
+  deploy_env:
     kind: shell
     spec:
       agent:
@@ -56,5 +56,5 @@ grains:
         deploy:
           commands:
             - name: my_script
-              command:  'python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} ML {{ .inputs.application }}'
+              command:  'python3 -m pip install requests && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ spaceName }} {{ .inputs.application }}'
  
