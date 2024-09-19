@@ -1,8 +1,5 @@
 spec_version: 2
 
-workflow:
-  scope: space
-
 inputs:
   agent: 
     type: agent
@@ -10,33 +7,33 @@ inputs:
     default: 'eu-west-1'
     allowed-values:
       - 'eu-west-1'
-      - 'eu-west-2'
+      # - 'eu-west-2'
       - 'us-east-1'
-      - 'us-east-2'
+      # - 'us-east-2'
   2nd-region:
     default: 'pass'
     allowed-values:
       - 'pass'
       - 'eu-west-1'
-      - 'eu-west-2'
+      # - 'eu-west-2'
       - 'us-east-1'
-      - 'us-east-2'
-  3rd-region:
-    default: 'pass'
-    allowed-values:
-      - 'pass'
-      - 'eu-west-1'
-      - 'eu-west-2'
-      - 'us-east-1'
-      - 'us-east-2'
-  4th-region:
-    default: 'pass'
-    allowed-values:
-      - 'pass'
-      - 'eu-west-1'
-      - 'eu-west-2'
-      - 'us-east-1'
-      - 'us-east-2'
+      # - 'us-east-2'
+  # 3rd-region:
+  #   default: 'pass'
+  #   allowed-values:
+  #     - 'pass'
+  #     - 'eu-west-1'
+  #     - 'eu-west-2'
+  #     - 'us-east-1'
+  #     - 'us-east-2'
+  # 4th-region:
+  #   default: 'pass'
+  #   allowed-values:
+  #     - 'pass'
+  #     - 'eu-west-1'
+  #     - 'eu-west-2'
+  #     - 'us-east-1'
+  #     - 'us-east-2'
   duration-hours:
     default: '2'
     allowed-values:
@@ -51,15 +48,15 @@ outputs:
   eu-west-1:
     quick: true
     value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu_west_1}}'
-  eu-west-2:
-    quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu_west_2}}'
+  # eu-west-2:
+  #   quick: true
+  #   value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.eu_west_2}}'
   us-east-1:
     quick: true
     value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us_east_1}}'
-  us-east-2:
-    quick: true
-    value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us_east_2}}'
+  # us-east-2:
+  #   quick: true
+  #   value: '{{.grains.deploy_env.activities.deploy.commands.my_script.outputs.us_east_2}}'
  
 grains:
   deploy_env:
@@ -74,10 +71,10 @@ grains:
         deploy:
           commands:
             - name: my_script
-              command:  source <(python3 -m pip install requests -qqq && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ .inputs.3rd-region }} {{ .inputs.4th-region }} {{ spaceName }} {{ .inputs.duration-hours }})
+              command:  source <(python3 -m pip install requests -qqq && python3 main.py {{ .params.torque_token }} {{ .inputs.1st-region }} {{ .inputs.2nd-region }} {{ spaceName }} {{ .inputs.duration-hours }})
               outputs:
                 - eu_west_1
-                - eu_west_2
+                # - eu_west_2
                 - us_east_1
-                - us_east_2
+                # - us_east_2
  
