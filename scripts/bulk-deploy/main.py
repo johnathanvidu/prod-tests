@@ -38,7 +38,7 @@ def main():
         "owner_email": "david.b@quali.com",
         "source": {
             "blueprint_name": blueprint_name,
-            "repository_name": "qtorque",
+            "repository_name": "bps",
         },
         "inputs": {
             "1st-region": "us-east-1",
