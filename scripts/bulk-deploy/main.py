@@ -71,7 +71,8 @@ def main():
         if status_code != 202:
             exit(1)
         env_id = response_data.get('id')
-        print(f'export {region}=https://preview.qualilabs.net/{space}/{env_id}')
+        print(f'export vido=vido')
+        # print(f'export {region}=https://preview.qualilabs.net/{space}/environments/{env_id}')
 
 
     # number_of_requests = 1 if region2 == "pass" else 2
