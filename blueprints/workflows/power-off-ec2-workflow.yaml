@@ -3,7 +3,8 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env_resource
-  labels-selector: aws_instance
+  labels-selector: AWS
+  resource-types: aws_instance 
   triggers:
     - type: manual
 
