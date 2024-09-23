@@ -2,9 +2,8 @@ spec_version: 2
 description: This workflow pauses an EKS cluster on-demand
 
 workflow:
-  scope: env_resource
-  labels-selector: power-off, ec2
-  resource-types: aws_instance
+  scope: env
+  labels-selector: power-off, ec2, AWS
   triggers:
     - type: manual
     - type: cron
@@ -17,11 +16,14 @@ inputs:
     default: vido-vido-prod
 
 grains:
-  pause_eks:
-    kind: ansible
+  job:
+    kind: shell
     spec:
-      built-in: true
-      source:
-        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-off-ec2-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - command: 'echo hello from job2' 
+            - name: print                  
+              command:  'echo "{{ .grains.job1.activities.deploy.commands.print.output}}"'
