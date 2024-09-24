@@ -34,7 +34,8 @@ grains:
         path: terraform/hello-world
       agent:
         name: '{{ .inputs.agent }}'
-      inputs: []
+      inputs: 
+      - vido: 'viddd'
       env-vars: []
       outputs:
       - hello_world
