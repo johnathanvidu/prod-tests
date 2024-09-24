@@ -12,23 +12,23 @@ grains:
   hello-world:
     kind: terraform
     spec:
-      provider-overrides:
-        - name: aws3
-          source: hashicorp/aws
-          version: ~>5.30.0
-          attributes:
-            alias: ue1
-            region: us-east-1
-            assume_role:
-              role_arn: arn:aws:iam::046086677675:role/some-role
-        - name: aws2
-          source: hashicorp/aws
-          version: ~>5.20.0
-          attributes:
-            alias: uw2          
-            region: us-west-2
-            assume_role:
-              role_arn: arn:aws:iam::046086677675:role/some-other-role
+      # provider-overrides:
+      #   - name: aws3
+      #     source: hashicorp/aws
+      #     version: ~>5.30.0
+      #     attributes:
+      #       alias: ue1
+      #       region: us-east-1
+      #       assume_role:
+      #         role_arn: arn:aws:iam::046086677675:role/some-role
+      #   - name: aws2
+      #     source: hashicorp/aws
+      #     version: ~>5.20.0
+      #     attributes:
+      #       alias: uw2          
+      #       region: us-west-2
+      #       assume_role:
+      #         role_arn: arn:aws:iam::046086677675:role/some-other-role
       source:
         store: bps
         path: terraform/hello-world
