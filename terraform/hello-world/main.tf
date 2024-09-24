@@ -9,7 +9,7 @@ terraform {
 #   create_duration = "120s"
 # }
 
-variable "vido" {
+variable "vido2" {
   type = string
 }
 
