@@ -10,7 +10,7 @@ inputs:
     source-name: vido
     depends-on: filename
     overrides:
-    - object_key: {{ .inputs.filename }}
+    - object_key: '{{ .inputs.filename }}'
 
 outputs:
   hello-world:
