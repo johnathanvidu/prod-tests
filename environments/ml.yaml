@@ -1,0 +1,29 @@
+spec_version: 2
+description: Torque auto generated blueprint
+environment:
+  environment_name: vidoml
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - ML
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  agent:
+    type: agent
+    default: demo-prod
+
+grains:
+  hello-world:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs: 
+      - vido: 'viddd'
+      env-vars: []
+      outputs:
+      - hello_world
+    tf-version: 1.5.5
