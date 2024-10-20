@@ -7,7 +7,11 @@ terraform {
   }
 }
 
-provider "torque" {}
+provider "torque" {
+  host  = "https://portal.qtorque.io/"
+  space = "Vido"
+  token = "0TfedDYM6g5mVzye-b7CVy-zkcXI8mDjJy9G-WKPQJ4"
+}
 
 resource "torque_introspection_resource" "example" {
   display_name       = "vido"
