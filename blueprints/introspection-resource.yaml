@@ -12,4 +12,4 @@ grains:
         name: '{{.inputs.agent}}'
       source:
         store: bps
-        path:  terraform/introspection_resource
+        path:  terraform/introspection-resource
