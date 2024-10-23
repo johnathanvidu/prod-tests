@@ -23,7 +23,7 @@ resource "torque_introspection_resource" "example" {
   }
   # new button section
   links = [ {
-      "icon" : "connect",
+      "icon" : "power",
       "href" : "https://example1.com",
       "label" : "first ever tooltip"
     },
