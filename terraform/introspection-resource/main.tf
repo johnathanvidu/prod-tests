@@ -24,10 +24,13 @@ resource "torque_introspection_resource" "example" {
   # new button section
   links = [ {
       "icon" : "connect",
-      "href" : "https://example1.com" 
+      "href" : "https://example1.com",
+      "label" : "first ever tooltip"
     },
     {
       "icon" : "connect",
-      "href" : "https://example2.com"
+      "href" : "https://example2.com",
+      "label" : "second tooltip is cool",
+      "color" : "#ff0000" # this link will be colored red
     }]
 }
