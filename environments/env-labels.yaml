@@ -4,7 +4,7 @@ description: hello world
 environment:
   environment_name: env-labels-eac
   owner_email: johnathan.v@quali.com
-  state: active
+  state: inactive
   env-labels:
     - vido
     - vidole
