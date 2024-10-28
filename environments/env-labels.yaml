@@ -5,9 +5,7 @@ environment:
   environment_name: env-labels-eac
   owner_email: johnathan.v@quali.com
   state: active
-  env-labels:
-    - vido
-    - vidole
+
 
 inputs:
   agent:
