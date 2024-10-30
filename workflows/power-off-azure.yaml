@@ -2,8 +2,8 @@ spec_version: 2
 description: Workflow to power off Azure VMs via built-in action
 
 workflow:
-  scope: env
-  labels-selector: azure-vm
+  scope: env_resource
+  labels-selector: azure_vm
   triggers:
     - type: manual
     - type: cron
