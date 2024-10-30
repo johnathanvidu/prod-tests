@@ -3,7 +3,7 @@ description: Workflow to power off Azure VMs via built-in action
 
 workflow:
   scope: env
-  labels-selector: azure_vm
+  label-selector: azure_vm
   triggers:
     - type: manual
     - type: cron
@@ -20,6 +20,8 @@ grains:
     kind: ansible
     spec:
       built-in: true
+      authentication:
+      - azure-vido
       source:
         path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-off-vm-tf.yaml
       agent:
