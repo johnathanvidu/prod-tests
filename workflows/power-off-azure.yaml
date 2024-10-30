@@ -3,6 +3,7 @@ description: Workflow to power off Azure VMs via built-in action
 
 workflow:
   scope: env_resource
+  resource-types: azurerm_virtual_machine
   labels-selector: azure_vm
   triggers:
     - type: manual
