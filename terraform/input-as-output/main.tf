@@ -6,5 +6,5 @@ variable "in" {
 
 # Output the value of the input variable
 output "out" {
-  value = var.input_value
+  value = var.in
 }
