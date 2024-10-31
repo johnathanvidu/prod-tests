@@ -32,4 +32,17 @@ grains:
       - in: '{{.grains.first.outputs.out}}'
       outputs:
       - out
+
+  third:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+      - in: 'kidush'
+      outputs:
+      - out
     
