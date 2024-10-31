@@ -20,6 +20,7 @@ grains:
       outputs:
       - out
   second:
+    depends-on: first
     kind: terraform
     spec:
       source:
@@ -28,7 +29,7 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - in: '{{.grains.first.inputs.out}}'
+      - in: '{{.grains.first.outputs.out}}'
       outputs:
       - out
     
