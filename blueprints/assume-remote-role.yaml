@@ -1,0 +1,28 @@
+spec_version: 2
+description: assume role
+
+inputs:
+  agent:
+    type: agent
+
+outputs:
+  account_id:
+    value: '{{.grains.assume-role.outputs.account_id}}'
+  caller_arn:
+    value: '{{.grains.assume-role.outputs.caller_arn}}'
+  caller_user:
+    value: '{{.grains.assume-role.outputs.caller_user}}'
+
+grains:
+  assume-role:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/assume-remote-role
+      agent:
+        name: '{{ .inputs.agent }}'
+      outputs:
+        - account_id
+        - caller_arn
+        - caller_user
