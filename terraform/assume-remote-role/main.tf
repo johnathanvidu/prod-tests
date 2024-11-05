@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
   assume_role {
     role_arn = "arn:aws:iam::245147192452:role/vido-role"
   }
