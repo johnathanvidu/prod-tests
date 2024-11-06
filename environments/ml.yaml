@@ -6,6 +6,7 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - ML
+  - VidoNew
 # blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
 inputs:
   agent:
