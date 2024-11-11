@@ -8,11 +8,11 @@ grains:
   s3:
     kind: terraform
     spec:
-      backend:
-        type: 's3'
-        bucket: 'vido-remot'
-        region: 'eu-west-1'
-        key-prefix: 'terraform'
+      # backend:
+      #   type: 's3'
+      #   bucket: 'vido-remot'
+      #   region: 'eu-west-1'
+      #   key-prefix: 'terraform'
       source:
         store: bps
         path: terraform/curate-example
