@@ -1,5 +1,5 @@
 
-resource "aws_s3_bucket" "bucket_ernix8s" {
+resource "aws_s3_bucket" "bucket_gy31l6oc" {
   provider            = aws.us_east_1
   bucket              = "tf-backend-terragrunt"
   bucket_prefix       = null
