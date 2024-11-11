@@ -15,6 +15,6 @@ grains:
         key-prefix: 'terraform'
       source:
         store: bps
-        path: terraform/cloud-example
+        path: terraform/curate-example
       agent:
         name: '{{ .inputs.agent }}'
