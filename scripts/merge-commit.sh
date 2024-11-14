@@ -1,0 +1,1 @@
+export MERGE_COMMIT_HASH=amir
