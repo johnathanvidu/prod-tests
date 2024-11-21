@@ -1,0 +1,16 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  vido:
+    kind: terraform
+    spec:
+      source:
+        store: terraform
+        path: aws/s3
+      agent:
+        name: '{{.inputs.agent}}'
+      
