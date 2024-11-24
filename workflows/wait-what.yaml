@@ -19,5 +19,4 @@ grains:
       source:
         path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-on-vm-tf.yaml
       agent:
-        # name: 'aks-prod'
         name: 'vido-prod'        
