@@ -1,0 +1,24 @@
+spec_version: 2
+description: Run a simple shell grain with inputs and outputs
+
+workflow:
+  scope: space
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  generate-file-in-repo:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: private-tests
+          path: scripts/gitpush.sh
+      activities:
+        deploy:
+          commands:
+            - name: push
+              command:  'source gitpush.sh'
