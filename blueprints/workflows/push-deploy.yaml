@@ -35,5 +35,5 @@ grains:
       activities:
         deploy:
           commands:
-            - 'python3 -m pip install requests -qqq'
-            - 'python3 deploy.py {{ .params.torque_token }} Vido PT2H'
+            - 'source <(python3 -m pip install requests -qqq)'
+            - 'source <(python3 deploy.py {{ .params.torque_token }} Vido PT2H)'
