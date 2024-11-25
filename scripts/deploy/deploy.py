@@ -13,7 +13,7 @@ def launch_env(token, space, blueprint_name, duration):
     url = f"https://portal.qtorque.io/api/spaces/{space}/environments"
 
     payload = {
-        "environment_name": f"{region} {datetime.now().isoformat()}",
+        "environment_name": f"env {datetime.now().isoformat()}",
         "blueprint_name": blueprint_name,
         "owner_email": "johnathan.v@quali.com",
         "source": {
