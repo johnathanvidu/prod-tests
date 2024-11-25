@@ -22,3 +22,17 @@ grains:
           commands:
             - name: push
               command:  'source gitpush.sh'
+              
+  deploy:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/deploy/deploy.sh
+      activities:
+        deploy:
+          commands:
+            - name: push
+              command:  'python3 -m pip install requests -qqq && python3 deploy.py {{ .params.torque-token }} Vido PT2H'
