@@ -36,4 +36,4 @@ grains:
         deploy:
           commands:
             - name: push
-              command:  'python3 -m pip install requests -qqq && python3 deploy.py {{ .params.torque_token }} Vido PT2H'
+              command:  'source <(python3 -m pip install requests -qqq && python3 deploy.py {{ .params.torque_token }} Vido PT2H)'
