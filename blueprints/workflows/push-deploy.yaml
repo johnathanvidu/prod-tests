@@ -31,7 +31,7 @@ grains:
         name: '{{ .inputs.agent }}'
       files:
         - source: bps
-          path: scripts/deploy/deploy.sh
+          path: scripts/deploy/deploy.py
       activities:
         deploy:
           commands:
