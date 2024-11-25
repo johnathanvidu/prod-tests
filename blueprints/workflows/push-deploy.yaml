@@ -25,6 +25,7 @@ grains:
               
   deploy:
     kind: shell
+    depends-on: generate-file-in-repo
     spec:
       agent:
         name: '{{ .inputs.agent }}'
