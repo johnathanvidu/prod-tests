@@ -1,4 +1,3 @@
-# vido was here
 ## <https://www.terraform.io/docs/providers/azurerm/index.html>
 terraform {
   required_providers {
