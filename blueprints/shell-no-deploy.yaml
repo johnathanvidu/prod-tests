@@ -11,6 +11,9 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       activities:
+        deploy:
+          commands:
+            - 'echo deploy'
         destroy:
           commands:
             - 'echo vido'
