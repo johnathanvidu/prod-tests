@@ -9,11 +9,16 @@ grains:
     kind: shell
     spec:
       agent:
-        name: '{{.inputs.agent}}'
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/print.py
       activities:
         deploy:
           commands:
             - 'echo deploy'
         destroy:
           commands:
-            - 'echo vido'
+            - name: print
+              command: |
+                python3 print.py
