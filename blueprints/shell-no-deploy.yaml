@@ -1,0 +1,16 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+hrains:
+  no-deploy:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+      activities:
+        destroy:
+          commands:
+            - 'echo vido'
