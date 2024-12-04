@@ -15,6 +15,11 @@ inputs:
     type: agent
     default: vido-prod
 
+  regex:
+    type: string
+    pattern: '^[a-zA-Z]+$'  # regex pattern that prohibits anything other than letters
+    validation-description: 'only letters allowed'
+
 grains:
   power_off_azvm:
     kind: ansible
