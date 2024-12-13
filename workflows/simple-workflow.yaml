@@ -3,6 +3,7 @@ description: testing sandbox...
 
 workflow:
   scope: env
+  labels-selector: vido
 
 inputs:
   agent:
