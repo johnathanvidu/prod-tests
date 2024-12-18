@@ -6,6 +6,10 @@ inputs:
   in:
     type: string
 
+outputs:
+  first:
+    value: '{{.grains.first.outputs.out}}'
+
 grains:
   first:
     kind: terraform
