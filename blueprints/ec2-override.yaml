@@ -1,0 +1,43 @@
+spec_version: 2
+description: create an ec2 instance with Terraform and install Nginx on the vm using Ansible
+
+inputs:
+  agent:
+    type: agent
+  connection_delay: 
+    type: string
+    default: "60"
+    description: "time (in seconds) that Ansible should wait before starting to check the target host's connectivity"
+  connection_timeout:
+    type: string
+    default: "300"
+    description: "maximum time (in seconds) that Ansible will wait for the host's network connection to become available"
+
+grains:
+  create-ec2:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/create-ec2-instance-http
+        store: bps
+      agent:
+        name: '{{.inputs.agent}}'
+      provider-overrides:
+        - name: aws # in case no provider block is defined in the tf configuration
+          source: hashicorp/aws
+          attributes:
+            assume_role: # the mounted service-account should have permissions to assume role
+              role_arn: "arn:aws:iam::046086677675:role/ec2fullaccess"
+      env-vars:
+        - TF_LOG: debug
+      outputs:
+        - public_ip
+        - password
+      
+               
+outputs:
+  ec2_host:
+    value: '{{ .grains.create-ec2.outputs.public_ip }}'
+  password:
+   value: '{{ .grains.create-ec2.outputs.password }}'
+              
