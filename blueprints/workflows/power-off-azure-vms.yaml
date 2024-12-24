@@ -17,6 +17,6 @@ grains:
     spec:
       built-in: true
       source:
-        path: https://github.com/QualiTorque/torque-actions.git//resource/azure-deallocate-vm-tf.yaml
+        path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-off-vm-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
