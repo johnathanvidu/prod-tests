@@ -8,4 +8,4 @@ state=$TORQUE_TF_MODULE_PATH/terraform.tfstate
 echo 'removing aws_s3_bucket.bucket from the state file'
 $TORQUE_TF_EXECUTABLE state rm -state=$state 'aws_s3_bucket.bucket'
 
-$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH apply -state=$state -refresh-only
+$TORQUE_TF_EXECUTABLE -chdir=$TORQUE_TF_MODULE_PATH apply -var-file=$TORQUE_TF_MODULE_PATH/tf.vars.json -state=$state -refresh-only
