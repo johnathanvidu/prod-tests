@@ -1,5 +1,7 @@
 #!/bin/bash
 
-/app/1.5.5/terraform state rm 'aws_s3_bucket.bucket'
+state=$TORQUE_TF_MODULE_PATH/terraform.tfstate
 
-/app/1.5.5/terraform apply -refresh-only
+$TORQUE_TF_EXECUTABLE state rm 'aws_s3_bucket.bucket' -state=$state
+
+$TORQUE_TF_EXECUTABLE apply -state=$state -refresh-only
