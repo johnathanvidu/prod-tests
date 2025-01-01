@@ -26,7 +26,7 @@ grains:
         path: blueprints/input-as-output.yaml
       inputs:
       - agent: '{{ .inputs.agent }}'
-      - in: 'vidole'
+      - in: '{{.inputs.in}}'
       env-vars: []
       outputs:
       - output1
