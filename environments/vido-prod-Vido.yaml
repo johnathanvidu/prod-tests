@@ -8,7 +8,7 @@ environment:
 inputs:
   in:
     type: string
-    default: vidoll
+    default: vidor
   agent:
     type: agent
     default: vido-vido-prod
