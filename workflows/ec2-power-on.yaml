@@ -1,0 +1,28 @@
+spec_version: 2
+description: Workflow to power off Azure VMs via built-in action
+
+workflow:
+  scope: env
+  labels-selector: ec2
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 08 * * *' # every day at 22:00
+      overridable: true # Allow end-users to override the cron
+
+inputs:
+  agent:
+    type: agent
+    default: vido-vido-prod
+
+grains:
+  power-on-ec2:
+    kind: ansible
+    spec:
+      built-in: true
+      authentication:
+      - vido-aws
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-on-ec2-tf.yaml
+      agent:
+        name: '{{.inputs.agent}}'        
