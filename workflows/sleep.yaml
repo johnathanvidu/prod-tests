@@ -1,0 +1,20 @@
+spec_version: 2
+
+workflow:
+  scope: env
+
+inputs:
+  agent: 
+    type: agent
+ 
+grains:
+  deploy_env:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'sleep 30s'
+ 
