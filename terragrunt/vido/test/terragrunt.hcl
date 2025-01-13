@@ -3,5 +3,5 @@ include "root" {
 }
 
 locals {
-  vido = run_cmd("chmod +x ${get_terragrunt_dir()}/vido.sh && ${get_terragrunt_dir()}/vido.sh")
+  vido = run_cmd("./vido.sh")
 }
