@@ -3,5 +3,5 @@ include "root" {
 }
 
 locals {
-  vido = run_cmd("vido.sh")
+  vido = run_cmd("${get_terragrunt_dir()}/vido.sh")
 }
