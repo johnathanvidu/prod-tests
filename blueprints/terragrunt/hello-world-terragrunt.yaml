@@ -6,7 +6,7 @@ inputs:
     type: agent
 
 grains:
-  hello-world:
+  hello-world/vido/hey/whatsup:
     kind: terragrunt
     spec:
       auto-approve: false
