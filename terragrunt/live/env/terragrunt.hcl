@@ -5,5 +5,3 @@ include "root" {
 terraform {
   source = "git::ssh://cs18@vs-ssh.visualstudio.com/v3/cs18/Torque/veracyte-demo//terragrunt/modules/hello-world-remote"
 }
-
-# vido
