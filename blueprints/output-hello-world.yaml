@@ -4,6 +4,10 @@ inputs:
   agent:
     type: agent
 
+  parameter:
+    type: parameter
+    parameter-name: value-list-1
+
 grains:
   hello-world:
     kind: terraform
