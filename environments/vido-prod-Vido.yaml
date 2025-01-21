@@ -1,6 +1,6 @@
 spec_version: 2
 environment:
-  environment_name: bhp-bpgrain
+  environment_name: bhp-bpgraina
   state: active
   owner_email: johnathan.v@quali.com
   spaces:
