@@ -1,19 +1,19 @@
 spec_version: 2
 
- inputs: 
-   agent:
-     type: agent
-   policy:
-     type: string
+inputs: 
+  agent:
+    type: agent
+  policy:
+    type: string
 
-  grains:
-    assume-role-policy:
-      kind: terraform
-      spec: 
-        source:
-          store: bps
-          path: terraform/assume-role
-        agent:
-          name: '{{ .inputs.agent }}'
-        inputs:
-          - assume_role_policy: '{{ .inputs.policy }}'
+grains:
+  assume-role-policy:
+    kind: terraform
+    spec: 
+      source:
+        store: bps
+        path: terraform/assume-role
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - assume_role_policy: '{{ .inputs.policy }}'
