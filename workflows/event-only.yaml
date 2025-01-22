@@ -1,9 +1,6 @@
 spec_version: 2
 description: Workflow to power on Azure VMs via built-in action
 
-inputs:
-  agent:
-    type: agent
     
 workflow:
   scope: env
@@ -22,4 +19,4 @@ grains:
       source:
         path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-on-vm-tf.yaml
       agent:
-        name: '{{ .inputs.agent }}'  
+        name: 'review1-vido'
