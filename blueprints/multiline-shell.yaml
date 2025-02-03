@@ -1,0 +1,29 @@
+spec_version: 2
+description: testing sandbox...
+
+inputs:
+  agent:
+    type: agent
+
+outputs:
+  vido:
+    value: '{{ .grains.setup.activities.deploy.commands.deploy.outputs.vido}}'
+    
+grains:
+  setup:
+    kind: shell
+    spec: 
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: 'deploy'
+              command: >-
+                echo "setup script is running..." ;
+                export vido=vido
+              outputs:
+                - vido 
+        destroy:
+          commands:
+            - "echo destroy activity..."
