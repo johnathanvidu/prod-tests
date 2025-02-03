@@ -8,6 +8,14 @@ inputs:
 outputs:
   vido:
     value: '{{ .grains.setup.activities.deploy.commands.deploy.outputs.vido}}'
+
+instructions:
+  text: |
+    # golden sun
+    oh mr. sun sun mr. golden sun
+    please shine down on me
+    oh mr. sun **sun** mr. *golden* sun
+    ### hiding behind the trees
     
 grains:
   setup:
@@ -20,7 +28,7 @@ grains:
           commands:
             - name: 'deploy'
               command: >-
-                echo "setup script is running..."
+                echo "setup script is running..." ;
                 export vido=vido
               outputs:
                 - vido 
