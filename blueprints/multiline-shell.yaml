@@ -20,7 +20,7 @@ grains:
           commands:
             - name: 'deploy'
               command: >-
-                echo "setup script is running..." ;
+                echo "setup script is running..."
                 export vido=vido
               outputs:
                 - vido 
