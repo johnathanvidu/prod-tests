@@ -6,8 +6,10 @@ import aws_cdk as cdk
 from s3.s3_stack import S3Stack
 
 
+
 app = cdk.App()
-S3Stack(app, "S3Stack",
+bucket_name = app.node.try_get_context('bucket_name')
+S3Stack(app, "S3Stack", bucket_name=bucket_name
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.

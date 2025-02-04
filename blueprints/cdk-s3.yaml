@@ -11,5 +11,7 @@ grains:
       source:
         store: bps
         path: cdk/python/s3
+      agent:
+        name: '{{ .inputs.agent }}'
       inputs:
-      - agent: '{{ .inputs.agent }}'
+        - bucket_name: 'my-bucket-vido'
