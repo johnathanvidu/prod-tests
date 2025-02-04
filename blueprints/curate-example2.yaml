@@ -1,0 +1,14 @@
+spec_version: 2
+inputs:
+  agent:
+    type: 'agent'
+grains:
+  s3:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'bps'
+        path: 'terraform/curate-example2'
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs: []
