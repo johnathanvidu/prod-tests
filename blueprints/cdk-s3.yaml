@@ -6,7 +6,7 @@ inputs:
     
 grains:
   common:
-    kind: awscdk
+    kind: aws-cdk
     spec:
       source:
         store: bps
