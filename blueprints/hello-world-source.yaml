@@ -16,8 +16,3 @@ grains:
         path: terraform/hello-world-source
       agent:
         name: '{{.inputs.agent}}'
-      backend:
-        type: "s3"
-        bucket: "vido-remot"
-        region: "eu-west-1"
-        key-prefix: "terraform/hello-world"

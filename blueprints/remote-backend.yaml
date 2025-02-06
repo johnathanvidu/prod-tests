@@ -1,0 +1,23 @@
+spec_version: 2
+description: hello world that tests that terraforms source property workss
+
+inputs:
+  test:
+    type: string
+  agent:
+    type: agent
+    
+grains:
+  helloworld:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world-source
+      agent:
+        name: '{{.inputs.agent}}'
+      backend:
+        type: "s3"
+        bucket: "vido-remot"
+        region: "eu-west-1"
+        key-prefix: "terraform/hello-world"
