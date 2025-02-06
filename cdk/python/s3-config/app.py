@@ -7,7 +7,7 @@ from s3_config.s3_config_stack import S3ConfigStack
 
 cfg_path = os.environ['CONFIG_REPO_PATH']
 with open(os.path.join(cfg_path, 'config'), 'r') as config:
-    bucket_name=config.readline()
+    bucket_name=config.readline().rstrip('\n')
 app = cdk.App()
 S3ConfigStack(app, "S3ConfigStack", bucket_name=bucket_name,
     # If you don't specify 'env', this stack will be environment-agnostic.
