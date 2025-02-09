@@ -16,3 +16,4 @@ resource "aws_ses_template" "MyTemplate" {
   subject = "Greetings, {{name}}!"
   html    = var.html
   text    = var.text
+}
