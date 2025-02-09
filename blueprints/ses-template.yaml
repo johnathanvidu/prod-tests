@@ -1,0 +1,16 @@
+spec_version: 2
+description: aws ses template
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  vm1:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/ses-template
+      agent:
+        name: '{{ .inputs.agent }}'
