@@ -4,6 +4,10 @@ description: aws ses template
 inputs:
   agent:
     type: agent
+  html:
+    type: string
+  text: 
+    type: string
 
 grains:
   vm1:
@@ -14,3 +18,6 @@ grains:
         path: terraform/ses-template
       agent:
         name: '{{ .inputs.agent }}'
+      inputs:
+      - html: '{{ .inputs.html }}'
+      - text: '{{ .inputs.text }}'
