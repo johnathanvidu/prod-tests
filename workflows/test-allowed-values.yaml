@@ -14,21 +14,25 @@ inputs:
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     allowed-values:
       - 'EnvType_v2'
+      - 'tf-envs-metadata' 
   template_folder:
     pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     allowed-values:
       - 'DevOps'
+      - 'tf-envs-metadata' 
   store:
     pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     allowed-values:
       - 'tf-envs-metadata-granularity'
+      - 'tf-envs-metadata' 
   repository:
     pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     allowed-values:
       - 'tf-envs-metadata' 
+      - 'tf-envs-metadata2' 
 
 workflow:
   scope: space
