@@ -13,7 +13,7 @@ inputs:
     pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     allowed-values:
-      - 'EnvType_v2'
+      - 'EnvType-v2'
   template_folder:
     pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
