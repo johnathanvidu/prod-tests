@@ -1,0 +1,45 @@
+spec_version: 2
+description: Workflow to power on Azure VMs via built-in action
+
+inputs:
+  version:
+    pattern: '^[a-zA-Z0-9.-]+$'
+    validation-description: "The provided value must contain only letters, numbers, dots, and hyphens"
+    allowed-values:
+      - 'v1.2.3'
+      - 'develop_v2' 
+      - 'develop'
+  blueprint_template:
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'EnvType_v2'
+  template_folder:
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'DevOps'
+  store:
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'tf-envs-metadata-granularity'
+  repository:
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'tf-envs-metadata' 
+
+workflow:
+  scope: env
+  labels-selector: Azure-VM
+
+grains:
+  power_on_azvm:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-on-vm-tf.yaml
+      agent:
+        name: 'vido-vido-prod'
