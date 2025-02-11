@@ -3,8 +3,8 @@ description: Workflow to power on Azure VMs via built-in action
 
 inputs:
   version:
-    pattern: '^[a-zA-Z0-9.-]+$'
-    validation-description: "The provided value must contain only letters, numbers, dots, and hyphens"
+    # pattern: '^[a-zA-Z0-9.-]+$'
+    # validation-description: "The provided value must contain only letters, numbers, dots, and hyphens"
     allowed-values:
       - 'v1.2.3'
       - 'develop_v2' 
