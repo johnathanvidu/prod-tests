@@ -14,7 +14,7 @@ workflow:
 inputs:
   agent:
     type: agent
-    default: eks
+    default: vido-vido-prod
 
 grains:
   pause_eks:
