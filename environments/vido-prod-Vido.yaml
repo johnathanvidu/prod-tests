@@ -26,8 +26,20 @@ grains:
         path: blueprints/input-as-output.yaml
       inputs:
       - agent: '{{ .inputs.agent }}'
-      - in: '{{.inputs.in}}'
+      - in: 'vidor'
       env-vars: []
       outputs:
       - output1
     tf-version: 1.5.5
+  newgrain:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+      - in: '{{.inputs.in}}'
+      outputs:
+      - out
