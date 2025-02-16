@@ -32,7 +32,6 @@ grains:
       - output1
     tf-version: 1.5.5
   newgrain:
-    depends-on: first
     kind: terraform
     spec:
       source:
