@@ -1,5 +1,5 @@
 spec_version: 2
-description: deploy azure vm <a href='http://google.com'>google.com</a>
+description: deploy azure vm
 
 inputs:
   agent:
