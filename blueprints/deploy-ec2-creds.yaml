@@ -1,0 +1,23 @@
+spec_version: 2
+description: create an ec2 instance with Terraform and install Nginx on the vm using Ansible
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  create-ec2:
+    kind: terraform
+    spec:
+      source:
+        path: terraform/create-ec2-instance-http
+        store: bps
+      agent:
+        name: '{{.inputs.agent}}'
+      authentication:
+        - aws-deploy-ec2
+      env-vars:
+        - TF_LOG: debug
+      outputs:
+        - public_ip
+        - password
