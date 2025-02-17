@@ -22,7 +22,7 @@ grains:
           source: hashicorp/aws
           version: ~>5.0.0 
           attributes:
-            region: us-east-1
+            region: eu-west-1
             assume_role: # the mounted service-account should have permissions to assume role
               role_arn: "arn:aws:iam::046086677675:role/torque-dev"
       
