@@ -1,0 +1,28 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  name: 
+    type: string
+
+grains:
+  vido:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/s3
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+        - name: '{{ .inputs.name }}'
+      provider-overrides:
+        - name: aws # in case no provider block is defined in the tf configuration
+          source: hashicorp/aws
+          version: ~>5.0.0 
+          attributes:
+            region: us-east-1
+            assume_role: # the mounted service-account should have permissions to assume role
+              role_arn: "arn:aws:iam::046086677675:role/torque-dev"
+      
