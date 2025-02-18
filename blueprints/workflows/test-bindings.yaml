@@ -32,9 +32,9 @@ grains:
         name: '{{ .inputs.agent }}'
       source:
         store: '{{ .bindings.inputs.store }}'
-        path: '{{ .bindings.inputs.path }}'
-        # branch: '{{ .bindings.inputs.branch }}'
+        path: 'terraform/hello-world'
+        branch: '{{ .bindings.inputs.branch }}'
       workspace-directories:
         - source:
-            name: '{{ .bindings.inputs.workspace-name }}'
+            name: VIDO
             store: '{{ .bindings.inputs.store }}'
