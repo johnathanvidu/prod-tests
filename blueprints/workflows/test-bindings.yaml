@@ -1,0 +1,40 @@
+spec_version: 2
+description: This workflow pauses an EKS cluster on-demand
+
+workflow:
+  scope: env
+  labels-selector: power-off, ec2, AWS
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+    default: review1-vido
+
+grains:
+  job1:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .bindings.input.agent }}'
+      activities:
+        deploy:
+          commands:
+            - command: 'echo command {{ .bindings.inputs.my-input }}' 
+            - name: print                  
+              command:  'echo named-command {{ .bindings.inputs.my-input }}'
+
+  job2:
+    kind: terraform
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      source:
+        store: '{{ .bindings.inputs.store }}'
+        path: '{{ .bindings.inputs.path }}'
+        # branch: '{{ .bindings.inputs.branch }}'
+      workspace-directories:
+        - source:
+            name: '{{ .bindings.inputs.workspace-name }}'
+            store: '{{ .bindings.inputs.store }}'
