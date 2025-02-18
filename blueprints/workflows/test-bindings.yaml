@@ -34,7 +34,7 @@ grains:
         name: '{{ .inputs.agent }}'
       source:
         store: '{{ .bindings.inputs.store }}'
-        path: '{{ .inputs.path }}'
+        path: '{{ .bindings.inputs.path }}'
         branch: '{{ .bindings.inputs.branch }}'
       inputs:
         - vido2: '{{ .bindings.inputs.my-input }}'
