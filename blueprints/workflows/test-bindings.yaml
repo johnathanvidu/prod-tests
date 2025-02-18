@@ -11,6 +11,8 @@ inputs:
   agent:
     type: agent
     default: review1-vido
+  path:
+    type: string
 
 grains:
   job1:
@@ -32,7 +34,7 @@ grains:
         name: '{{ .inputs.agent }}'
       source:
         store: '{{ .bindings.inputs.store }}'
-        path: 'terraform/hello-world'
+        path: '{{ .inputs.path }}'
         branch: '{{ .bindings.inputs.branch }}'
       inputs:
         - vido2: '{{ .bindings.inputs.my-input }}'
