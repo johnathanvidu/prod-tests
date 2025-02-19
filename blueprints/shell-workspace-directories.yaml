@@ -14,7 +14,7 @@ grains:
         deploy:
           commands:
             - "echo setup script is running..."
-            - "echo $(VIDO)"
+            - "printenv"
         destroy:
           commands:
             - "echo destroy activity..."
