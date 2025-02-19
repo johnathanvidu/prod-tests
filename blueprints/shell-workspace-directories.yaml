@@ -1,0 +1,24 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  workspace-directories:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - "echo setup script is running..."
+            - "echo ${VIDO}"
+        destroy:
+          commands:
+            - "echo destroy activity..."
+        workspace-directories:
+          - source:
+            name: VIDO
+            store: bps
