@@ -17,7 +17,7 @@ grains:
         name: '{{.inputs.agent}}'
       inputs:
         - name: '{{ .inputs.name }}'
-      version: 1.8.5
+      version: 1.5.5
       provider-overrides:
         - name: aws # in case no provider block is defined in the tf configuration
           source: hashicorp/aws
