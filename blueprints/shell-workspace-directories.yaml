@@ -18,7 +18,7 @@ grains:
         destroy:
           commands:
             - "echo destroy activity..."
-        workspace-directories:
-          - source:
-            name: VIDO
-            store: bps
+      workspace-directories:
+        - source:
+          name: VIDO
+          store: bps
