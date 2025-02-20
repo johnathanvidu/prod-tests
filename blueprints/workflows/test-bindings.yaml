@@ -9,7 +9,7 @@ workflow:
 
 inputs:
   agent:
-    name: demo-prod
+    default: demo-prod
   path:
     type: string
 
