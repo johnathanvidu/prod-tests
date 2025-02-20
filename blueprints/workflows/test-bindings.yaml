@@ -8,6 +8,8 @@ workflow:
     - type: manual
 
 inputs:
+  agent:
+    name: demo-prod
   path:
     type: string
 
