@@ -8,9 +8,6 @@ workflow:
     - type: manual
 
 inputs:
-  agent:
-    type: agent
-    default: review1-vido
   path:
     type: string
 
@@ -19,7 +16,7 @@ grains:
     kind: shell
     spec:
       agent:
-        name: '{{ .bindings.inputs.agent }}'
+        name: 'demo-{{ .bindings.inputs.agent }}'
       activities:
         deploy:
           commands:
