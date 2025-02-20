@@ -18,7 +18,7 @@ grains:
     kind: shell
     spec:
       agent:
-        name: 'demo-{{ .bindings.inputs.in }}'
+        name: 'demo-{{ .bindings.inputs.my-input }}'
       activities:
         deploy:
           commands:
