@@ -9,7 +9,7 @@ grains:
   hello-world:
     kind: terragrunt
     spec:
-      auto-approve: false
+      # auto-approve: false
       source:
         store: bps
         path: terragrunt/live/env
