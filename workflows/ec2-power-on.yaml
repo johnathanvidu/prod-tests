@@ -3,7 +3,6 @@ description: Workflow to power off Azure VMs via built-in action
 
 workflow:
   scope: env
-  label-selector: ec2 # bug. this should not be mandatory and actually should be removed from the code as well
   labels-selector: ec2
   triggers:
     - type: manual
