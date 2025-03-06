@@ -1,0 +1,20 @@
+spec_version: 2
+description: Workflow to power on AWS VMs via built-in action
+workflow:
+  scope: env
+  labels-selector: AWS-EC2
+  triggers:
+    - type: manual
+    - type: cron
+      cron: '0 6 * * *'
+      overridable: true
+
+grains:
+  power_on_ec2:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-on-ec2-tf.yaml
+      agent:
+        name: 'demo-prod'
