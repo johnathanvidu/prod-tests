@@ -13,6 +13,8 @@ grains:
         path: cdk/python/s3-config
       agent:
         name: '{{ .inputs.agent }}'
+      env-vars:
+        - CDK_CONFIG_FILE: '$CONFIG_REPO_PATH/vido'
       workspace-directories:
         - source:
             store: config-repo
