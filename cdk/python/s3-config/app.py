@@ -6,7 +6,7 @@ import aws_cdk as cdk
 from s3_config.s3_config_stack import S3ConfigStack
 
 print ('hello')
-print(os.path.expandvars(os.environ['CDK_CONFIG_FILE'])
+print(os.path.expandvars(os.environ['CDK_CONFIG_FILE']))
 
 cfg_path = os.environ['CONFIG_REPO_PATH']
 with open(os.path.join(cfg_path, 'config'), 'r') as config:
