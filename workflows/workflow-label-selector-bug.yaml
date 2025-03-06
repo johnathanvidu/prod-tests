@@ -17,4 +17,4 @@ grains:
       source:
         path: https://github.com/QualiTorque/torque-actions.git//resource/aws-power-on-ec2-tf.yaml
       agent:
-        name: 'demo-prod'
+        name: 'vido-vido-prod'
