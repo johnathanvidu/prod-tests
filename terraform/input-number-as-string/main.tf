@@ -1,5 +1,5 @@
 variable "number" {
-   type = string
+   type = shmulik
 }
 
 output "output" {
