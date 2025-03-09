@@ -31,3 +31,16 @@ grains:
       outputs:
       - output1
     tf-version: 1.5.5
+
+  vido:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-number-as-string
+      inputs:
+      - number: '{{.params.number}}'
+      agent:
+        name: '{{ .inputs.agent }}'
+      outputs:
+      - output
