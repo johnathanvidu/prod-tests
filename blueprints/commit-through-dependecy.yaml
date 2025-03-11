@@ -1,0 +1,31 @@
+spec_version: 2
+
+grains:
+  commit:
+    kind: shell
+    spec:
+      agent:
+        name: 'vido-vido-prod'
+      activities:
+        deploy:
+          commands:
+            - name: my_script
+              command:  'export commit=64dc482'
+              outputs:
+                - commit
+  cdk:
+    depends-on: commit
+    kind: aws-cdk
+    spec:
+      source:
+        store: bps
+        path: cdk/python/s3-config
+      agent:
+        name: 'vido-vido-prod'
+      env-vars:
+        - CDK_CONFIG_FILE: '$CONFIG_REPO_PATH/vido'
+      workspace-directories:
+        - source:
+            store: config-repo
+            name: CONFIG_REPO_PATH
+            commit: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}}'
