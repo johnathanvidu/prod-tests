@@ -24,8 +24,9 @@ grains:
         name: 'vido-vido-prod'
       env-vars:
         - CDK_CONFIG_FILE: '$CONFIG_REPO_PATH/vido'
+        - VIDOTEST: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}'
       workspace-directories:
         - source:
             store: config-repo
             name: CONFIG_REPO_PATH
-            commit: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}'
+            # commit: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}'
