@@ -28,4 +28,4 @@ grains:
         - source:
             store: config-repo
             name: CONFIG_REPO_PATH
-            commit: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}}'
+            commit: '{{.grains.commit.activities.deploy.commands.my_script.outputs.commit }}'
