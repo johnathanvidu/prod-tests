@@ -39,7 +39,7 @@ grains:
         store: bps
         path: terraform/input-number-as-string
       inputs:
-      - number: '{{.params.number}}'
+      - number: '{{ .inputs.in }}-{{ envId }}'
       agent:
         name: '{{ .inputs.agent }}'
       outputs:
