@@ -44,3 +44,16 @@ grains:
         name: '{{ .inputs.agent }}'
       outputs:
       - output
+      
+  vido2:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-number-as-string
+      inputs:
+      - number: '{{ .params.number }}'
+      agent:
+        name: '{{ .inputs.agent }}'
+      outputs:
+      - output
