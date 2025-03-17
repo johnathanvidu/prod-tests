@@ -20,4 +20,4 @@ grains:
           commands:
             - command: 'echo hello from job2' 
             - name: print                  
-              command:  'echo "{{ .grains.job1.activities.deploy.commands.print.output}}"'
+              command:  'echo "vido"'
