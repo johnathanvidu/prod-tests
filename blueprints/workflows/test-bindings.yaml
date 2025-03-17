@@ -3,7 +3,7 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
-  labels-selector: test-bindings and promote,ec2
+  labels-selector: test-bindings and promote
   triggers:
     - type: manual
 
