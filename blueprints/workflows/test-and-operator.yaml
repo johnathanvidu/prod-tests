@@ -3,7 +3,7 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
-  labels-selector: ec2 and AWS
+  labels-selector: ec2
 inputs:
   agent:
     type: agent
