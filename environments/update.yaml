@@ -24,8 +24,6 @@ grains:
       source:
         store: bps
         path: terraform/input-number-as-string
-      inputs:
-      - number: '{{ .inputs.in }}'
       agent:
         name: '{{ .inputs.agent }}'
       outputs:
