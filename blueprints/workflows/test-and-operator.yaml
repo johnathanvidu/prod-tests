@@ -3,7 +3,7 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
-  labels-selector: vido and Shirel
+  labels-selector: vido and AWS
 inputs:
   agent:
     type: agent
