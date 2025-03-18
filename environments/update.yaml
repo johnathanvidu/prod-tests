@@ -26,8 +26,6 @@ grains:
         path: terraform/input-number-as-string
       agent:
         name: '{{ .inputs.agent }}'
-      inputs:
-      - number: '{{ .inputs.in }}'
       outputs:
       - output
 
