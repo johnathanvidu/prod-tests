@@ -66,4 +66,4 @@ output "s3_bucket_arn" {
   value = aws_s3_bucket.bucket.arn
 }
 
-# vido was not here
+# vido was here
