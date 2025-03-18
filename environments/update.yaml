@@ -12,7 +12,7 @@ inputs:
   agent:
     type: agent
     default: vido-vido-prod
-# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI. 
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs:
   output:
     value: '{{ .grains.vido.outputs.output }}'
