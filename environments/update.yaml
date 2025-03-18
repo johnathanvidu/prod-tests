@@ -42,4 +42,3 @@ grains:
         name: '{{ .inputs.agent }}'
       inputs:
       - name: 'vidosteasfjkgsdlnsdgklmnsdgd'
-      - region: '{{.grains.vido.outputs.output}}' 
