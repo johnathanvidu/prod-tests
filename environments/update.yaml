@@ -26,5 +26,20 @@ grains:
         path: terraform/input-number-as-string
       agent:
         name: '{{ .inputs.agent }}'
+      inputs:
+      - number: '{{ .inputs.in }}'
       outputs:
       - output
+
+  s3:
+    kind: terraform
+    depends-on: vido
+    spec:
+      source:
+        store: bps
+        path: terraform/s3
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+      - name: 'vidosteasfjkgsdlnsdgklmnsdgd'
+      - region: 'eu-west-1' 
