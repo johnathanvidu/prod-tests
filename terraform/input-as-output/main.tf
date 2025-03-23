@@ -1,7 +1,7 @@
 # Define the input variable
 variable "in" {
   description = "The value to be output"
-  type        = list
+  type        = string
 }
 
 # Output the value of the input variable
