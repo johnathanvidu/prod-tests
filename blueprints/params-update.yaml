@@ -1,0 +1,38 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+
+outputs:
+  outfirst:
+    value: '{{ .grains.first.outputs.out}}'
+  outsecond:
+    value: '{{ .grains.second.outputs.out}}'
+
+grains:
+  first:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+      - in: '{{.params.inasout}}'
+      outputs:
+      - out
+
+  second:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+      - in: '{{.params.inasout}}'
+      outputs:
+      - out
