@@ -8,7 +8,7 @@ environment:
 inputs:
   in:
     type: string
-    default: vidor
+    default: tomer
   agent:
     type: agent
     default: vido-vido-prod
