@@ -1,7 +1,7 @@
 spec_version: 2
 environment:
-  environment_name: nested-bp-eac
-  state: inactive
+  environment_name: nested-bp-eac-github
+  state: active
   owner_email: johnathan.v@quali.com
   spaces:
   - Vido
