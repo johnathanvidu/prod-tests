@@ -1,0 +1,33 @@
+spec_version: 2
+environment:
+  environment_name: nested-bp-eac
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - Vido
+inputs:
+  in:
+    type: string
+    default: vidor
+  agent:
+    type: agent
+    default: vido-vido-prod
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs:
+  output:
+    value: '{{ .grains.bpgrain.outputs.output1 }}'
+    quick: true
+grains:
+  bpgrain:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: bps/input-as-output.yaml
+      inputs:
+      - agent: '{{ .inputs.agent }}'
+      - in: '{{.inputs.in}}'
+      env-vars: []
+      outputs:
+      - output1
+    tf-version: 1.5.5
