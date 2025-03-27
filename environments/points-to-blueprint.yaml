@@ -11,7 +11,7 @@ inputs:
     default: tomer
   agent:
     type: agent
-    default: vido-vido-prod
+    default: demo-prod
 # blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs:
   output:
