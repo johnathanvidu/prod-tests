@@ -18,7 +18,7 @@ grains:
         type: "s3"
         bucket: "stateless-runners-backend"
         region: "eu-west-1"
-        key-prefix: '{{ envId }}/first'
+        key-prefix: 'a/first'  # {{ envId }}/first doesn't work, prob a bug
       source:
         store: bps
         path: terraform/input-as-output
