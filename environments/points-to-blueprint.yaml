@@ -5,6 +5,8 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - VidoNew
+  tags:
+    test: 'test'
 inputs:
   in:
     type: string
