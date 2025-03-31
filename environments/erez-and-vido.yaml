@@ -6,7 +6,7 @@ environment:
   spaces:
   - VidoNew
   tags:
-    test: 'test'
+    test: 'vido'
 inputs:
   in:
     type: string
