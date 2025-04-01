@@ -1,6 +1,6 @@
 spec_version: 2
 
-inputs;
+inputs:
   agent:
     type: agent
 
