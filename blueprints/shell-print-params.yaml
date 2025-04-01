@@ -14,3 +14,13 @@ grains:
         deploy:
           commands:
             - "echo {{.params.echo}}"
+
+  shell2:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - "echo {{.params.echo}}"
