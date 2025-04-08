@@ -27,7 +27,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-      - number: '{{ .params.vidoleslkfsdlksdfk }}'
+      - number: '{{ .inputs.in }}'
       outputs:
       - output
 
