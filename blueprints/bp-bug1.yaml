@@ -13,3 +13,4 @@ grains:
         store: bps
       inputs:
         - agent: '{{.inputs.agent}}'
+        - vido: 'vido'
