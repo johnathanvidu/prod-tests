@@ -1,6 +1,6 @@
 spec_version: 2
 environment:
-  environment_name: new-eac
+  environment_name: new-eac-renamed
   state: active
   owner_email: johnathan.v@quali.com
   spaces:
