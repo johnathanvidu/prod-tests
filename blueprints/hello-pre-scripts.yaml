@@ -13,6 +13,8 @@ grains:
         store: bps
       agent:
         name: '{{.inputs.agent}}'
+      inputs:
+      - vido2: 'vido'
       scripts: 
         pre-tf-init:
           source:
