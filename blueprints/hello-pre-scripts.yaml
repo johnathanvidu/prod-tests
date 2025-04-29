@@ -14,7 +14,7 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - vido2: 'vido'
+      - vido2: '{{.params.token}}'
       scripts: 
         pre-tf-init:
           source:
