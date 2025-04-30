@@ -5,8 +5,10 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - VidoNew
-  # tags:
-  #   test-environment-tag: 'tag-works'
+  tags:
+    activity-type: 'vido'
+    bp-tag: 'vidole'
+    bp-tag-allowed: 'b'
 inputs:
   in:
     type: string
