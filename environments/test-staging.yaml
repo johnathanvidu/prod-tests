@@ -1,0 +1,37 @@
+spec_version: 2 
+environment:
+  environment_name: staging-env
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - VidoNew
+  tags:
+    test-environment-tag: 'tag-works'
+inputs:
+  in:
+    type: string
+    default: vido
+  agent:
+    type: agent
+    default: demo-prod
+
+outputs:
+  output:
+    value: '{{ .grains.bpgrain.outputs.out1 }}'
+    quick: true
+  # output2:
+  #   value: '{{ .grains.bpgrain.outputs.out2 }}'
+  #   quick: true
+grains:
+  bpgrain:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/input-as-output.yaml
+      inputs:
+      - agent: '{{ .inputs.agent }}'
+      - in: '{{ .params.first }}'
+      # - in2: '{{ .params.second }}'
+      outputs:
+      - out1
