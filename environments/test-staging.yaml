@@ -5,8 +5,8 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - VidoNew
-  tags:
-    test-environment-tag: 'tag-works'
+  # tags:
+  #   test-environment-tag: 'tag-works'
 inputs:
   in:
     type: string
