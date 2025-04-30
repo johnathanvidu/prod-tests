@@ -6,7 +6,7 @@ environment:
   spaces:
   - VidoNew
   tags:
-    activity_type: 'vido'
+    activity_type: 'other'
     bp-tag: 'vidole'
     bp-tag-allowed: 'b'
 inputs:
