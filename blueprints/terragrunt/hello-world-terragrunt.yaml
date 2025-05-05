@@ -21,6 +21,8 @@ grains:
             store: bps
             path : scripts/preinit.sh
           arguments: "first second third"
+      tags:
+        auto-tag: false
       # env-vars: 
       # - GIT_SSH_COMMAND: 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       outputs:
