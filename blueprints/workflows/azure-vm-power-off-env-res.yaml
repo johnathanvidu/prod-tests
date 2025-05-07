@@ -2,7 +2,7 @@ spec_version: 2
 description: This workflow pauses an EKS cluster on-demand
 
 workflow:
-  scope: env
+  scope: env_resource
   labels-selector: azure
   resource-types: azurerm_virtual_machine 
   triggers:
