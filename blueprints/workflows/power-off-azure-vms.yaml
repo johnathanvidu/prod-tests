@@ -3,7 +3,8 @@ description: This workflow pauses an EKS cluster on-demand
 
 workflow:
   scope: env
-  resource-types: azurerm_virtual_machine 
+  labels-selector: azure
+  # resource-types: azurerm_virtual_machine 
   triggers:
     - type: manual
 
@@ -20,5 +21,5 @@ grains:
         path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-off-vm-tf.yaml
       agent:
         name: '{{ .inputs.agent }}'
-      authentication:
-        - az-test
+      # authentication:
+      #   - az-test
