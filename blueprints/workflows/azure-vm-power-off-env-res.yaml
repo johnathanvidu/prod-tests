@@ -1,0 +1,25 @@
+spec_version: 2
+description: This workflow pauses an EKS cluster on-demand
+
+workflow:
+  scope: env
+  labels-selector: azure
+  resource-types: azurerm_virtual_machine 
+  triggers:
+    - type: manual
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  azure-power-off:
+    kind: ansible
+    spec:
+      built-in: true
+      source:
+        path: https://github.com/QualiTorque/torque-actions.git//resource/azure-power-off-vm-tf.yaml
+      agent:
+        name: '{{ .inputs.agent }}'
+      authentication:
+        - az-test
