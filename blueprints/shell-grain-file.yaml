@@ -11,6 +11,10 @@ grains:
     spec: 
       agent:
         name: '{{ .inputs.agent }}'
+       workspace-directories:
+        - source:
+            store: bps
+            name: MYFOLDER
       files:
         - path: scripts/preinit.sh
           source: bps
