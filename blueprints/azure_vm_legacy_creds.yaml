@@ -25,7 +25,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       authentication:
-        - vido-basic-azure
+        - az-test
       inputs:
         - vm_name: '{{.inputs.vm_name}}'
         - resource_group: '{{.inputs.resource_group}}'
