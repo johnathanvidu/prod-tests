@@ -11,7 +11,7 @@ grains:
     spec: 
       agent:
         name: '{{ .inputs.agent }}'
-       workspace-directories:
+      workspace-directories:
         - source:
             store: bps
             name: MYFOLDER
@@ -22,6 +22,7 @@ grains:
         deploy:
           commands:
             - "echo setup script is running..."
+            - "ls ${MYFOLDER}"
             - "./preinit.sh"
         destroy:
           commands:
