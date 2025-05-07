@@ -15,6 +15,7 @@ grains:
         - source:
             store: bps
             name: MYFOLDER
+            branch: 'bp-grain-template'
       files:
         - path: scripts/preinit.sh
           source: bps
