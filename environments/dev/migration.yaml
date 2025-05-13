@@ -1,0 +1,37 @@
+spec_version: 2 
+
+environment: 
+  environment_name: migration
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - Vido
+
+inputs:
+  agent:
+    type: agent
+    default: vido-dev
+
+grains:
+  shell:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/shell-print-params.yaml
+      inputs:
+      - agent: '{{ .inputs.agent }}'
+
+  helloworld:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world-source
+      agent:
+        name: '{{.inputs.agent}}'
+      backend:
+        type: "s3"
+        bucket: "stateless-runners-backend"
+        region: "eu-west-1"
+        key-prefix: "a"
