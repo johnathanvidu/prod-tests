@@ -13,15 +13,6 @@ inputs:
     default: vido-dev
 
 grains:
-  shell:
-    kind: blueprint
-    spec:
-      source:
-        store: bps
-        path: blueprints/shell-print-params.yaml
-      inputs:
-      - agent: '{{ .inputs.agent }}'
-
   helloworld:
     kind: terraform
     spec:
