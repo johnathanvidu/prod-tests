@@ -26,3 +26,5 @@ grains:
         bucket: "stateless-runners-backend"
         region: "eu-west-1"
         key-prefix: "a"
+      outputs:
+      - hello_world
