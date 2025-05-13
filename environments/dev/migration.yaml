@@ -1,6 +1,6 @@
 spec_version: 2 
 
-environment: 
+environment:
   environment_name: migration
   state: active
   owner_email: johnathan.v@quali.com
