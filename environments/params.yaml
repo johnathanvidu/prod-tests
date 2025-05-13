@@ -21,3 +21,13 @@ grains:
         path: blueprints/shell-print-params.yaml
       inputs:
       - agent: '{{ .inputs.agent }}'
+
+  helloworld:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/hello-world-source
+      agent:
+        name: '{{.inputs.agent}}'
+
