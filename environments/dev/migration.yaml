@@ -21,11 +21,11 @@ grains:
         path: terraform/input-as-output
       agent:
         name: '{{.inputs.agent}}'
-      # backend:
-      #   type: "s3"
-      #   bucket: "stateless-runners-backend"
-      #   region: "eu-west-1"
-      #   key-prefix: "a"
+      backend:
+        type: "s3"
+        bucket: "stateless-runners-backend"
+        region: "eu-west-1"
+        key-prefix: "a"
       inputs:
       - in: 'vidole'
       outputs:
