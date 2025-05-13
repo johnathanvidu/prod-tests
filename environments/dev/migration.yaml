@@ -27,6 +27,6 @@ grains:
       #   region: "eu-west-1"
       #   key-prefix: "a"
       inputs:
-      - in: 'vido'
+      - in: 'vidole'
       outputs:
       - out
