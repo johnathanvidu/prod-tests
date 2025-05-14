@@ -17,7 +17,7 @@ outputs:
   output:
     value: '{{ .grains.vido.outputs.output }}'
     quick: true
-grains:
+grains: 
   vido:
     kind: terraform
     spec:
