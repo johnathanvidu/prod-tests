@@ -28,6 +28,7 @@ grains:
 
   next:
     kind: terraform
+    depends-on: vido
     spec:
       source:
         store: bps
@@ -35,6 +36,6 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-      - number: '{{ .inputs.in }}'
+      - number: '{{ .grains.vido.outputs.output }}'
       outputs:
       - output
