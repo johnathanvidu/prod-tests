@@ -5,6 +5,13 @@ inputs:
     type: agent
   in:
     type: string
+  region:
+    type: string
+  region-param:
+    type: parameter
+    default: eu-west-2
+    parameter-name: regions
+    
 
 outputs:
   output1:
