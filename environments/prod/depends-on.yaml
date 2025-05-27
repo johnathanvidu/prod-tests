@@ -1,7 +1,7 @@
 spec_version: 2
 environment:
   environment_name: depends-on
-  state: active
+  state: inactive
   owner_email: johnathan.v@quali.com
   spaces:
   - Vido
