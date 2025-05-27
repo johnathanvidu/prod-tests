@@ -4,7 +4,7 @@ environment:
   state: active
   owner_email: johnathan.v@quali.com
   spaces:
-  - VidoNew
+  - Vido
 inputs: 
   in:
     type: string
