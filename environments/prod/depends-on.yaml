@@ -1,0 +1,40 @@
+spec_version: 2
+environment:
+  environment_name: depends-on
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - VidoNew
+inputs: 
+  in:
+    type: string
+    default: eu-west-1
+  agent:
+    type: agent
+    default: vido-vido-prod
+grains: 
+  vido:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-number-as-string
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+      - number: '{{ .inputs.in }}'
+      outputs:
+      - output
+
+  next:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-number-as-string
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+      - number: '{{ .inputs.in }}'
+      outputs:
+      - output
