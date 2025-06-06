@@ -52,6 +52,7 @@ grains:
 
   inasout2: 
     kind: terraform
+    depends-on: inasout
     spec:
       source:
         store: bps
@@ -59,6 +60,6 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - in: '{{.inputs.in}}'
+      - in: '{{.grains.inasout.outputs.out}}'
       outputs:
       - out
