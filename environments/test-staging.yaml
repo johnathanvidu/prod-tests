@@ -37,7 +37,7 @@ grains:
       # - in2: '{{ .params.second }}'
       outputs:
       - out1
-  inasout:
+  inasout: 
     kind: terraform
     spec:
       source:
