@@ -30,7 +30,7 @@ grains:
         store: bps
         path: terraform/input-as-output
       agent:
-        name: '{{.inputs.agent}}'
+        name: '{{.inputs.agent | split: "|" | last | strip }}'
         use-storage: false
       inputs:
       - in: '{{.inputs.in}}'
