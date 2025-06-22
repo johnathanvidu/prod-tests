@@ -15,8 +15,8 @@ grains:
       source:
         path: github.com/QualiNext/terraform/s3-write
       agent:
-        name: '{{.inputs.compute_service_name}}'
-      tags:
+        name: '{{.inputs.agent}}'
+#      tags:
 #         auto-tag: true
 #         disable-tags-for:
 #         - aws_s3_bucket_object
