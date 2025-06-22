@@ -15,7 +15,7 @@ grains:
     kind: shell
     spec:
       agent:
-        name: 'review1-vido'
+        name: 'demo-prod'
       activities:
         deploy:
           commands:
