@@ -12,7 +12,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: bps
+        store: bps2
         path: terraform/hello-world-source
       agent:
         name: '{{.inputs.agent}}'
