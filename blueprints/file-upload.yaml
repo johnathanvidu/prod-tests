@@ -16,7 +16,7 @@ grains:
     spec:
       agent:
         name: '{{.inputs.agent}}'
-       workspace-directories:
+      workspace-directories:
         - source:
             name: SOURCE_DIR
             store: env-storage/{{.inputs.txt-file}}
