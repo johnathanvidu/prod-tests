@@ -23,4 +23,7 @@ grains:
       activities:
         deploy:
           commands:
-            - echo $SOURCE_DIR/*
+            - 'echo $SOURCE_DIR/*'
+            - 'echo print file content'
+            - 'first_file=$(ls $SOURCE_DIR/*.txt | head -n 1) ; cat $first_file'
+
