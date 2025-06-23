@@ -1,0 +1,26 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  txt-file:
+    type: file
+    max-size-MB: 1
+    max-files: 1
+    allowed-formats:
+    - txt
+
+grains:
+  print-txt-file:
+    kind: shell
+    spec:
+      agent:
+        name: '{{.inputs.agent}}'
+       workspace-directories:
+        - source:
+            name: SOURCE_DIR
+            store: env-storage/{{.inputs.txt-file}}
+      activities:
+        deploy:
+          commands:
+            - echo $SOURCE_DIR/*
