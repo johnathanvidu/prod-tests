@@ -1,0 +1,24 @@
+spec_version: 2
+
+environment:
+  environment_name: test-eac-before-deployment2
+  state: active
+  owner: johnathan.v@quali.com
+  spaces:
+  - Vido
+
+inputs:
+  agent:
+    type: 'agent'
+    default: 'review1-vido'
+grains:
+  shell:
+    kind: 'shell'
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'echo {{.params.echo}}'
+      inputs: []
