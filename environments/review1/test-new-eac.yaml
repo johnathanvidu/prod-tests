@@ -10,7 +10,7 @@ environment:
 inputs:
   agent:
     type: 'agent'
-    #default: 'review1-vido'
+    default: 'review1-vido'
 grains:
   shell:
     kind: 'shell'
