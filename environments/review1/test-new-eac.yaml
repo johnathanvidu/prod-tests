@@ -3,7 +3,7 @@ spec_version: 2
 environment:
   environment_name: test-eac-before-deployment
   state: active
-  owner: johnathan.v@quali.com
+  owner_email: johnathan.v@quali.com
   spaces:
   - Vido
 
