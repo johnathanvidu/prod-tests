@@ -20,7 +20,12 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - in: '{{.inputs.in}}'
+      - in: |
+        '[
+          {
+            "vido": "king"
+          }
+        ]'
       outputs:
       - out
   second:
