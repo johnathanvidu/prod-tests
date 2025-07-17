@@ -1,0 +1,27 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  tfvars-name:
+    type: string
+
+outputs:
+  output1:
+    value: '{{.grains.first.outputs.out}}'
+
+grains:
+  first:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: '{{.inputs.agent}}'
+      tfvars-files:
+        - source:
+            store: bps
+            path: 'configuration/{{ .inputs.tfvars-name }}.tfvars'
+      outputs:
+      - out
