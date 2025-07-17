@@ -22,6 +22,6 @@ grains:
       tfvars-files:
         - source:
             store: bps
-            path: 'configuration/{{ .inputs.tfvars-name }}.tfvars'
+            path: 'configuration/input-{{ .inputs.tfvars-name }}.tfvars'
       outputs:
       - out
