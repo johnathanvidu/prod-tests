@@ -39,3 +39,35 @@ resource "torque_agent_space_association" "agent_association" {
   service_account = "${var.project_name}-${each.key}-sa"
   namespace       = "${var.project_name}-${each.key}"
 }
+
+resource "torque_ado_server_repository_space_association" "repository" {
+  for_each        = local.environments
+
+  space_name      = torque_space.new_space[each.key].space_name
+  repository_name = "Infrastructure"
+  repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/Vido"
+  branch            = "main"
+  credential_name   = "ado"
+  auto_register_eac = true
+  use_all_agents    = true
+}
+
+resource "torque_space_parameter" "aws_account_id_param" {
+  for_each        = local.environments
+
+  space_name  = torque_space.new_space[each.key].space_name
+  name        = "aws_account_id"
+  value       = var.aws_account_id
+  sensitive   = false
+  description = "aws account id"
+}
+
+resource "torque_space_parameter" "aws_account_name_param" {
+  for_each        = local.environments
+
+  space_name  = torque_space.new_space[each.key].space_name
+  name        = "aws_account_name"
+  value       = var.aws_account_name
+  sensitive   = false
+  description = "aws account name"
+}
