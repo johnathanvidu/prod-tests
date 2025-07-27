@@ -20,10 +20,10 @@ variable "aws_accounts" {
 
   validation {
     condition = (
-      length(keys(var.environments)) == 3 && # Enforce exactly 3 values
-      contains(keys(var.environments), "dev") && # Enforce 'dev' key
-      contains(keys(var.environments), "stage") && # Enforce 'stage' key
-      contains(keys(var.environments), "prod")    # Enforce 'prod' key
+      length(keys(var.aws_accounts)) == 3 && # Enforce exactly 3 values
+      contains(keys(var.aws_accounts), "dev") && # Enforce 'dev' key
+      contains(keys(var.aws_accounts), "stage") && # Enforce 'stage' key
+      contains(keys(var.aws_accounts), "prod")    # Enforce 'prod' key
     )
     error_message = "The 'aws_accounts' map must contain exactly three keys: 'dev', 'stage', and 'prod'"
   }
