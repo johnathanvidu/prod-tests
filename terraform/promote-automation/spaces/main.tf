@@ -53,21 +53,21 @@ resource "torque_ado_server_repository_space_association" "repository" {
 }
 
 resource "torque_space_parameter" "aws_account_id_param" {
-  for_each        = local.environments
+  for_each    = local.environments
 
   space_name  = torque_space.new_space[each.key].space_name
   name        = "aws_account_id"
-  value       = var.aws_account_id
+  value       = var.aws_accounts[each.value].account_id
   sensitive   = false
   description = "aws account id"
 }
 
 resource "torque_space_parameter" "aws_account_name_param" {
-  for_each        = local.environments
+  for_each    = local.environments
 
   space_name  = torque_space.new_space[each.key].space_name
   name        = "aws_account_name"
-  value       = var.aws_account_name
+  value       = var.aws_accounts[each.value].account_name
   sensitive   = false
   description = "aws account name"
 }

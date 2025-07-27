@@ -12,10 +12,19 @@ variable "agent_name" {
   type      = string
 }
 
-variable "aws_account_id" {
-  type      = string
-}
+variable "aws_accounts" {
+  type = map(object({
+    account_name = string
+    account_id   = string
+  }))
 
-variable "aws_account_name" {
-  type      = string
+  validation {
+    condition = (
+      length(keys(var.environments)) == 3 && # Enforce exactly 3 values
+      contains(keys(var.environments), "dev") && # Enforce 'dev' key
+      contains(keys(var.environments), "stage") && # Enforce 'stage' key
+      contains(keys(var.environments), "prod")    # Enforce 'prod' key
+    )
+    error_message = "The 'aws_accounts' map must contain exactly three keys: 'dev', 'stage', and 'prod'"
+  }
 }
