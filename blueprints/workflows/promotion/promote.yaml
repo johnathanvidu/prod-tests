@@ -14,7 +14,7 @@ grains:
     kind: shell
     spec:
       files:
-        - source: Infrastructure
+        - source: bps
           path:  scripts/promote/promote.sh
           branch: promotion
       agent:
