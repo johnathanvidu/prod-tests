@@ -40,12 +40,24 @@ resource "torque_agent_space_association" "agent_association" {
   namespace       = "${var.project_name}-${each.key}"
 }
 
-resource "torque_ado_server_repository_space_association" "repository" {
+resource "torque_ado_server_repository_space_association" "common-assets" {
   for_each        = local.environments
 
   space_name      = torque_space.new_space[each.key].space_name
   repository_name = "Infrastructure"
   repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/Vido"
+  branch            = "main"
+  credential_name   = "ado"
+  auto_register_eac = false
+  use_all_agents    = true
+}
+
+resource "torque_ado_server_repository_space_association" "dev_repo" {
+  for_each        = local.environments
+
+  space_name      = torque_space.new_space[each.key].space_name
+  repository_name = "Infrastructure"
+  repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/${var.project_name}-${each.key}"
   branch            = "main"
   credential_name   = "ado"
   auto_register_eac = true
