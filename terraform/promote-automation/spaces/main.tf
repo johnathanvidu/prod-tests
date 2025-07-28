@@ -52,12 +52,12 @@ resource "torque_ado_server_repository_space_association" "common-assets" {
   use_all_agents    = true
 }
 
-resource "torque_ado_server_repository_space_association" "dev_repo" {
+resource "torque_ado_server_repository_space_association" "environments_repo" {
   for_each        = local.environments
 
-  space_name      = torque_space.new_space[each.key].space_name
+  space_name      = torque_space.new_space[each.value].space_name
   repository_name = "${each.key}"
-  repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/${var.project_name}-${each.key}"
+  repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/${var.project_name}-${each.value}"
   branch            = "main"
   credential_name   = "ado"
   auto_register_eac = true
