@@ -83,3 +83,23 @@ resource "torque_space_parameter" "aws_account_name_param" {
   sensitive   = false
   description = "aws account name"
 }
+
+resource "torque_space_parameter" "target_environments_dev" {
+  for_each    = local.environments
+
+  space_name  = torque_space.new_space["dev"].space_name
+  name        = "target_environments"
+  value       = "stage"
+  sensitive   = false
+  description = "allowed target environment to deploy"
+}
+
+resource "torque_space_parameter" "target_environments_stage" {
+  for_each    = local.environments
+
+  space_name  = torque_space.new_space["stage"].space_name
+  name        = "target_environments"
+  value       = "prod"
+  sensitive   = false
+  description = "allowed target environment to deploy"
+}
