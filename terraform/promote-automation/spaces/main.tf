@@ -94,10 +94,10 @@ resource "torque_space_parameter" "target_environments_dev" {
   description = "allowed target environment to deploy"
 }
 
-resource "torque_space_parameter" "target_environments_stage" {
+resource "torque_space_parameter" "target_environments_staging" {
   for_each    = local.environments
 
-  space_name  = torque_space.new_space["stage"].space_name
+  space_name  = torque_space.new_space["staging"].space_name
   name        = "target_environments"
   value       = "prod"
   sensitive   = false
