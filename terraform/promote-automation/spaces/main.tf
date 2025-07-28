@@ -56,7 +56,7 @@ resource "torque_ado_server_repository_space_association" "dev_repo" {
   for_each        = local.environments
 
   space_name      = torque_space.new_space[each.key].space_name
-  repository_name = "Infrastructure"
+  repository_name = "${each.key}"
   repository_url  = "http://192.168.42.224/DefaultCollection/Vido/_git/${var.project_name}-${each.key}"
   branch            = "main"
   credential_name   = "ado"
