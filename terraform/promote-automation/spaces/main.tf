@@ -85,8 +85,6 @@ resource "torque_space_parameter" "aws_account_name_param" {
 }
 
 resource "torque_space_parameter" "target_environments_dev" {
-  for_each    = local.environments
-
   space_name  = torque_space.new_space["dev"].space_name
   name        = "target_environments"
   value       = "stage"
@@ -95,8 +93,6 @@ resource "torque_space_parameter" "target_environments_dev" {
 }
 
 resource "torque_space_parameter" "target_environments_staging" {
-  for_each    = local.environments
-
   space_name  = torque_space.new_space["staging"].space_name
   name        = "target_environments"
   value       = "prod"
