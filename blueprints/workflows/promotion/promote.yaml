@@ -1,0 +1,30 @@
+spec_version: 2
+
+workflow:
+  scope: env
+  labels-selector: promotable
+
+inputs:
+  target_environment:
+    type: parameter
+    parameter-name: target_environments
+
+grains: 
+  promote:
+    kind: shell
+    spec:
+      files:
+        - source: Infrastructure
+          path:  scripts/promote/promote.sh
+          branch: promotion
+      agent:
+        name: 'vido-vido-prod'
+      workspace-directories:
+        - source:
+            store: '{{ .inputs.target_environment }}'
+            name: TARGET_ENVIRONMENT
+      activities:
+        deploy:
+          commands:
+          - "./promote.sh"
+        
