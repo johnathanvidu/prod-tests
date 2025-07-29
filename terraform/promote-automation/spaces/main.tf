@@ -99,3 +99,13 @@ resource "torque_space_parameter" "target_environments_staging" {
   sensitive   = false
   description = "allowed target environment to deploy"
 }
+
+resource "torque_space_parameter" "project_name" {
+  for_each    = local.environments
+
+  space_name  = torque_space.new_space[each.key].space_name
+  name        = "project_name"
+  value       = var.project_name
+  sensitive   = false
+  description = "the project name"
+}
