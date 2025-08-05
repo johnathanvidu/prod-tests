@@ -59,6 +59,7 @@ jq -r '.[]' <<< "$1" | while read -r item; do
   "source": {
     "blueprint_name": "blueprints/auto-subnets.yaml",
     "repository_name": "bps",
+    "branch": "promotion"
   }
 }
 EOF
