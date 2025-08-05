@@ -50,6 +50,10 @@ resource "torque_ado_server_repository_space_association" "common-assets" {
   credential_name   = "ado"
   auto_register_eac = false
   use_all_agents    = true
+
+  depends_on = [
+    torque_space.new_space
+  ]
 }
 
 resource "torque_ado_server_repository_space_association" "environments_repo" {
@@ -62,6 +66,10 @@ resource "torque_ado_server_repository_space_association" "environments_repo" {
   credential_name   = "ado"
   auto_register_eac = true
   use_all_agents    = true
+
+  depends_on = [
+    torque_space.new_space
+  ]
 }
 
 resource "torque_space_parameter" "aws_account_id_param" {
