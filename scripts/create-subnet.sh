@@ -49,7 +49,6 @@ jq -r '.[]' <<< "$1" | while read -r item; do
     read -r -d '' JSON_PAYLOAD << EOF
 {
   "environment_name": "auto-subnets",
-  "blueprint_name": "auto-subnets",
   "owner_email": "johnathan.v@quali.com",
   "inputs": {
     "subnets": "${ESCAPED_SUBNETS}"
