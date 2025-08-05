@@ -57,8 +57,7 @@ jq -r '.[]' <<< "$1" | while read -r item; do
   "automation": true,
   "duration": "PT2H",
   "source": {
-    "repository_name": "bps",
-    "branch": "promotion"
+    "repository_name": "Infrastructure"
   }
 }
 EOF
