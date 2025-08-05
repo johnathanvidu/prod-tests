@@ -52,7 +52,7 @@ jq -r '.[]' <<< "$1" | while read -r item; do
   "automation": true,
   "duration": "PT2H",
   "source": {
-    "blueprint_name": "auto-subnets",
+    "blueprint_name": "blueprints/auto-subnets.yaml",
     "repository_name": "bps",
   }
 }
