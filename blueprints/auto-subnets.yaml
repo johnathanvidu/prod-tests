@@ -1,0 +1,17 @@
+spec_version: 2
+
+inputs:
+  subnets:
+    type: string
+
+grains:
+  auto-subnets:
+    kind: terraform
+    spec: 
+      source:
+        store: bps
+        path: terraform/auto-subnets
+      inputs:
+        - vpc_id: 'vido-vpc'
+        - subnets_config: '{{ .inputs.subnets }}'
+      
