@@ -1,6 +1,9 @@
 #!/bin/bash
 
 echo "All arguments: $@"
+echo "1st $1"
+echo "2nd $2"
+echo "num of arguments $#"
 
 API_URL="https://portal.qtorque.io"
 
