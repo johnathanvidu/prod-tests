@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "All arguments: $@"
+
 API_URL="https://portal.qtorque.io"
 
 # Check if the API_TOKEN environment variable is set.
