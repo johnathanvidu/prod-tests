@@ -20,7 +20,7 @@ grains:
           source:
             store: bps
             path : scripts/preinit.sh
-          arguments: "first second third"
+          arguments: "first second third fourth"
       tags:
         auto-tag: false
       # env-vars: 
