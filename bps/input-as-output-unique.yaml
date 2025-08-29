@@ -20,7 +20,7 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - in: '{{.inputs.in}}'
+      - in: '{{ .params.tenant_id }}-{{ .inputs.in }}-{{ envId }}'
       outputs:
       - out
     
