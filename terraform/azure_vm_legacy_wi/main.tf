@@ -14,6 +14,8 @@ provider "azurerm" {
       prevent_deletion_if_contains_resources = false
     }
   }
+
+  use_oidc = true
 }
 
 ## <https://www.terraform.io/docs/providers/azurerm/r/resource_group.html>
