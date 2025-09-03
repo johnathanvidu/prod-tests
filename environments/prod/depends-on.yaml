@@ -38,5 +38,6 @@ grains:
         name: '{{ .inputs.agent }}'
       inputs:
       - number: '{{ .grains.vido.outputs.output }}'
+      - number2: '{{ .grains.vido.outputs.output }}'
       outputs:
       - output
