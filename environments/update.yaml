@@ -33,6 +33,7 @@ grains:
         name: '{{ .inputs.agent }}'
       inputs:
       - number: '{{ .inputs.in }}'
+      - number2: 2
       outputs:
       - output
 
