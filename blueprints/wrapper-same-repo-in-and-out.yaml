@@ -1,0 +1,16 @@
+spec_version: 2
+inputs: 
+  agent:
+    type: agent
+grains:
+  in-as-out-bp:
+    kind: 'blueprint'
+    spec:
+      source:
+        store: 'bps'
+        path: 'blueprints/in-as-out-bp.yaml'
+      inputs:
+        - agent: '{{ .inputs.agent }}'
+        - in: 'same-repo'
+      outputs:
+        - 'out'
