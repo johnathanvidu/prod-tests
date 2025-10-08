@@ -1,8 +1,6 @@
 spec_version: 2
 
 inputs:
-  agent:
-    type: agent
   in:
     type: string
 
@@ -18,7 +16,7 @@ grains:
         store: bps
         path: 'bps/input-as-output-unique.yaml'
       inputs:
-        - agent: '{{ .inputs.agent }}'
+        - agent: 'demo-prod'
         - in: '{{ .inputs.in }}'
       outputs:
         - out
