@@ -1,0 +1,3 @@
+SLEEP_IN_MIN=$(($1*60))
+echo "sleeping for $SLEEP_IN_MIN"
+sleep $SLEEP_IN_MIN
