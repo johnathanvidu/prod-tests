@@ -99,3 +99,5 @@ resource "azurerm_virtual_machine" "example" {
     disable_password_authentication = false
   }
 }
+
+# vido was here
