@@ -44,7 +44,7 @@ grains:
         region: "eu-west-1"
         key-prefix: "s3"
       env-vars: 
-      - TF_CLI_ARGS_name: '-migrate-state'
+      - TF_CLI_ARGS_init: '-migrate-state'
       inputs:
         - acl: '{{ .inputs.acl }}'
         - name: '{{ .inputs.name }}'
