@@ -38,13 +38,6 @@ grains:
         path: 'terraform/s3'
       agent:
         name: '{{ .inputs.agent }}'
-      backend:
-        type: "s3"
-        bucket: "vido-prod-migrate-state-test-tfstate"
-        region: "eu-west-1"
-        key-prefix: "s3"
-      env-vars: 
-      - TF_CLI_ARGS_init: '-migrate-state'
       inputs:
         - acl: '{{ .inputs.acl }}'
         - name: '{{ .inputs.name }}'
