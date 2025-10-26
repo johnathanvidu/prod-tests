@@ -3,6 +3,8 @@ environment:
   environment_name: 's3-migrate-state'
   state: active
   owner_email: johnathan.v@quali.com
+  spaces:
+  - Vido
 inputs:
   acl:
     type: 'string'
