@@ -12,6 +12,8 @@ if [ -z "$MODULE_PATH" ]; then
   exit 1
 fi
 
+ls -a $MODULE_PATH
+
 TARGET_DIR="$MODULE_PATH/$TERRAFORM_DIR"
 
 # 2. Check if the target directory exists
