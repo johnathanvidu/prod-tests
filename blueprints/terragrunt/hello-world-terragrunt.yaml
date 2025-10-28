@@ -19,8 +19,9 @@ grains:
         pre-tf-init:
           source:
             store: bps
-            path : scripts/preinit.sh
-          arguments: "first second third fourth"
+            path : scripts/printenv.sh
+          #   path : scripts/preinit.sh
+          # arguments: "first second third fourth"
       tags:
         auto-tag: false
       # env-vars: 
