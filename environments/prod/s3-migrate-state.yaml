@@ -1,5 +1,5 @@
 spec_version: 2
-environment:
+environment: 
   environment_name: 's3-migrate-state'
   state: active
   owner_email: johnathan.v@quali.com
