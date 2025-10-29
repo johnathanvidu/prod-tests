@@ -1,0 +1,47 @@
+spec_version: 2
+environment: 
+  environment_name: 's3-migrate-state-inner1'
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - Vido
+inputs:
+  acl:
+    type: 'string'
+    default: 'private'
+    description: 'Canned ACL to apply to the bucket. Default is private.'
+  name:
+    type: 'string'
+    description: 'Name of S3 bucket'
+    default: 'vido-prod-migrate-state-test-inner1'
+  region:
+    type: 'string'
+    default: 'eu-west-1'
+    description: 'Region where to create resources'
+  user:
+    type: 'string'
+    default: 'none'
+    description: 'Username to assign permissions for S3 bucket to. If left blank, will not create permissions.'
+  agent:
+    type: 'agent'
+    default: 'vido-vido-prod'
+outputs:
+  s3_s3_bucket_arn:
+    value: '{{ .grains.s3.outputs.s3_bucket_arn }}'
+    quick: true
+grains:
+  s3:
+    kind: 'terraform'
+    spec:
+      source:
+        store: 'bps'
+        path: 'terraform/s3'
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - acl: '{{ .inputs.acl }}'
+        - name: '{{ .inputs.name }}'
+        - region: '{{ .inputs.region }}'
+        - user: '{{ .inputs.user }}'
+      outputs:
+        - 's3_bucket_arn'
