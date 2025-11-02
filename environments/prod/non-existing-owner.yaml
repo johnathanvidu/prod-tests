@@ -1,0 +1,23 @@
+spec_version: 2
+
+environment:
+  environment_name: eks-production
+  description: "Production EKS environment"
+  owner_email: nonexisting@quali.com
+  state: active
+  labels:
+    environment: production
+    team: platform
+    cost-center: ops
+  inputs:
+    region: us-east-1
+    cluster_name: eks-prod
+    vpc_id: someid
+    subnet_ids: "subnet-1"
+  outputs:
+    cluster_endpoint:
+      value: '{{ .grains.eks_cluster.outputs.cluster_endpoint }}'
+      quick: true
+    cluster_name:
+      value: '{{ .grains.eks_cluster.outputs.cluster_name }}'
+      quick: true
