@@ -4,7 +4,7 @@ environment:
   environment_name: eks-production
   description: "Production EKS environment"
   owner_email: nonexisting@quali.com
-  state: active
+  state: inactive
   labels:
     environment: production
     team: platform
