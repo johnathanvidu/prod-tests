@@ -6,6 +6,9 @@ environment:
   spaces:
   - Vido
 inputs: 
+  in:
+    type: string
+    default: eu-west-1
   agent:
     type: agent
     default: vido-vido-prod
@@ -19,8 +22,8 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'
       inputs:
-      - number: 1
-      - number2: 2
+      - number: '{{ .inputs.in }}'
+      - number2: '{{ .inputs.in }}'
       outputs:
       - output
 
