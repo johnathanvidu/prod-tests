@@ -9,7 +9,9 @@ environment:
   - VidoNew
 
 inputs:
-
+  content2:
+    type: 'string'
+    default: 'this asfasfasfs a default content'
   agent:
     type: 'agent'
     default: demo-prod
@@ -24,5 +26,5 @@ grains:
       inputs:
         - BUCKET_NAME: '{{.params.bucket_name}}'
         - SANDBOX_ID: 'vido-{{ sandboxid }}'
-        - CONTENT: ''
+        - CONTENT: '{{ .inputs.content2 }}'
         - DUMMY: 'Vido dummy'
