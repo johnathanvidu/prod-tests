@@ -13,8 +13,8 @@ inputs:
   name:
     type: 'string'
     description: 'Name of S3 bucket'
-    default: 'vido-prod-migrate-state-test'
-  Region:
+    default: 'vido-prod-migrate-state-test2'
+  region:
     type: 'string'
     default: 'eu-west-1'
     description: 'Region where to create resources'
