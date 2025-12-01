@@ -1,0 +1,30 @@
+spec_version: 2
+description: 'write content to an existing s3 bucket'
+
+environment:
+  environment_name: inputs
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - VidoNew
+
+inputs:
+  content:
+    type: 'string'
+    default: 'this is a default content'
+  agent:
+    type: 'agent'
+    default: demo-prod
+grains:
+  s3-write:
+    kind: 'terraform'
+    spec:
+      source:
+        path: 'github.com/QualiNext/terraform/s3-write'
+      agent:
+        name: '{{.inputs.agent}}'
+      inputs:
+        - BUCKET_NAME: '{{.params.bucket_name}}'
+        - SANDBOX_ID: 'vido-{{ sandboxid }}'
+        - CONTENT: '{{.inputs.content}}'
+        - DUMMY: 'Vido dummy'
