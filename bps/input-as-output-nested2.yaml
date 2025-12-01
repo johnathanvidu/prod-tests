@@ -1,0 +1,18 @@
+spec_version: 2
+inputs:
+  in:
+    type: string
+  agent:
+    type: agent
+grains:
+  input-as-output-unique:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/input-as-output-unique.yaml
+      inputs:
+        - agent: '{{ .inputs.agent }}'
+        - in: '{{ .inputs.in }}'
+      outputs:
+        - output1
