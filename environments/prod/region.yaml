@@ -14,7 +14,7 @@ inputs:
     type: 'string'
     description: 'Name of S3 bucket'
     default: 'vido-prod-migrate-state-test2'
-  region:
+  Region:
     type: 'string'
     default: 'eu-west-1'
     description: 'Region where to create resources'
@@ -41,7 +41,7 @@ grains:
       inputs:
         - acl: '{{ .inputs.acl }}'
         - name: '{{ .inputs.name }}'
-        - region: '{{ .inputs.region }}'
+        - region: '{{ .inputs.Region }}'
         - user: '{{ .inputs.user }}'
       outputs:
         - 's3_bucket_arn'
