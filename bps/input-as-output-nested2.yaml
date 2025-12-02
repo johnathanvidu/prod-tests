@@ -13,6 +13,6 @@ grains:
         path: bps/input-as-output-unique.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
-        - in: '{{ .inputs.in }}'
+        - in: '{{ .params.tenant_id }}-{{ .inputs.in }}-{{ envId }}'
       outputs:
         - output1
