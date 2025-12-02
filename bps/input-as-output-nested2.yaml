@@ -10,7 +10,7 @@ grains:
     spec:
       source:
         store: bps
-        path: blueprints/input-as-output-unique.yaml
+        path: bps/input-as-output-unique.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
         - in: '{{ .inputs.in }}'
