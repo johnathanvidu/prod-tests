@@ -23,16 +23,3 @@ grains:
       - in: 'something'
       outputs:
       - out
-  second:
-    kind: terraform
-    spec:
-      source:
-        store: bps
-        path: terraform/input-as-output
-      agent:
-        name: '{{.inputs.agent}}'
-      inputs:
-      - in: 'something'
-      outputs:
-      - out
-    
