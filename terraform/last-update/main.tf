@@ -7,10 +7,10 @@ terraform {
   }
 }
 
-data "time_rotating" "terraform_last_updated" {
+resource "time_rotating" "terraform_last_updated" {
   rotation_days = 0
 }
 
 output "last_applied_timestamp" {
-  value = data.time_rotating.terraform_last_updated.id
+  value = time_rotating.terraform_last_updated.id
 }
