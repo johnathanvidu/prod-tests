@@ -7,10 +7,12 @@ terraform {
   }
 }
 
-resource "time_rotating" "terraform_last_updated" {
-  rotation_days = 1
+resource "time_static" "always_update" {
+  triggers = {
+    force_update = timestamp()
+  }
 }
 
 output "last_applied_timestamp" {
-  value = time_rotating.terraform_last_updated.id
+  value = time_static.always_update.rfc3339 # or time_static.always_update.unix
 }
