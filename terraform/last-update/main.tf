@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "time_rotating" "terraform_last_updated" {
-  rotation_days = 0
+  rotation_days = 1
 }
 
 output "last_applied_timestamp" {
