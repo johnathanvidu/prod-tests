@@ -21,4 +21,3 @@ grains:
         bucket: "vido-remot"
         region: "eu-west-1"
         key-prefix: "terraform/hello-world"
-        skip-region-validation: true
