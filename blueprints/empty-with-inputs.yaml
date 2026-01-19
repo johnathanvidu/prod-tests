@@ -6,3 +6,19 @@ inputs:
     default: ""
   vido-mandatory:
     type: string
+
+outputs:
+  out:
+    value: '{{ .grains.in-as-out.outputs.out }}'
+
+grains:
+  in-as-out:
+    kind: terraform
+    spec:
+      source:
+        store:
+        path: terraform/input-as-output
+      inputs:
+        - in: '{{ .inputs.vido-optional }}'
+      outputs:
+        - out
