@@ -16,7 +16,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store:
+        store: bps
         path: terraform/input-as-output
       inputs:
         - in: '{{ .inputs.vido-optional }}'
