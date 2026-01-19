@@ -94,7 +94,7 @@ inputs:
     default: ""
   env:
     description: 'Environment name for rnd infrastructure_type (required when cluster_type is mwaa)'
-    pattern: '^[a-zA-Z0-9-]*$'
+    pattern: '^[a-zA-Z0-9-]+$'
     validation-description: "The provided value must contain only letters, numbers, and hyphens"
     default: ""
   version:
