@@ -1,0 +1,139 @@
+spec_version: 2
+
+customization:
+  launch-form:
+    categories:
+      - name: 'General inputs'
+        inputs:
+          - name: 'app'
+          - name: 'env_type'
+          - name: 'account_name'
+          - name: 'a1_region'
+          - name: 'infrastructure_type'
+          - name: 'version'
+          - name: 'deployment_mode'
+      - name: 'Infrastructure type inputs'
+        inputs:
+
+          - name: 'log_level'
+            visible: '{% if inputs.deployment_mode == "debug" %} true {% else %} false {% endif %}'
+          - name: 'organization'
+            visible: '{% if inputs.deployment_mode == "debug" %} true {% else %} false {% endif %}'
+          - name: 'project'
+            visible: '{% if inputs.deployment_mode == "debug" %} true {% else %} false {% endif %}'
+          - name: 'store' 
+            visible: '{% if inputs.deployment_mode == "debug" %} true {% else %} false {% endif %}'
+          - name: 'target_branch'
+            visible: '{% if inputs.deployment_mode == "debug" %} true {% else %} false {% endif %}'
+          - name: 'cluster_type'
+            visible: '{% if inputs.infrastructure_type == "form" %} true {% else %} false {% endif %}'
+          - name: 'env'
+            visible: '{% if inputs.infrastructure_type == "rnd" %} true {% else %} false {% endif %}'
+          - name: 'resources'
+            visible: '{% if inputs.infrastructure_type == "custom" %} true {% else %} false {% endif %}'
+inputs:
+  app:
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'cs'
+      - 'md'
+      - 'test'
+      - 'form'
+  env_type:
+    description: 'The type of the environment'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+  account_name:
+    description: 'The name of the account'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'devsand'
+      - 'a-staging'
+      - 'a-prod'
+      - 'a-qa'
+      - 'rs'
+      - 'ci-cd'
+  log_level:
+    description: 'Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)'
+    default: 'INFO'
+  a1_region:
+    description: 'A1 region code (e.g., euwe1, usea1, uswe2)'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'euwe1'
+      - 'usea1'
+      - 'euwe3'
+      - 'uswe2'
+      - 'ilce1'
+  organization:
+    description: 'Azure DevOps organization URL'
+    default: 'https://dev.azure.com/customer'
+  project:
+    description: 'Azure DevOps project name'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    default: 'DevOps'
+  store:
+    description: 'Azure DevOps repository name'
+    default: 'tf-envs-metadata'
+  infrastructure_type:
+    description: 'Infrastructure type (e.g., form, rnd, custom)'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'form'
+      - 'rnd'
+      - 'custom'
+  cluster_type:
+    description: 'Cluster type (optional, will generate for all cluster types if not specified)'
+    pattern: '^[a-zA-Z0-9-]*$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens (or be empty)"
+    default: ""
+  env:
+    description: 'Environment name for rnd infrastructure_type (required when cluster_type is mwaa)'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    default: ""
+  version:
+    description: 'Version of the templates'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'develop'
+      - 'r1.2.5'
+  target_branch:
+    description: 'Target branch for pull request'
+    default: 'main'
+  resources:
+    description: 'Comma-separated list of resources to use (optional, overrides default resources for infrastructure type)'
+    default: ""
+  deployment_mode:
+    description: 'Deployment mode (debug, release)'
+    pattern: '^[a-zA-Z0-9-]+$'
+    validation-description: "The provided value must contain only letters, numbers, and hyphens"
+    allowed-values:
+      - 'debug'
+      - 'release'
+    default: 'release'
+grains:
+  generate-terragrunt-configuration:
+    kind: 'shell'
+    spec:
+      agent:
+        name: 'vido-vido-prod'
+        kubernetes:
+          node-selector:
+            - karpenter.sh/nodepool: default-node-pool
+      files:
+        - source: 'bps'
+          branch: 'main'
+          path: 'torque_v2/scripts/generate_terragrunt.py'
+      activities:
+        deploy:
+          commands:
+            - name: 'my_script'
+              command: |
+                echo vido
