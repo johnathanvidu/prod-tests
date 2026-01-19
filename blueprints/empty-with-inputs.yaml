@@ -3,6 +3,6 @@ spec_version: 2
 inputs:
   vido-optional:
     type: string
-    default: ''
+    default: ""
   vido-mandatory:
     type: string
