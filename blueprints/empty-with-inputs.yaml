@@ -18,6 +18,8 @@ grains:
       source:
         store: bps
         path: terraform/input-as-output
+      agent:
+        name: 'vido-vido-prod'
       inputs:
         - in: '{{ .inputs.vido-optional }}'
       outputs:
