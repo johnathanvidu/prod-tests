@@ -16,14 +16,3 @@ grains:
         path: terraform/hello-world-source
       agent:
         name: '{{.inputs.agent}}'
-      inputs:
-        - vido: 'a'
-
-  helloworldd:
-    kind: terraform
-    spec:
-      source:
-        store: bps
-        path: terraform/hello-world-source
-      agent:
-        name: '{{.inputs.agent}}'
