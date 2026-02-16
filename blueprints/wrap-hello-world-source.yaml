@@ -1,0 +1,15 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+    
+grains:
+  hello-world-bp:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/hello-world-source.yaml
+      inputs:
+        agent: '{{.inputs.agent}}'
