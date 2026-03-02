@@ -4,6 +4,10 @@ description: hello world that tests that terraforms source property workss
 inputs:
   test:
     type: string
+    allowed-values:
+    - a
+    - b
+    - c
   agent:
     type: agent
     
