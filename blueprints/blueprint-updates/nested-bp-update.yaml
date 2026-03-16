@@ -5,7 +5,7 @@ inputs:
   agent:
     type: agent
 grains:
-  input-as-output-unique:
+  nested2:
     kind: blueprint
     spec:
       source:
