@@ -13,6 +13,6 @@ grains:
         path: blueprints/blueprint-updates/nested3-bp-update.yaml
       inputs:
         - agent: '{{ .inputs.agent }}'
-        - in: '{{ .inputs.in }}'
+        - in: 'kate'
       outputs:
         - output1
