@@ -20,6 +20,6 @@ grains:
       agent:
         name: '{{.inputs.agent}}'
       inputs:
-      - in: 'something'
+      - in: '{{ .inputs.in }}'
       outputs:
       - out
