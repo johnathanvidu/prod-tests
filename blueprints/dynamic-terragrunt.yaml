@@ -1,0 +1,16 @@
+spec_version: 2
+
+inputs:
+  path:
+    type: string
+    allowed-values:
+      - live
+      - non-live
+
+grains:
+  terragrunt:
+    kind: terragrunt
+    spec:
+      source:
+        store: bps
+        path: terragrunt/{{ .inputs.path }}/env
