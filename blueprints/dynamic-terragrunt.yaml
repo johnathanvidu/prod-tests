@@ -14,3 +14,5 @@ grains:
       source:
         store: bps
         path: terragrunt/{{ .inputs.path }}/env
+      agent:
+        name: 'vido-vido-prod'
