@@ -7,4 +7,4 @@ terraform {
 }
 
 
-skip = true
+# skip = true
