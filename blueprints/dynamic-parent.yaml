@@ -13,3 +13,4 @@ grains:
         path: blueprints/dynamic-nested.yaml
       inputs:
         - path: '{{ .inputs.path }}'
+
