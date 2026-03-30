@@ -1,0 +1,14 @@
+spec_version: 2
+
+inputs:
+  path:
+    type: string
+grains:
+  terragrunt:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/dynamic-wrapper-tg.yaml
+      inputs:
+        - path: '{{ .inputs.path }}'
