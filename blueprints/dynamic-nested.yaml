@@ -9,6 +9,6 @@ grains:
     spec:
       source:
         store: bps
-        path: blueprints/dynamic-wrapper-tg.yaml
+        path: blueprints/dynamic-terragrunt.yaml
       inputs:
         - path: '{{ .inputs.path }}'
