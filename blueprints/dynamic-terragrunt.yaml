@@ -3,9 +3,6 @@ spec_version: 2
 inputs:
   path:
     type: string
-    allowed-values:
-      - live
-      - non-live
 
 grains:
   terragrunt:
