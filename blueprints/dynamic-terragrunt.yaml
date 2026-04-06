@@ -12,4 +12,4 @@ grains:
         store: bps
         path: terragrunt/{{ .inputs.path }}/env
       agent:
-        name: 'vido-vido-prod'
+        name: 'demo-prod'
