@@ -3,6 +3,8 @@ spec_version: 2
 inputs:
   path:
     type: string
+  more:
+    type: string
 grains:
   terragrunt:
     kind: blueprint
@@ -11,4 +13,4 @@ grains:
         store: bps
         path: blueprints/dynamic-terragrunt.yaml
       inputs:
-        - path: '{{ .inputs.path }}'
+        - path: 'terragrunt/{{ .inputs.path }}/{{ .inputs.more }}'
