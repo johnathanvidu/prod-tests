@@ -12,4 +12,4 @@ grains:
         store: bps
         path: blueprints/dynamic-terragrunt.yaml
       inputs:
-        - path: '{{ .inputs.path }}'
+        - path: 'terragrunt/{{ .inputs.path }}/env'
