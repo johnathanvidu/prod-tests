@@ -10,6 +10,6 @@ grains:
     spec:
       source:
         store: bps
-        path: terragrunt/{{ .inputs.path }}/env
+        path: {{ .inputs.path }}
       agent:
         name: 'demo-prod'
