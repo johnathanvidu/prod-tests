@@ -10,6 +10,6 @@ grains:
     spec:
       source:
         store: bps
-        path: {{ .inputs.path }}
+        path: '{{ .inputs.path }}'
       agent:
         name: 'demo-prod'
