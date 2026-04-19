@@ -1,0 +1,15 @@
+spec_version: 2
+
+grains:
+  io:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/input-as-output
+      agent:
+        name: vido-vido-prod
+      inputs:
+        - in: 'in'
+      outputs:
+        - out
