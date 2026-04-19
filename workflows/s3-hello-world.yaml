@@ -10,8 +10,8 @@ grains:
     kind: shell
     spec:
       agent:
-        name: vido-vido-prod
-      deploy:
-        activities:
+        name: vido-vido-prod  
+      activities:
+        deploy:
           commands:
             - 'echo "hello world"'
