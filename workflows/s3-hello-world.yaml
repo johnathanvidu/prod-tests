@@ -1,0 +1,17 @@
+spec_version: 2
+
+workflow:
+  scope: env_resource
+  resource-types: aws_s3_bucket
+  triggers:
+    - type: manual 
+grains:
+  hello:
+    kind: shell
+    spec:
+      agent:
+        name: vido-vido-prod
+      deploy:
+        activities:
+          commands:
+            - 'echo "hello world"'
