@@ -3,6 +3,8 @@ spec_version: 2
 outputs:
   out:
     value: '{{ .grains.io.outputs.out }}'
+  requester_name:
+    value: '{{ .grains.get_requester_name.activities.deploy.commands.get_requester.outputs.requester_name }}'
 
 grains:
   io:
@@ -17,3 +19,15 @@ grains:
         - in: 'in'
       outputs:
         - out
+  get_requester_name:
+    kind: shell
+    spec:
+      agent:
+        name: vido-vido-prod
+      activities:
+        deploy:
+          commands:
+            - name: get_requester
+              command: export requester_name=vido
+              outputs:
+                - requester_name
