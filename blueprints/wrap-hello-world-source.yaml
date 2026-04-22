@@ -13,3 +13,12 @@ grains:
         path: blueprints/hello-world-source.yaml
       inputs:
         - agent: '{{.inputs.agent}}'
+
+  hello-world-bp2:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/hello-world-source.yaml
+      inputs:
+        - agent: '{{.inputs.agent}}'
