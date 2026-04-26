@@ -1,0 +1,59 @@
+spec_version: 2
+description: Provision an Azure Key Vault (torque-sample-kv) using Terraform
+
+inputs:
+  agent:
+    type: agent
+
+  resource_group:
+    type: string
+    description: "Azure resource group to deploy the Key Vault into"
+
+  keyvault_name:
+    type: string
+    default: "torque-sample-kv"
+    description: "Globally-unique Key Vault name (3-24 alphanumeric/hyphens)"
+
+  sku_name:
+    type: string
+    default: "standard"
+    allowed-values:
+      - "standard"
+      - "premium"
+    style: radio
+    description: "Key Vault SKU"
+
+  environment_tag:
+    type: string
+    default: "dev"
+    description: "Value for the 'environment' tag on the Key Vault"
+
+outputs:
+  keyvault_name:
+    value: '{{ .grains.keyvault.outputs.keyvault_name }}'
+    quick: true
+  keyvault_uri:
+    value: '{{ .grains.keyvault.outputs.keyvault_uri }}'
+    quick: true
+    kind: link
+  keyvault_id:
+    value: '{{ .grains.keyvault.outputs.keyvault_id }}'
+
+grains:
+  keyvault:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/azure_keyvault
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - resource_group: '{{ .inputs.resource_group }}'
+        - keyvault_name: '{{ .inputs.keyvault_name }}'
+        - sku_name: '{{ .inputs.sku_name }}'
+        - environment_tag: '{{ .inputs.environment_tag }}'
+      outputs:
+        - keyvault_name
+        - keyvault_id
+        - keyvault_uri
