@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 az login --federated-token "$(cat "${AZURE_FEDERATED_TOKEN_FILE}")" \
     --service-principal \
