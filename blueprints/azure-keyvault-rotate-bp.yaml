@@ -1,0 +1,44 @@
+spec_version: 2
+description: Rotate the password stored in an existing Azure Key Vault secret
+
+inputs:
+  agent:
+    type: agent
+  keyvault_name:
+    type: string
+    description: "Name of the Azure Key Vault that contains the secret"
+  secret_name:
+    type: string
+    description: "Name of the secret whose password should be rotated"
+  new_password:
+    type: string
+    sensitive: true
+    description: "The new password value to store as the latest secret version"
+  disable_old_version:
+    type: string
+    default: "true"
+    allowed-values:
+      - "true"
+      - "false"
+    style: radio
+    description: "Disable the previous secret version after rotation to prevent its use"
+
+grains:
+  rotate-secret:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/azure-keyvault/rotate.sh
+      activities:
+        deploy:
+          commands:
+            - name: rotate
+              command: source rotate.sh
+      env-vars:
+        - KEYVAULT_NAME: '{{ .inputs.keyvault_name }}'
+        - SECRET_NAME: '{{ .inputs.secret_name }}'
+        - NEW_PASSWORD: '{{ .inputs.new_password }}'
+        - DISABLE_OLD_VERSION: '{{ .inputs.disable_old_version }}'
