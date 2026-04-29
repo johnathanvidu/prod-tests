@@ -1,0 +1,25 @@
+spec_version: 2
+description: Add a new secret to an existing Azure Key Vault
+
+workflow:
+  scope: space
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  add-secret:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - name: setsecret
+              command: exit 1
+        destroy:
+          commands:
+            - name: noop
+              command: echo "No teardown needed for workflow grain."
