@@ -3,7 +3,7 @@ description: 'write content to an existing s3 bucket'
 
 environment:
   environment_name: simple-in-as-out
-  state: active
+  state: inactive
   owner_email: johnathan.v@quali.com
   spaces:
   - VidoNew
