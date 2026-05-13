@@ -14,7 +14,7 @@ inputs:
     default: demo-prod
   in:
     type: 'string'
-    default: 'vido'
+    default: 'vidoless'
 grains:
   in-as-out:
     kind: 'blueprint'
