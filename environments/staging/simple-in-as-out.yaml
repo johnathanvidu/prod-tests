@@ -24,4 +24,4 @@ grains:
         path: blueprints/simple-in-as-out.yaml
       inputs:
         - agent: '{{.inputs.agent}}'
-        - in: '{{.inputs.in}}''
+        - in: '{{.inputs.in}}'
