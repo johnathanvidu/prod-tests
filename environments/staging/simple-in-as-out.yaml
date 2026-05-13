@@ -1,0 +1,27 @@
+spec_version: 2
+description: 'write content to an existing s3 bucket'
+
+environment:
+  environment_name: simple-in-as-out
+  state: active
+  owner_email: johnathan.v@quali.com
+  spaces:
+  - VidoNew
+
+inputs:
+  agent:
+    type: 'agent'
+    default: demo-prod
+  in:
+    type: 'string'
+    default: 'vido'
+grains:
+  in-as-out:
+    kind: 'blueprint'
+    spec:
+      source:
+        store: bps
+        path: blueprints/simple-in-as-out.yaml
+      inputs:
+        - agent: '{{.inputs.agent}}'
+        - in: '{{.inputs.in}}''
