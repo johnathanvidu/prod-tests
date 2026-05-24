@@ -26,3 +26,14 @@ variable "volume_size_gb" {
   type        = number
   default     = 10
 }
+
+variable "master_user_name" {
+  description = "Master username for OpenSearch fine-grained access control"
+  type        = string
+}
+
+variable "master_user_password" {
+  description = "Master password for OpenSearch fine-grained access control"
+  type        = string
+  sensitive   = true
+}

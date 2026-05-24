@@ -33,6 +33,16 @@ inputs:
     description: "EBS storage size in GB"
     default: "10"
 
+  master_user_name:
+    type: string
+    description: "Master username for OpenSearch fine-grained access control"
+    default: "admin"
+
+  master_user_password:
+    type: string
+    description: "Master password for OpenSearch fine-grained access control (min 8 chars, upper+lower+number+special)"
+    sensitive: true
+
 outputs:
   endpoint:
     value: '{{ .grains.opensearch.outputs.endpoint }}'
@@ -61,6 +71,8 @@ grains:
         - instance_type: '{{ .inputs.instance_type }}'
         - region: '{{ .inputs.region }}'
         - volume_size_gb: '{{ .inputs.volume_size_gb }}'
+        - master_user_name: '{{ .inputs.master_user_name }}'
+        - master_user_password: '{{ .inputs.master_user_password }}'
       outputs:
         - endpoint
         - dashboard_endpoint
