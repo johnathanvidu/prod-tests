@@ -1,0 +1,68 @@
+spec_version: 2
+description: Deploys an AWS managed OpenSearch domain. Cost-optimized single-node cluster with configurable engine version and instance type.
+
+inputs:
+  agent:
+    type: agent
+    description: "Torque agent to run the deployment"
+
+  opensearch_version:
+    type: string
+    description: "OpenSearch engine version to deploy"
+    default: "OpenSearch_3.3"
+    allowed-values:
+      - "OpenSearch_1.3"
+      - "OpenSearch_2.11"
+      - "OpenSearch_3.3"
+
+  instance_type:
+    type: string
+    description: "OpenSearch instance type. Use t3.small.search for minimal cost, t3.medium.search for moderate workloads."
+    default: "t3.small.search"
+    allowed-values:
+      - "t3.small.search"
+      - "t3.medium.search"
+
+  region:
+    type: string
+    description: "AWS region to deploy the OpenSearch domain"
+    default: "eu-west-1"
+
+  volume_size_gb:
+    type: string
+    description: "EBS storage size in GB"
+    default: "10"
+
+outputs:
+  endpoint:
+    value: '{{ .grains.opensearch.outputs.endpoint }}'
+    kind: link
+
+  dashboard_endpoint:
+    value: '{{ .grains.opensearch.outputs.dashboard_endpoint }}'
+    kind: link
+
+  domain_arn:
+    value: '{{ .grains.opensearch.outputs.domain_arn }}'
+
+grains:
+  opensearch:
+    kind: terraform
+    tf-version: 1.5.5
+    spec:
+      source:
+        store: bps
+        path: terraform/opensearch
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - domain_name: 'os-{{ envId | downcase }}'
+        - engine_version: '{{ .inputs.opensearch_version }}'
+        - instance_type: '{{ .inputs.instance_type }}'
+        - region: '{{ .inputs.region }}'
+        - volume_size_gb: '{{ .inputs.volume_size_gb }}'
+      outputs:
+        - endpoint
+        - dashboard_endpoint
+        - domain_arn
+        - domain_id
