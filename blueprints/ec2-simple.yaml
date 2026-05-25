@@ -42,3 +42,20 @@ grains:
         - instance_id
         - public_ip
         - private_ip
+
+  ec2-2:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/ec2-simple
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - instance_name: '{{ .inputs.instance_name }}-2'
+        - instance_type: '{{ .inputs.instance_type }}'
+        - subnet_id: '{{ .inputs.subnet_id }}'
+      outputs:
+        - instance_id
+        - public_ip
+        - private_ip
