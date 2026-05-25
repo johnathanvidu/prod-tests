@@ -15,7 +15,7 @@ data "aws_ami" "amazon_linux" {
 
 module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "5.7.1"
+  version = "5.7.0"
 
   name          = var.instance_name
   instance_type = var.instance_type
