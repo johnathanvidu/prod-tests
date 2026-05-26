@@ -14,3 +14,11 @@ grains:
         path: blueprints/dynamic-terragrunt.yaml
       inputs:
         - path: 'terragrunt/{{ .inputs.path }}/{{ .inputs.more }}'
+  terragrunt2:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/dynamic-terragrunt.yaml
+      inputs:
+        - path: 'terragrunt/{{ .inputs.path }}/{{ .inputs.more }}'
