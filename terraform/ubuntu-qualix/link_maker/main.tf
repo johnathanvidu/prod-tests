@@ -21,48 +21,61 @@ variable "target_username" {
 }
 
 variable "access_key" {
-  type      = string
-  sensitive = true
+  type        = string
+  sensitive   = true
   description = "PEM private key content for SSH authentication"
 }
 
-resource "random_uuid" "resource_uuid" {
-}
-
-resource "time_static" "current_time_static" {
+variable "direct_link" {
+  type        = bool
+  default     = true
+  description = <<-EOT
+    true  (default) — direct qtoken URL via get_direct_link.py.
+                      Re-authenticates on every click; link never expires.
+                      Requires /disableValidateLink on the QualiX server.
+    false           — token-based URL via get_token.py.
+                      POSTs to /remote/api/tokens at apply time; expires
+                      with the Guacamole session (~30 min inactivity).
+                      Use "Update environment" in Torque to refresh.
+  EOT
 }
 
 locals {
-  guid           = random_uuid.resource_uuid.result
-  guid_stripped  = replace(local.guid, "-", "")
-  curr_time_secs = time_static.current_time_static.unix
-
-  qtoken_clean   = "${local.guid_stripped},${local.curr_time_secs * 10000000}"
-  qtoken_encoded = base64encode(local.qtoken_clean)
-  qtoken_url_safe = replace(replace(replace(local.qtoken_encoded, "+", "-"), "/", "_"), "=", "~")
-
-  # 5-char connection ID that QualiX registers when the "qualix" param is present.
-  # Matches what QxController puts in the final client URL.
-  qid = substr("${var.protocol}${local.guid_stripped}", 0, 5)
-}
-
-# POST to /remote/api/tokens — registers the connection and returns a session token.
-# Python3 is required on the Torque agent (standard on all Linux runners).
-data "external" "qualix_token" {
-  program = ["python3", "${path.module}/get_token.py"]
-
+  # Shared query inputs for both data sources
   query = {
     qualix_ip  = var.qualix_ip
-    qtoken     = local.qtoken_url_safe
     hostname   = var.target_ip_address
     protocol   = var.protocol
     port       = tostring(var.connection_port)
     username   = var.target_username
     access_key = var.access_key
+    _ts        = timestamp() # changes every plan → forces re-execution on every apply
   }
+}
+
+# ── Option A: direct URL (get_direct_link.py) ─────────────────────────────────
+# Each browser click re-authenticates and registers the connection on-demand.
+# The link itself never expires.
+data "external" "qualix_direct" {
+  count   = var.direct_link ? 1 : 0
+  program = ["python3", "${path.module}/get_direct_link.py"]
+  query   = local.query
+}
+
+# ── Option B: token-based URL (get_token.py) ──────────────────────────────────
+# POSTs to /remote/api/tokens at apply time and embeds the session token.
+# Expires when the Guacamole session times out (~30 min inactivity by default).
+data "external" "qualix_token" {
+  count   = var.direct_link ? 0 : 1
+  program = ["python3", "${path.module}/get_token.py"]
+  query   = local.query
 }
 
 output "qualix_link" {
   sensitive = true
-  value     = "https://${var.qualix_ip}/remote/#/client/${local.qid}/?token=${data.external.qualix_token.result.auth_token}"
+  value = var.direct_link ? (
+    data.external.qualix_direct[0].result.link
+  ) : (
+    "https://${var.qualix_ip}/remote/#/client/${data.external.qualix_token[0].result.qid}/?token=${data.external.qualix_token[0].result.auth_token}"
+  )
 }

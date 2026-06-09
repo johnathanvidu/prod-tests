@@ -38,6 +38,14 @@ inputs:
       - "true"
       - "false"
 
+  direct_link:
+    type: string
+    default: "true"
+    description: "true = permanent link, re-authenticates on every click (requires /disableValidateLink on QualiX). false = session token link, expires after ~30 min inactivity."
+    allowed-values:
+      - "true"
+      - "false"
+
 outputs:
   public_ip:
     value: '{{ .grains.ubuntu_instance.outputs.public_ip }}'
@@ -65,6 +73,7 @@ grains:
         - instance_type: '{{ .inputs.instance_type }}'
         - aws_region: '{{ .inputs.aws_region }}'
         - use_public_ip: '{{ .inputs.use_public_ip }}'
+        - direct_link: '{{ .inputs.direct_link }}'
       outputs:
         - public_ip
         - qualix_link

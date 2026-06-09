@@ -110,4 +110,5 @@ module "qualix_ubuntu_link" {
   target_ip_address = var.use_public_ip ? aws_instance.ubuntu_instance.public_ip : aws_instance.ubuntu_instance.private_ip
   target_username   = "ubuntu"
   access_key        = tls_private_key.this.private_key_pem
+  direct_link       = var.direct_link
 }

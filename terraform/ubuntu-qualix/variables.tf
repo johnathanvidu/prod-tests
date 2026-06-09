@@ -20,3 +20,9 @@ variable "use_public_ip" {
   type        = bool
   default     = true
 }
+
+variable "direct_link" {
+  description = "true = permanent direct URL (re-authenticates on every click, requires /disableValidateLink on QualiX); false = session token URL (expires after ~30 min inactivity)"
+  type        = bool
+  default     = true
+}
