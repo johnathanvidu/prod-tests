@@ -4,12 +4,6 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "ami" {
-  description = "AMI to use. Defaults to latest Ubuntu 22.04 LTS"
-  type        = string
-  default     = ""
-}
-
 variable "aws_region" {
   description = "AWS region to deploy into"
   type        = string

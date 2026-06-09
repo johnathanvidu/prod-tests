@@ -1,0 +1,71 @@
+spec_version: 2
+description: Deploy an Ubuntu 22.04 EC2 instance with SSH key-pair auth, accessible via a QualiX link.
+
+inputs:
+  agent:
+    type: agent
+    description: Torque agent to run the deployment
+
+  qualix_public_ip:
+    type: string
+    description: Public IP or hostname of the QualiX server
+
+  instance_type:
+    type: string
+    default: t3.micro
+    description: EC2 instance type
+    allowed-values:
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - t3.large
+
+  aws_region:
+    type: string
+    default: eu-west-1
+    description: AWS region to deploy into
+    allowed-values:
+      - eu-west-1
+      - us-east-1
+      - us-west-2
+      - ap-southeast-1
+
+  use_public_ip:
+    type: string
+    default: "true"
+    description: Connect QualiX to the instance public IP. Set to false to use the private IP.
+    allowed-values:
+      - "true"
+      - "false"
+
+outputs:
+  public_ip:
+    value: '{{ .grains.ubuntu_instance.outputs.public_ip }}'
+    kind: regular
+
+  qualix_link:
+    value: '{{ .grains.ubuntu_instance.outputs.qualix_link }}'
+    kind: link
+
+  private_key_pem:
+    value: '{{ .grains.ubuntu_instance.outputs.private_key_pem }}'
+    kind: regular
+
+grains:
+  ubuntu_instance:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/ubuntu-qualix
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - qualix_public_ip: '{{ .inputs.qualix_public_ip }}'
+        - instance_type: '{{ .inputs.instance_type }}'
+        - aws_region: '{{ .inputs.aws_region }}'
+        - use_public_ip: '{{ .inputs.use_public_ip }}'
+      outputs:
+        - public_ip
+        - qualix_link
+        - private_key_pem
