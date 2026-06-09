@@ -1,0 +1,65 @@
+spec_version: 2
+description: >
+  Deploys a QualiX VM on a dynamically provisioned VPC and subnet.
+  VPC and subnet are created as part of the environment — no pre-existing
+  subnet ID is required. env_id is auto-populated from the Torque environment.
+
+inputs:
+  agent:
+    type: agent
+    description: Torque agent to run the deployment
+
+  aws_region:
+    type: string
+    default: eu-west-1
+    description: AWS region to deploy into
+    allowed-values:
+      - eu-west-1
+      - il-central-1
+      - us-east-1
+
+outputs:
+  qualix_private_ip:
+    value: '{{ .grains.qualix.outputs.qualix_private_ip }}'
+    kind: regular
+
+  qualix_public_ip:
+    value: '{{ .grains.qualix.outputs.qualix_public_ip }}'
+    kind: link
+
+  keypair_name:
+    value: '{{ .grains.qualix.outputs.keypair_name }}'
+    kind: regular
+
+grains:
+  vpc_subnet:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/vpc-subnet
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - aws_region: '{{ .inputs.aws_region }}'
+      outputs:
+        - vpc_id
+        - subnet_id
+
+  qualix:
+    depends-on: vpc_subnet
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/qualix_vm_dynamic_ami
+      agent:
+        name: '{{ .inputs.agent }}'
+      inputs:
+        - app_subnet_id: '{{ .grains.vpc_subnet.outputs.subnet_id }}'
+        - env_id: '{{ envId }}'
+        - aws_region: '{{ .inputs.aws_region }}'
+      outputs:
+        - qualix_private_ip
+        - qualix_public_ip
+        - keypair_name
