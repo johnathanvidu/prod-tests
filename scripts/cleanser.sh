@@ -43,7 +43,7 @@ fetch_page() {
   curl -sf -G "${BASE_HEADERS[@]}" \
     "${LABEL_ARGS[@]}" \
     --data-urlencode "paging_info.requested_page=${page}" \
-    "${TORQUE_API_BASE}/spaces/${TORQUE_SPACE}/environments"
+    "${TORQUE_API_BASE}/v2/spaces/${TORQUE_SPACE}/environments"
 }
 
 # ─── End a single environment ────────────────────────────────────────────────
