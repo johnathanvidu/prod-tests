@@ -1,0 +1,5 @@
+spec_version: 2
+description: Cleanser — label-only blueprint used as a selector target for the daily environment cleanup workflow
+
+labels:
+  - cleanser
