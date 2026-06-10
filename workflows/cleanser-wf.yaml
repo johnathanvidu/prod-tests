@@ -1,0 +1,27 @@
+spec_version: 2
+description: Daily environment cleanup — ends all environments matching the cleanser label set
+
+workflow:
+  scope: env
+  labels-selector: "cleanser"
+  triggers:
+    - type: cron
+      cron: "0 20 * * *"   # daily at 20:00 UTC
+      overridable: false
+
+grains:
+  cleanser:
+    kind: shell
+    spec:
+      agent:
+        name: 'vido-vido-prod'
+      files:
+        - source: bps
+          path: scripts/cleanser.sh
+      env-vars:
+        - TORQUE_TOKEN: '{{ .params.TORQUE_TOKEN }}'
+        - TORQUE_SPACE: '{{ spaceName }}'
+      activities:
+        deploy:
+          commands:
+            - bash cleanser.sh
