@@ -5,6 +5,7 @@ workflow:
   scope: env
   labels-selector: "cleanser"
   triggers:
+    - type: manual
     - type: cron
       cron: "0 20 * * *"   # daily at 20:00 UTC
       overridable: false
