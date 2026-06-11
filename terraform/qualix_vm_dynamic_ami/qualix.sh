@@ -24,8 +24,11 @@ echo "****************************************************************"
 echo "Installing QualiX"
 echo "****************************************************************"
 cd ~
-curl -SL https://quali-prod-binaries.s3.amazonaws.com/deploy-qualix-docker-5.0.1.506.sh -o ./deploy-qualix-docker-5.0.1.506.sh
-chmod +x deploy-qualix-docker-5.0.1.506.sh
-./deploy-qualix-docker-5.0.1.506.sh
+# curl -SL https://quali-prod-binaries.s3.amazonaws.com/deploy-qualix-docker-5.0.1.506.sh -o ./deploy-qualix-docker-5.0.1.506.sh
+curl -SL https://qualisystems.hosted-by-files.com/Downloadcenter/Libraries%20and%20Drivers/qualix_guacamole-5.1.1-connectionkey.tar.gz -o ./qualix_guacamole-5.1.1-connectionkey.tar.gz
+# chmod +x deploy-qualix-docker-5.0.1.506.sh
+chmod +x qualix_guacamole-5.1.1-connectionkey.tar.gz
+# ./deploy-qualix-docker-5.0.1.506.sh
+./qualix_guacamole-5.1.1-connectionkey.tar.gz
 
 docker exec -u root qualix-guacamole touch /disableValidateLink
