@@ -15,6 +15,7 @@ set -eo pipefail
 : "${TORQUE_SPACE:?TORQUE_SPACE is required}"
 
 TORQUE_API_BASE="${TORQUE_API_BASE:-https://portal.qtorque.io/api}"
+PAGE_SIZE="${PAGE_SIZE:-50}"
 
 # TODO: replace this static list with the result of an API call to the external system
 LABEL_FILTER="${LABEL_FILTER:-}"
@@ -25,25 +26,27 @@ BASE_HEADERS=(
   -H "Content-Type: application/json"
 )
 
-# Build label args once — one --data-urlencode "labels=..." per entry.
-# curl encodes spaces and special chars; handles both "label" and "key:value" forms.
-LABEL_ARGS=()
+# Build label query string — each label URL-encoded directly in the URL.
+# Handles both "label" (key-only) and "key:value" forms, including spaces.
+LABEL_QS=""
 if [[ -n "${LABEL_FILTER}" ]]; then
   IFS=',' read -ra _labels <<< "${LABEL_FILTER}"
   for _label in "${_labels[@]}"; do
     _label="${_label## }"; _label="${_label%% }"   # trim surrounding whitespace
-    [[ -n "${_label}" ]] && LABEL_ARGS+=(--data-urlencode "labels=${_label}")
+    if [[ -n "${_label}" ]]; then
+      encoded=$(jq -rn --arg v "${_label}" '$v | @uri')
+      LABEL_QS+="&labels=${encoded}"
+    fi
   done
 fi
 
 # ─── Fetch one page of environments ──────────────────────────────────────────
 
 fetch_page() {
-  local page="$1"
-  curl -sf -G "${BASE_HEADERS[@]}" \
-    "${LABEL_ARGS[@]}" \
-    --data-urlencode "paging_info.requested_page=${page}" \
-    "${TORQUE_API_BASE}/v2/spaces/${TORQUE_SPACE}/environments"
+  local skip="$1"
+  local url="${TORQUE_API_BASE}/spaces/${TORQUE_SPACE}/environments/v2?paging_info.skip=${skip}&paging_info.take=${PAGE_SIZE}&sort_by=StartTime&sort_by_direction=1&status=Active${LABEL_QS}"
+  echo "  GET ${url}" >&2
+  curl -sf "${BASE_HEADERS[@]}" "${url}"
 }
 
 # ─── End a single environment ────────────────────────────────────────────────
@@ -55,7 +58,7 @@ end_environment() {
   echo "  Ending environment: ${env_id}"
   local http_status
   http_status=$(curl -s -o /dev/null -w "%{http_code}" \
-    -X PUT "${BASE_HEADERS[@]}" "${url}")
+    -X DELETE "${BASE_HEADERS[@]}" "${url}")
 
   if [[ "${http_status}" -ge 200 && "${http_status}" -lt 300 ]]; then
     echo "  ✓ Environment ${env_id} ended (HTTP ${http_status})"
@@ -69,21 +72,26 @@ end_environment() {
 
 echo "Fetching environments in space '${TORQUE_SPACE}' with label filter: '${LABEL_FILTER:-<none>}'"
 
-page=1
-total_pages=1
+skip=0
+full_count=0
 env_ids=()
 
-while [[ "${page}" -le "${total_pages}" ]]; do
-  response=$(fetch_page "${page}")
+while true; do
+  response=$(fetch_page "${skip}")
 
-  total_pages=$(echo "${response}" | jq -r '.paging_info.total_pages')
+  full_count=$(echo "${response}" | jq -r '.paging_info.full_count')
 
+  page_ids=()
   while IFS= read -r env_id; do
-    [[ -n "${env_id}" ]] && env_ids+=("${env_id}")
+    [[ -n "${env_id}" ]] && page_ids+=("${env_id}")
   done < <(echo "${response}" | jq -r '.environment_list[].id')
 
-  echo "  Page ${page}/${total_pages} — ${#env_ids[@]} environment(s) collected so far"
-  (( page++ ))
+  env_ids+=("${page_ids[@]+"${page_ids[@]}"}")
+
+  echo "  Fetched ${#env_ids[@]}/${full_count} environment(s) (skip=${skip})"
+
+  skip=$(( skip + PAGE_SIZE ))
+  [[ "${#page_ids[@]}" -eq 0 || "${skip}" -ge "${full_count}" ]] && break
 done
 
 total=${#env_ids[@]}
