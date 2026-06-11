@@ -1,7 +1,0 @@
-labels:
-  - gcs: '{% assign as_number = inputs.gcs | times: 1 %}{% if as_number == 0 and value != "0" %}gcs{% else %}12345{% endif %}_{{as_number}}_{{.inputs.gcs}}'
-spec_version: 2
-inputs:
-  gcs:
-    type: string
-    default: gcs
