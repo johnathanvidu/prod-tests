@@ -1,0 +1,7 @@
+labels:
+  - '{{ .inputs.gcs }}': '{{ .inputs.gcs }}'
+spec_version: 2
+inputs:
+  gcs:
+    type: string
+    default: gcs
