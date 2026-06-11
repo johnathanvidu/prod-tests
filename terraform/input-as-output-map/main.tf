@@ -3,7 +3,7 @@ variable "in" {
   description = "A complex configuration mapping deployment environments to network structures"
   type = map(object({
     Vido           = string
-    Hello = optional(bool, true)
+    Hello          = bool
     
     # Nested map of objects defining subnets within this environment
     MyName = map(object({
