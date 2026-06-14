@@ -47,7 +47,7 @@ params = urllib.parse.urlencode({
     "protocol":   protocol,
     "port":       port,
     "username":   username,
-    "access-key": access_key,
+    "connection-key": access_key.encode("utf-8"),
     "qualix":     qualix_ip,
 })
 
