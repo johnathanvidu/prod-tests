@@ -1,0 +1,25 @@
+spec_version: 2
+
+environment:
+  environment_name: smoke-test
+  owner: johnathan.v@quali.com  
+  state: active
+
+inputs:
+  agent:
+    type: agent
+    default: vido-vido-prod
+  tag:
+    type: string
+    default: smoke-1
+
+grains:
+  stack:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/bunch-of-shell-grains.yaml
+        tag: '{{ .inputs.tag }}'
+      inputs:
+        - agent: '{{ .inputs.agent }}'
