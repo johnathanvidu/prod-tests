@@ -4,8 +4,6 @@ inputs:
   agent:
     type: agent
 
-outputs: {}
-
 grains:
   shell1:
     kind: shell

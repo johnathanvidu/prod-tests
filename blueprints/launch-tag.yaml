@@ -6,8 +6,6 @@ inputs:
   tag:
     type: string
 
-outputs: {}
-
 grains:
   stack:
     kind: blueprint
