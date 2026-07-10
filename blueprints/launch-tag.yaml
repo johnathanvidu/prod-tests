@@ -1,0 +1,20 @@
+spec_version: 2
+
+inputs:
+  agent:
+    type: agent
+  tag:
+    type: string
+
+outputs: {}
+
+grains:
+  stack:
+    kind: blueprint
+    spec:
+      source:
+        store: bps
+        path: blueprints/bunch-of-shell-grains.yaml
+        tag: '{{ .inputs.tag }}'
+      inputs:
+        agent: '{{ .inputs.agent }}'
