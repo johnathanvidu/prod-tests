@@ -49,18 +49,3 @@ grains:
           commands:
             - "echo 'Destroying vido-smoke-test-grain'"
             - "echo 'Destroy complete.'"
-
-  shell4:
-    kind: shell
-    spec:
-      agent:
-        name: '{{ .inputs.agent }}'
-      activities:
-        deploy:
-          commands:
-            - "echo '=== vido-smoke-test-grain ==='"
-            - "echo 'Deploy validation complete.'"
-        destroy:
-          commands:
-            - "echo 'Destroying vido-smoke-test-grain'"
-            - "echo 'Destroy complete.'"
