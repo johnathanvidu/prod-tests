@@ -15,4 +15,4 @@ grains:
         path: blueprints/bunch-of-shell-grains.yaml
         tag: '{{ .inputs.tag }}'
       inputs:
-        agent: '{{ .inputs.agent }}'
+        - agent: '{{ .inputs.agent }}'
