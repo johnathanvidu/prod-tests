@@ -3,7 +3,7 @@ spec_version: 2
 environment:
   environment_name: smoke-test
   owner_email: johnathan.v@quali.com  
-  state: inactive
+  state: active
 
 inputs:
   agent:
