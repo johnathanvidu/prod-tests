@@ -11,7 +11,7 @@ inputs:
     default: vido-vido-prod
   tag:
     type: string
-    default: smoke-1
+    default: smoke-2
 
 grains:
   stack:
