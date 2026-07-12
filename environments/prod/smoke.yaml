@@ -3,7 +3,7 @@ spec_version: 2
 environment:
   environment_name: smoke-test
   owner_email: johnathan.v@quali.com  
-  state: active
+  state: inactive
 
 inputs:
   agent:
@@ -11,7 +11,7 @@ inputs:
     default: vido-vido-prod
   tag:
     type: string
-    default: smoke-4
+    default: smoke-1
 
 grains:
   stack:
