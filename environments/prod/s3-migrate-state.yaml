@@ -5,6 +5,11 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - Vido
+  labels:
+    environment: dev
+  tags:
+    WorkloadEnvironment: dev
+    
 inputs:
   acl:
     type: 'string'
