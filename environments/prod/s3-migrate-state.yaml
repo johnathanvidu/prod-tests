@@ -5,6 +5,8 @@ environment:
   owner_email: johnathan.v@quali.com
   spaces:
   - Vido
+  collaborators:
+    all_space_members: true
   labels:
     environment: dev
   tags:
