@@ -4,7 +4,8 @@ workflow:
   scope: env
   triggers:
     - type: manual
-      groups: test
+      groups: 
+      - test
   
 
 inputs:
