@@ -1,0 +1,23 @@
+spec_version: 2
+
+workflow:
+  scope: env
+  triggers:
+    - type: manual
+      groups: test
+  
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  test:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - 'echo vido'
