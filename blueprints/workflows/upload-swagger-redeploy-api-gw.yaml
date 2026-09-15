@@ -1,0 +1,111 @@
+spec_version: 2
+description: >-
+  Day-2 workflow for api-gateway-swagger environments. Takes an uploaded
+  OpenAPI/Swagger file, uploads it to the environment's dedicated swagger S3
+  bucket (bucket name/ARN read from the bound environment via .bindings), then
+  triggers a Torque environment update so the api_gw_swagger grain re-imports
+  and recalculates its routes from the new file.
+
+workflow:
+  scope: env
+  # Attach to environments launched from the api-gw-swagger-s3 blueprint.
+  # Tag those environments with `api-gw-swagger` (or adjust this selector).
+  labels-selector: "api-gw-swagger"
+  triggers:
+    - type: manual
+  timeout: 20
+
+inputs:
+  agent:
+    type: agent
+    default: moj-aws-torque-agent
+    description: Agent with write access to the swagger S3 bucket (or able to assume the deploy role).
+  swagger_file:
+    type: file
+    max-size-MB: 2
+    max-files: 1
+    allowed-formats:
+      - json
+      - yaml
+      - yml
+    description: OpenAPI / Swagger definition to deploy. A standard sample lives at scripts/sample-openapi-swagger.json.
+
+outputs:
+  swagger_s3_uri:
+    value: '{{ .bindings.outputs.swagger_s3_uri }}'
+    quick: true
+  rest_api_id:
+    value: '{{ .bindings.outputs.rest_api_id }}'
+    quick: true
+
+grains:
+  # 1) Validate the uploaded file is a real OpenAPI/Swagger document, then
+  #    upload it to the bucket created by the blueprint's swagger_bucket grain.
+  #    Validation runs first and fails fast, so a bad file never reaches S3.
+  #    The bucket URI/ARN come from the BOUND environment's outputs.
+  upload_swagger:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      workspace-directories:
+        - source:
+            name: SWAGGER_DIR
+            store: env-storage/{{ .inputs.swagger_file }}
+      files:
+        - source: bps
+          path: scripts/validate-swagger.sh
+      env-vars:
+        - SWAGGER_S3_URI: '{{ .bindings.outputs.swagger_s3_uri }}'
+        - SWAGGER_BUCKET_ARN: '{{ .bindings.outputs.swagger_bucket_arn }}'
+        # il-central-1 is an opt-in region: S3 region auto-detection and the
+        # IRSA web-identity STS call are unreliable without an explicit region.
+        - AWS_REGION: il-central-1
+      activities:
+        deploy:
+          commands:
+            - name: validate
+              command: |
+                set -eo pipefail
+                # The uploaded file is mounted under $SWAGGER_DIR.
+                src_file="$(find "$SWAGGER_DIR" -type f \( -name '*.json' -o -name '*.yaml' -o -name '*.yml' \) | head -n 1)"
+                if [ -z "$src_file" ]; then
+                  echo "No swagger file found under $SWAGGER_DIR" >&2
+                  exit 1
+                fi
+                bash validate-swagger.sh "$src_file"
+            - name: upload
+              command: |
+                set -eo pipefail
+                src_file="$(find "$SWAGGER_DIR" -type f \( -name '*.json' -o -name '*.yaml' -o -name '*.yml' \) | head -n 1)"
+                if [ -z "$src_file" ]; then
+                  echo "No swagger file found under $SWAGGER_DIR" >&2
+                  exit 1
+                fi
+                echo "Uploading $src_file -> $SWAGGER_S3_URI (bucket arn: ${SWAGGER_BUCKET_ARN})"
+                aws s3 cp "$src_file" "$SWAGGER_S3_URI" --content-type application/json
+                echo "Upload complete."
+
+  # 3) Trigger a Torque environment update. Only the api_gw_swagger grain has a
+  #    changed plan (its S3-sourced swagger changed), so the smart rolling update
+  #    redeploys just that grain and recalculates the routes.
+  redeploy_api_gw:
+    kind: shell
+    depends-on: upload_swagger
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      files:
+        - source: bps
+          path: scripts/redeploy-api-gw.sh
+      env-vars:
+        - TORQUE_TOKEN: '{{ .params.torque_token }}'
+        - TORQUE_SPACE: '{{ spaceName }}'
+        - ENV_ID: '{{ .bindings.environment_id }}'
+        - GRAIN_NAME: api_gw_swagger
+      activities:
+        deploy:
+          commands:
+            - name: redeploy
+              command: |
+                source redeploy-api-gw.sh

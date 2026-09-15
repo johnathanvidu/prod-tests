@@ -1,0 +1,202 @@
+spec_version: 2
+description: >-
+  REST API Gateway whose routes are imported from an OpenAPI/Swagger file stored
+  in a dedicated S3 bucket. Composes fetch-vpc, fetch-private-subnets,
+  fetch-vpc-endpoint (execute-api) and a swagger-s3-bucket grain, then deploys
+  api-gw-swagger which re-imports and recreates the routes on every apply when
+  the swagger file in S3 changes (same networking pattern as api-gw.yaml).
+
+metadata:
+  display-name: api-gateway swagger (from S3)
+customization:
+  launch-form:
+    categories:
+      - name: API
+        inputs:
+          - name: API Name
+          - name: Endpoint Type
+          - name: Environment
+      - name: Swagger Source
+        inputs:
+          - name: Swagger Key
+      - name: Integration
+        inputs:
+          - name: Lambda Functions JSON
+          
+inputs:
+  API Name:
+    type: string
+    description: Name of the REST API
+  Endpoint Type:
+    type: string
+    default: PRIVATE
+    allowed-values:
+      - PRIVATE
+      - REGIONAL
+      - EDGE
+  Swagger Key:
+    type: string
+    default: openapi/swagger.json
+    description: Object key of the swagger file inside the bucket
+  Lambda Functions JSON:
+    type: string
+    default: '{}'
+    description: JSON map of Lambda functions injected as API Gateway stage variables
+  Environment:
+    type: string
+    default: Development
+    allowed-values:
+      - Development
+      - Staging
+      - Production
+      - Other
+    description: Tags and deployment environment label
+outputs:
+  vpc_id:
+    value: '{{ .grains.fetch_vpc.outputs.vpc_id }}'
+    quick: true
+  private_subnet_ids:
+    value: '{{ .grains.fetch_private_subnets.outputs.subnet_ids }}'
+    quick: true
+  execute_api_vpc_endpoint_id:
+    value: '{{ .grains.fetch_vpc_endpoint.outputs.vpc_endpoint_id }}'
+    quick: true
+  swagger_bucket_name:
+    value: '{{ .grains.swagger_bucket.outputs.bucket_name }}'
+    quick: true
+  swagger_bucket_arn:
+    value: '{{ .grains.swagger_bucket.outputs.bucket_arn }}'
+    quick: true
+  swagger_s3_uri:
+    value: '{{ .grains.swagger_bucket.outputs.swagger_s3_uri }}'
+    quick: true
+  rest_api_id:
+    value: '{{ .grains.api_gw_swagger.outputs.rest_api_id }}'
+    quick: true
+  stage_invoke_url:
+    value: '{{ .grains.api_gw_swagger.outputs.stage_invoke_url }}'
+    kind: link
+    quick: true
+grains:
+  fetch_vpc:
+    kind: terraform
+    spec:
+      source:
+        store: Infrastructure
+        path: fetch-vpc
+      agent:
+        name: moj-aws-torque-agent
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0
+          attributes:
+            assume_role:
+              role_arn: arn:aws:iam::{{ .params.aws_account_id }}:role/moj-aws-quali-torque-deploy
+      inputs:
+        - vpc_name: '{{ .params.aws_account_name }}-vpc'
+      outputs:
+        - vpc_id
+        - vpc_cidr
+  fetch_private_subnets:
+    kind: terraform
+    spec:
+      source:
+        store: Infrastructure
+        path: fetch-subnets
+      agent:
+        name: moj-aws-torque-agent
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0
+          attributes:
+            region: il-central-1
+            assume_role:
+              role_arn: arn:aws:iam::{{ .params.aws_account_id }}:role/moj-aws-quali-torque-deploy
+      inputs:
+        - deployment_type: workload
+      outputs:
+        - subnet_ids
+    depends-on: fetch_vpc
+  fetch_vpc_endpoint:
+    kind: terraform
+    spec:
+      source:
+        store: Infrastructure
+        path: fetch-vpc-endpoint
+      agent:
+        name: moj-aws-torque-agent
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0
+          attributes:
+            assume_role:
+              role_arn: arn:aws:iam::{{ .params.aws_account_id }}:role/moj-aws-quali-torque-deploy
+      inputs:
+        - vpc_id: '{{ .grains.fetch_vpc.outputs.vpc_id }}'
+        - service_name: execute-api
+      outputs:
+        - vpc_endpoint_id
+        - vpc_endpoint_dns
+    depends-on: fetch_vpc
+  swagger_bucket:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/swagger-s3-bucket
+      agent:
+        name: moj-aws-torque-agent
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0
+          attributes:
+            assume_role:
+              role_arn: arn:aws:iam::{{ .params.aws_account_id }}:role/moj-aws-quali-torque-deploy
+      inputs:
+        # Prefix sourced from the Torque parameter store.
+        - bucket_prefix: '{{ .params.swagger_bucket_prefix }}'
+        - swagger_key: '{{ .inputs.["Swagger Key"] }}'
+        - environment: '{{ .inputs.["Environment"] }}'
+      outputs:
+        - bucket_name
+        - bucket_arn
+        - swagger_key
+        - swagger_s3_uri
+  api_gw_swagger:
+    kind: terraform
+    spec:
+      source:
+        store: bps
+        path: terraform/api-gw-swagger
+      agent:
+        name: moj-aws-torque-agent
+      provider-overrides:
+        - name: aws
+          source: hashicorp/aws
+          version: ~>5.0
+          attributes:
+            assume_role:
+              role_arn: arn:aws:iam::{{ .params.aws_account_id }}:role/moj-aws-quali-torque-deploy
+      inputs:
+        - api_name: '{{ .inputs.["API Name"] }}'
+        - integration_type: lambda
+        - lambda_functions_json: '{{ .inputs.["Lambda Functions JSON"] }}'
+        - endpoint_type: '{{ .inputs.["Endpoint Type"] }}'
+        - swagger_bucket: '{{ .grains.swagger_bucket.outputs.bucket_name }}'
+        - swagger_key: '{{ .grains.swagger_bucket.outputs.swagger_key }}'
+        - vpc_endpoint_ids_csv: '{{ .grains.fetch_vpc_endpoint.outputs.vpc_endpoint_id }}'
+        - environment: '{{ .inputs.["Environment"] }}'
+        - enable_access_logging: 'true'
+        - enable_metrics: 'true'
+        - enable_xray_tracing: 'false'
+      outputs:
+        - rest_api_id
+        - rest_api_arn
+        - execution_arn
+        - stage_invoke_url
+        - vpc_endpoint_id
+    depends-on: fetch_private_subnets,fetch_vpc_endpoint,swagger_bucket
