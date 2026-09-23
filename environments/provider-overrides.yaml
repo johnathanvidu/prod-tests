@@ -65,4 +65,3 @@ grains:
       outputs:
       - hello_world
     tf-version: 1.5.5
-    
