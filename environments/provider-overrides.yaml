@@ -43,4 +43,26 @@ grains:
       outputs:
       - hello_world
     tf-version: 1.5.5
+  should-work:
+    kind: terraform
+    spec: 
+      source:
+        store: bps
+        path: terraform/hello-world
+      agent:
+        name: '{{ .inputs.agent }}'
+      provider-overrides:                                                                                                                                                                                                                                                                                                 
+        - name: aws                                                                                                                                                                                                                                                                                                       
+          source: hashicorp/aws                                                                                                                                                                                                                                                                                           
+          version: "~>5.0"                                                                                                                                                                                                                                                                                                
+          attributes:                                                                                                                                                                                                                                                                                                     
+            assume_role:                                                                                                                                                                                                                                                                                                  
+              role_arn: "arn:aws:iam::{{ .params.aws_account_id }}:role/quali-torque-deploy"
+      inputs: 
+      - vido: 'vidddd'
+      - vido2: 'vidddd'
+      env-vars: []
+      outputs:
+      - hello_world
+    tf-version: 1.5.5
     
