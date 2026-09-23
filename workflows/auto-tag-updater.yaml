@@ -6,8 +6,7 @@ workflow:
   labels-selector: "requires-tag-updates"
   triggers:
     - type: event
-      event: Tag Updates Detected
-  timeout: 10
+      event: 'Tag Updates Detected'
 
 api_access:                                                                                                                                                                                                                                                                                                               
   service_account: service-account@quali.com
