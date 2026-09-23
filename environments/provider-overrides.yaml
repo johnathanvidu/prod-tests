@@ -1,0 +1,23 @@
+spec_version: 2
+description: hello world
+
+environment:
+  environment_name: provider-overrides
+  owner_email: johnathan.v@quali.com
+  state: active
+
+inputs:
+  agent:
+    type: agent
+    default: vido-vido-prod
+  
+grains:
+  hello-world:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      activities:
+        deploy:
+          commands:
+            - echo 'vido hello world'
