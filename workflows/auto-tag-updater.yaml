@@ -1,0 +1,55 @@
+spec_version: 2
+description: Applies pending tag values to the environment when tag updates are detected
+
+workflow:
+  scope: env
+  labels-selector: "requires-tag-updates"
+  triggers:
+    - type: event
+      event: Tag Updates Detected
+  timeout: 10
+
+api_access:                                                                                                                                                                                                                                                                                                               
+  service_account: service-account@quali.com
+
+inputs:
+  agent:
+    type: agent
+
+grains:
+  apply_pending_tags:
+    kind: shell
+    spec:
+      agent:
+        name: '{{ .inputs.agent }}'
+      env-vars:
+        - TORQUE_URL: 'https://portal.qtorque.io'
+        - SPACE_NAME: '{{ spaceName }}'
+        - ENV_ID: '{{ .bindings.environment_id }}'
+      activities:
+        deploy:
+          commands:
+            - |
+              ENV_API="$TORQUE_URL/api/spaces/$SPACE_NAME/environments/$ENV_ID"
+
+              env_json=$(curl -fsS -H "Authorization: Bearer $API_TOKEN" "$ENV_API?no_stages=true")
+
+              pending_tags=$(echo "$env_json" | jq -c '
+                .details.definition.tags // []
+                | if type == "array"
+                  then map(select(.pending_value != null) | {(.name): .pending_value}) | add // {}
+                  else with_entries(select(.value.pending_value != null) | .value = .value.pending_value)
+                  end')
+
+              if [ "$pending_tags" = "{}" ]; then
+                echo "No pending tag values found on environment $ENV_ID"
+                exit 0
+              fi
+
+              echo "Updating tags on environment $ENV_ID: $pending_tags"
+              jq -n --argjson tags "$pending_tags" '{tags: $tags}' \
+                | curl -fsS -X POST \
+                    -H "Authorization: Bearer $API_TOKEN" \
+                    -H "Content-Type: application/json" \
+                    --data @- \
+                    "$ENV_API/update_v2"
