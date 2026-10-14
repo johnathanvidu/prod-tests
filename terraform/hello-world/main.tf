@@ -14,3 +14,5 @@ variable "vido2" {
 output "hello_world" {
   value = "Hello, World! ${var.vido2}"
 }
+
+# vido & kate were here
