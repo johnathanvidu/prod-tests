@@ -61,6 +61,7 @@ grains:
       inputs: 
       - vido: 'vidddd'
       - vido2: 'vidddd'
+      - vido3: 'sdfsdf'
       env-vars: []
       outputs:
       - hello_world
