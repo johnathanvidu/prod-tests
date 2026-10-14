@@ -27,6 +27,7 @@ grains:
       source:
         store: bps
         path: terraform/hello-world
+        commit: f22cd807a0fc4cdf5046b1d1d4441a3be10cf7d8
       agent:
         name: '{{ .inputs.agent }}'
       provider-overrides:                                                                                                                                                                                                                                                                                                 
